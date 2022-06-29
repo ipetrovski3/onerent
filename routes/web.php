@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\BookingsController;
+use App\Http\Controllers\CarsController;
+use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +18,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('front.index');
-});
+Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+//Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+Route::post('/available-cars', [BookingsController::class, 'first_step_booking'])->name('first_step');
+Route::post('/create-client', [ClientsController::class, 'create'])->name('clients.create');
+
+Route::prefix('dashboard')->middleware('auth')->group(function() {
+    Route::prefix('cars')->group(function() {
+        Route::get('/', [CarsController::class, 'index'])->name('cars.index');
+        Route::get('/new', [CarsController::class, 'new'])->name('cars.new');
+        Route::post('/store', [CarsController::class, 'store'])->name('cars.store');
+        Route::post('/select-brand', [CarsController::class, 'select_brand'])->name('select.brand');
+    });
+    Route::prefix('bookings')->group(function () {
+        Route::get('/', [BookingsController::class, 'index'])->name('bookings.index');
+        Route::get('/by-car', [BookingsController::class, 'by_car'])->name('bookings.by_car');
+    });
+});

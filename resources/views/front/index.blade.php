@@ -1,353 +1,751 @@
-
 @extends('layouts.app')
-
 @section('content')
-
-
-
-      <div class="hero" style="background-image: url('images/hero_1_a.jpg');">
-
+    <!--================Find Car Banner Area =================-->
+    <section class="find_car_area">
         <div class="container">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-lg-10">
+            <div class="find_car_inner">
+                <h2 class="wow animated fadeInUp" data-wow-delay="0.2s">Let’s find your ideal car</h2>
+                <p class="wow animated fadeIn" data-wow-delay="0.3s" style="color: #DA2128;">No. 1 online Rental Service in Macedonia</p>
+                <form action="{{ route('first_step') }}" id="get_dates_form" method="POST">
+                    @csrf
+                    <div class="search_car_box wow animated fadeInUp" data-wow-delay="0.4s">
+                        <div class="search_car_item">
+                            <select class="form-control" name="pick_up_id" id="">
+                                <option disabled selected value="">Pick up Location</option>
+                                @foreach($locations as $location)
+                                    <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="search_car_item">
+                            <select class="form-control" name="drop_off_id" id="drop_off_id">
+                                <option disabled selected value="">Drop Off Location</option>
+                                @foreach($locations as $location)
+                                    <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="search_car_item">
+                            <div class="form-group">
+                                <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                                    <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                                        <div class="input-group-text click_1"><i class="icon-calendar_2"></i></div>
+                                    </div>
+                                    <div class="text_div">
+                                        {{ \Carbon\Carbon::tomorrow()->format('d.m.yy') }} <span>12:00</span>
+                                    </div>
+                                    <input name="from_date" type="text" class="form-control datetimepicker-input input_1" data-target="#datetimepicker3" data-toggle="datetimepicker"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search_car_item">
+                            <div class="form-group">
+                                <div class="input-group time" id="datetimepicker4" data-target-input="nearest">
+                                    <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                        <div class="input-group-text client_2"><i class="icon-calendar_2"></i></div>
+                                    </div>
+                                    <div class="text_div">
+                                        {{ \Carbon\Carbon::tomorrow()->addDay()->format('d.m.yy') }} <span>12:00</span>
+                                    </div>
+                                    <input type="text" name="to_date" class="form-control datetimepicker-input input_2" data-target="#datetimepicker4" data-toggle="datetimepicker"/>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="submit_btn" type="submit">Search Car</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!--================End Find Car Banner Area =================-->
 
-              <div class="row mb-5">
-                <div class="col-lg-7 intro">
-                  <h1><strong>Rent a car</strong> is within your finger tips.</h1>
+    <!--================Choose Area =================-->
+    <section class="choose_area p_100">
+        <div class="container">
+            <div class="single_title text-center wow animated fadeInUp" data-wow-delay="0.2s">
+                <h2>Why Choose <span>One Rent a Car</span></h2>
+            </div>
+            <div class="row choose_inner2 justify-content-center">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="choose_item wow animated fadeIn" data-wow-delay="0.2s">
+                        <div class="icon">
+                            <i class="icon-rent"></i>
+                        </div>
+                        <h4>Biggest Rental Service</h4>
+                        <p>Premium Service</p>
+                    </div>
                 </div>
-              </div>
-
-              <form class="trip-form">
-
-                <div class="row align-items-center">
-
-                  <div class="mb-3 mb-md-0 col-md-3">
-                    <select name="" id="" class="custom-select form-control">
-                      <option value="">Select Type</option>
-                      <option value="">Ferrari</option>
-                      <option value="">Toyota</option>
-                      <option value="">Ford</option>
-                      <option value="">Lamborghini</option>
-                    </select>
-                  </div>
-                  <div class="mb-3 mb-md-0 col-md-3">
-                    <div class="form-control-wrap">
-                      <input type="text" id="cf-3" placeholder="Pick up" class="form-control datepicker px-3">
-                      <span class="icon icon-date_range"></span>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="choose_item wow animated fadeIn" data-wow-delay="0.4s">
+                        <div class="icon">
+                            <i class="icon-web"></i>
+                        </div>
+                        <h4>Manage Booking Online</h4>
 
                     </div>
-                  </div>
-                  <div class="mb-3 mb-md-0 col-md-3">
-                    <div class="form-control-wrap">
-                      <input type="text" id="cf-4" placeholder="Drop off" class="form-control datepicker px-3">
-                      <span class="icon icon-date_range"></span>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="choose_item wow animated fadeIn" data-wow-delay="0.6s">
+                        <div class="icon">
+                            <i class="icon-rating"></i>
+                        </div>
+                        <h4>Rated by 3.5 million Users</h4>
+{{--                        <p>Working with over 900 companies in 160 countries, we can find </p>--}}
                     </div>
-                  </div>
-                  <div class="mb-3 mb-md-0 col-md-3">
-                    <input type="submit" value="Search Now" class="btn btn-primary btn-block py-3">
-                  </div>
                 </div>
-
-              </form>
-
             </div>
-          </div>
         </div>
-      </div>
+    </section>
+    <!--================End Choose Area =================-->
 
+    <!--================Find Us Area =================-->
+{{--    <section class="find_us_area p_100">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row find_us_inner">--}}
+{{--                <div class="col-lg-6">--}}
+{{--                    <div class="find_us_text">--}}
+{{--                        <h2>Areas You Can <span>Find Us</span></h2>--}}
+{{--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do them<br /> eiusmod tempor incididunt labore</p>--}}
+{{--                        <div class="list_finding">--}}
+{{--                            <ul class="nav flex-column">--}}
+{{--                                <li class="newyourk"><a href="#">New York City</a></li>--}}
+{{--                                <li class="los"><a href="#">Los Angeles</a></li>--}}
+{{--                                <li class="chicago"><a href="#">Chicago</a></li>--}}
+{{--                                <li class="houston"><a href="#">Houston</a></li>--}}
+{{--                                <li class="phil"><a href="#">Philadelphia</a></li>--}}
+{{--                                <li class="aiami"><a href="#">Miami</a></li>--}}
+{{--                            </ul>--}}
+{{--                            <ul class="nav flex-column">--}}
+{{--                                <li class="at"><a href="#">Atlanta</a></li>--}}
+{{--                                <li class="bostan"><a href="#">Boston</a></li>--}}
+{{--                                <li class="san"><a href="#">San Francisco</a></li>--}}
+{{--                                <li class="pho"><a href="#">Phoenix</a></li>--}}
+{{--                                <li class="det"><a href="#">Detroit</a></li>--}}
+{{--                                <li class="seat"><a href="#">Seattle</a></li>--}}
+{{--                            </ul>--}}
+{{--                            <ul class="nav flex-column">--}}
+{{--                                <li class="diego"><a href="#">San Diego</a></li>--}}
+{{--                                <li class="louis"><a href="#">St. Louis</a></li>--}}
+{{--                                <li class="balti"><a href="#">Baltimore</a></li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-6">--}}
+{{--                    <div class="find_us_img">--}}
+{{--                        <img class="img-fluid wow animated fadeIn" data-wow-delay="0.4s" src="img/find-map.png" alt="">--}}
+{{--                        <div class="marker_icon">--}}
+{{--                            <ul class="nav">--}}
+{{--                                <li class="newyourk"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="New York City"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="los"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Los Angeles"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="chicago"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Chicago"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="houston"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Chicago"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="phil"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Philadelphia"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="aiami"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Miami"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="at"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Atlanta"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="bostan"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Boston"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="san"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="San Francisco"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="pho"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Phoenix"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="det"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detroit"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="seat"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Seattle"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="diego"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="San Diego"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="louis"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="St. Louis"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                                <li class="balti"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Baltimore"><img src="img/icon/map-marker.png" alt=""></a></li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
+    <!--================End Find Us Area =================-->
 
+    <!--================Car Drive Area =================-->
+    <section class="car_drive_area p_100" >
 
-      <div class="site-section">
         <div class="container">
-          <h2 class="section-heading"><strong>How it works?</strong></h2>
-          <p class="mb-5">Easy steps to get you started</p>
+            <div class="single_title text-center wow animated fadeInUp" data-wow-delay="0.2s">
+                <h2>Cars you <span>Can Drive</span></h2>
+            </div>
+            <div class="drive_item d-flex justify-content-between">
+                <div class="left">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">SUV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Coupe</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Hatchback</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="sedan-tab" data-toggle="tab" href="#sedan" role="tab" aria-controls="sedan" aria-selected="false">Sedan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="cros-tab" data-toggle="tab" href="#cros" role="tab" aria-controls="cros" aria-selected="false">Crossover</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <div class="hourly_toggle">
 
-          <div class="row mb-5">
-            <div class="col-lg-4 mb-4 mb-lg-0">
-              <div class="step">
-                <span>1</span>
-                <div class="step-inner">
-                  <span class="number text-primary">01.</span>
-                  <h3>Select a car</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, laboriosam!</p>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="col-lg-4 mb-4 mb-lg-0">
-              <div class="step">
-                <span>2</span>
-                <div class="step-inner">
-                  <span class="number text-primary">02.</span>
-                  <h3>Fill up form</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, laboriosam!</p>
+            <div class="drive_product_view">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="car_drive_slider owl-carousel">
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-1.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>BMW 720 Series</h3></a>
+                                            <h4>$8/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-2.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>Honda Civic</h3></a>
+                                            <h4>$6/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-3.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>Mercedez Benz</h3></a>
+                                            <h4>$10/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-1.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>BMW 720 Series</h3></a>
+                                            <h4>$8/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="car_drive_slider owl-carousel">
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-1.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>BMW 720 Series</h3></a>
+                                            <h4>$8/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-2.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>Honda Civic</h3></a>
+                                            <h4>$6/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-3.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>Mercedez Benz</h3></a>
+                                            <h4>$10/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-1.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>BMW 720 Series</h3></a>
+                                            <h4>$8/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="car_drive_slider owl-carousel">
+                            @foreach($cars as $car)
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="{{ asset('storage/cars/' . $car->model->image) }}" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>{{ $car->brand->name . ' ' . $car->model->name }}</h3></a>
+                                            <h4> &euro; {{ $car->ppd }}/day</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">{{ $car->engines[$car->engine_type] }}</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">{{ $car->transmissions[$car->transmission_type] }}</a></li>
+{{--                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>--}}
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-2.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>Honda Civic</h3></a>
+                                            <h4>$6/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-3.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>Mercedez Benz</h3></a>
+                                            <h4>$10/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-1.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>BMW 720 Series</h3></a>
+                                            <h4>$8/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="sedan" role="tabpanel" aria-labelledby="sedan-tab">
+                        <div class="car_drive_slider owl-carousel">
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-1.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>BMW 720 Series</h3></a>
+                                            <h4>$8/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-2.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>Honda Civic</h3></a>
+                                            <h4>$6/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-3.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>Mercedez Benz</h3></a>
+                                            <h4>$10/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-1.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>BMW 720 Series</h3></a>
+                                            <h4>$8/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="cros" role="tabpanel" aria-labelledby="cros-tab">
+                        <div class="car_drive_slider owl-carousel">
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-1.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>BMW 720 Series</h3></a>
+                                            <h4>$8/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-2.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>Honda Civic</h3></a>
+                                            <h4>$6/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-3.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>Mercedez Benz</h3></a>
+                                            <h4>$10/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="car_product_item">
+                                    <div class="car_img">
+                                        <a href="product-details.html"><img src="img/product/car-product-1.png" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="title d-flex justify-content-between">
+                                            <a href="product-details.html"><h3>BMW 720 Series</h3></a>
+                                            <h4>$8/hr</h4>
+                                        </div>
+                                        <ul class="nav">
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">Petrol</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">Manual</a></li>
+                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">03</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="col-lg-4 mb-4 mb-lg-0">
-              <div class="step">
-                <span>3</span>
-                <div class="step-inner">
-                  <span class="number text-primary">03.</span>
-                  <h3>Payment</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, laboriosam!</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-4 mx-auto">
-              <a href="#" class="d-flex align-items-center play-now mx-auto">
-                <span class="icon">
-                  <span class="icon-play"></span>
-                </span>
-                <span class="caption">Video how it works</span>
-              </a>
-            </div>
-          </div>
         </div>
-      </div>
+    </section>
+    <!--================End Car Drive Area =================-->
 
-      <div class="site-section">
+{{--    <!--================Download App Area =================-->--}}
+{{--    <section class="download_app_area">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-lg-5">--}}
+{{--                    <div class="mobile_img">--}}
+{{--                        <img class="wow animated fadeInUp" data-wow-delay="0.4s" src="img/mobile-1.jpg" alt="">--}}
+{{--                        <img class="wow animated fadeInUp" data-wow-delay="0.8s" src="img/mobile-2.jpg" alt="">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-7">--}}
+{{--                    <div class="download_text">--}}
+{{--                        <h3>Download Our App Now</h3>--}}
+{{--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do them eiusmod tempor incididunt labore</p>--}}
+{{--                        <a class="google wow animated fadeInLeft" data-wow-delay="0.4s" href="#"><img src="img/google-play.png" alt=""></a>--}}
+{{--                        <a class="os wow animated fadeInLeft" data-wow-delay="0.6s" href="#"><img src="img/os.png" alt=""></a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
+    <!--================End Download App Area =================-->
+
+    <!--================Question Area =================-->
+    <section class="top_question_area p_100">
         <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-7 text-center order-lg-2">
-              <div class="img-wrap-1 mb-5">
-                <img src="images/feature_01.png" alt="Image" class="img-fluid">
-              </div>
+            <div class="single_title text-center wow animated fadeInUp" data-wow-delay="0.2s">
+                <h2>Top <span>Questions</span></h2>
             </div>
-            <div class="col-lg-4 ml-auto order-lg-1">
-              <h3 class="mb-4 section-heading"><strong>You can easily avail our promo for renting a car.</strong></h3>
-              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, explicabo iste a labore id est quas, doloremque veritatis! Provident odit pariatur dolorem quisquam, voluptatibus voluptates optio accusamus, vel quasi quidem!</p>
-
-              <p><a href="#" class="btn btn-primary">Meet them now</a></p>
+            <div class="top_ques_inner">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                When do I get charged for a ride?
+                                <i class="icon-plus"></i>
+                                <i class="icon-minus"></i>
+                            </button>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price. Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Can I pay for an trip with cash?
+                                <i class="icon-plus"></i>
+                                <i class="icon-minus"></i>
+                            </button>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price. Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Can I pay for an trip with credit card or online?
+                                <i class="icon-plus"></i>
+                                <i class="icon-minus"></i>
+                            </button>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price. Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingfour">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+                                Can I get a ride from an airport?
+                                <i class="icon-plus"></i>
+                                <i class="icon-minus"></i>
+                            </button>
+                        </div>
+                        <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#accordionExample">
+                            <div class="card-body">
+                                Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price. Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingfive">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+                                How do I get a price estimate in the app?
+                                <i class="icon-plus"></i>
+                                <i class="icon-minus"></i>
+                            </button>
+                        </div>
+                        <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordionExample">
+                            <div class="card-body">
+                                Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price. Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </section>
+    <!--================End Question Area =================-->
+@endsection
 
 
+@section('js')
+    @if(Session::has('success'))
+        <script>
+            Swal.fire(
+                'Good job!',
+                'You clicked the button!',
+                'success'
+            )
+        </script>
+    @endif
+    <script>
+        $(document).ready(function() {
+            $('.datetimepicker-input').attr('autocomplete','off');
+        });
 
-    <div class="site-section bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7">
-            <h2 class="section-heading"><strong>Car Listings</strong></h2>
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          </div>
-        </div>
+    {{--    $(document).on('submit', '#get_dates_form', function (e) {--}}
+    {{--        e.preventDefault()--}}
+    {{--        let data = $(this).serialize()--}}
+    {{--        $.ajaxSetup({--}}
+    {{--            headers: {--}}
+    {{--                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+    {{--            }--}}
+    {{--        });--}}
+    {{--        $.ajax({--}}
+    {{--            type: "POST",--}}
+    {{--            url: "{{ route('first_step') }}",--}}
+    {{--            data: data,--}}
+    {{--            success: function (view) {--}}
+    {{--                console.log(view)--}}
+    {{--                $('#car_list').empty()--}}
+    {{--                $('#car_list').html(view)--}}
+    {{--                // document.getElementById('car_list').scrollIntoView();--}}
 
-
-        <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4">
-
-            <div class="listing d-block  align-items-stretch">
-              <div class="listing-img h-100 mr-4">
-                <img src="images/car_6.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-contents h-100">
-                <h3>Mitsubishi Pajero</h3>
-                <div class="rent-price">
-                  <strong>$389.00</strong><span class="mx-1">/</span>day
-                </div>
-                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Luggage:</span>
-                    <span class="number">8</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Doors:</span>
-                    <span class="number">4</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Passenger:</span>
-                    <span class="number">4</span>
-                  </div>
-                </div>
-                <div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eos at eum, voluptatem quibusdam.</p>
-                  <p><a href="#" class="btn btn-primary btn-sm">Rent Now</a></p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4">
-
-            <div class="listing d-block  align-items-stretch">
-              <div class="listing-img h-100 mr-4">
-                <img src="images/car_5.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-contents h-100">
-                <h3>Nissan Moco</h3>
-                <div class="rent-price">
-                  <strong>$389.00</strong><span class="mx-1">/</span>day
-                </div>
-                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Luggage:</span>
-                    <span class="number">8</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Doors:</span>
-                    <span class="number">4</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Passenger:</span>
-                    <span class="number">4</span>
-                  </div>
-                </div>
-                <div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eos at eum, voluptatem quibusdam.</p>
-                  <p><a href="#" class="btn btn-primary btn-sm">Rent Now</a></p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-
-          <div class="col-md-6 col-lg-4 mb-4">
-
-            <div class="listing d-block  align-items-stretch">
-              <div class="listing-img h-100 mr-4">
-                <img src="images/car_4.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-contents h-100">
-                <h3>Honda Fitta</h3>
-                <div class="rent-price">
-                  <strong>$389.00</strong><span class="mx-1">/</span>day
-                </div>
-                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Luggage:</span>
-                    <span class="number">8</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Doors:</span>
-                    <span class="number">4</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Passenger:</span>
-                    <span class="number">4</span>
-                  </div>
-                </div>
-                <div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eos at eum, voluptatem quibusdam.</p>
-                  <p><a href="#" class="btn btn-primary btn-sm">Rent Now</a></p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4">
-
-            <div class="listing d-block  align-items-stretch">
-              <div class="listing-img h-100 mr-4">
-                <img src="images/car_3.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-contents h-100">
-                <h3>Skoda Laura</h3>
-                <div class="rent-price">
-                  <strong>$389.00</strong><span class="mx-1">/</span>day
-                </div>
-                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Luggage:</span>
-                    <span class="number">8</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Doors:</span>
-                    <span class="number">4</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Passenger:</span>
-                    <span class="number">4</span>
-                  </div>
-                </div>
-                <div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eos at eum, voluptatem quibusdam.</p>
-                  <p><a href="#" class="btn btn-primary btn-sm">Rent Now</a></p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4">
-
-            <div class="listing d-block  align-items-stretch">
-              <div class="listing-img h-100 mr-4">
-                <img src="images/car_2.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-contents h-100">
-                <h3>Mazda LaPuta</h3>
-                <div class="rent-price">
-                  <strong>$389.00</strong><span class="mx-1">/</span>day
-                </div>
-                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Luggage:</span>
-                    <span class="number">8</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Doors:</span>
-                    <span class="number">4</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Passenger:</span>
-                    <span class="number">4</span>
-                  </div>
-                </div>
-                <div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eos at eum, voluptatem quibusdam.</p>
-                  <p><a href="#" class="btn btn-primary btn-sm">Rent Now</a></p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-
-          <div class="col-md-6 col-lg-4 mb-4">
-
-            <div class="listing d-block  align-items-stretch">
-              <div class="listing-img h-100 mr-4">
-                <img src="images/car_1.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-contents h-100">
-                <h3>Buick LaCrosse</h3>
-                <div class="rent-price">
-                  <strong>$389.00</strong><span class="mx-1">/</span>day
-                </div>
-                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Luggage:</span>
-                    <span class="number">8</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Doors:</span>
-                    <span class="number">4</span>
-                  </div>
-                  <div class="listing-feature pr-4">
-                    <span class="caption">Passenger:</span>
-                    <span class="number">4</span>
-                  </div>
-                </div>
-                <div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos eos at eum, voluptatem quibusdam.</p>
-                  <p><a href="#" class="btn btn-primary btn-sm">Rent Now</a></p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-
-
+    {{--            }--}}
+    {{--        })--}}
+    </script>
 @endsection

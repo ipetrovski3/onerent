@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +15,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -23,6 +24,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $cars = Car::all();
+        $locations = Location::all();
+        return view('front.index')->with([
+            'cars' => $cars,
+            'locations' => $locations
+        ]);
+    }
+
+    public function booking()
+    {
+        $cars = Car::with('bookings')->get();
+        return $cars;
+
     }
 }
