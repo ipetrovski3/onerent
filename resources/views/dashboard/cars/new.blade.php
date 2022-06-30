@@ -64,6 +64,10 @@
                     <label class="form-label" for="max_passengers">Max Passengers</label>
                     <input class="form-control" type="number" name="max_passengers">
                 </div>
+                <div class="form-group">
+                    <label class="form-label" for="max_passengers">Price per day</label>
+                    <input class="form-control" type="number" name="ppd">
+                </div>
                 <button type="submit" class="btn btn-success">Save Car</button>
             </form>
         </div>

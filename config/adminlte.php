@@ -240,6 +240,12 @@ return [
         ],
 
         [
+            'text' => 'New Car Model',
+            'route'  => 'models.new',
+            'icon' => 'fa fa-car'
+        ],
+
+        [
             'text' => 'Bookings',
             'route'  => 'bookings.index',
             'icon' => 'fa fa-car'

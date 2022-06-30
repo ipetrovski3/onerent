@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookingsController;
+use App\Http\Controllers\CarModelsController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\DashboardController;
@@ -29,6 +30,7 @@ Route::post('/available-cars', [BookingsController::class, 'first_step_booking']
 Route::post('/create-client', [ClientsController::class, 'create'])->name('clients.create');
 
 Route::prefix('dashboard')->middleware('auth')->group(function() {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::prefix('cars')->group(function() {
         Route::get('/', [CarsController::class, 'index'])->name('cars.index');
         Route::get('/new', [CarsController::class, 'new'])->name('cars.new');
@@ -38,5 +40,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
     Route::prefix('bookings')->group(function () {
         Route::get('/', [BookingsController::class, 'index'])->name('bookings.index');
         Route::get('/by-car', [BookingsController::class, 'by_car'])->name('bookings.by_car');
+    });
+    Route::prefix('models')->group(function() {
+        Route::get('/new', [CarModelsController::class, 'new'])->name('models.new');
+        Route::post('/store', [CarModelsController::class, 'store'])->name('models.store');
     });
 });

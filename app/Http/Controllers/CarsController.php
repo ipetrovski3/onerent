@@ -40,6 +40,7 @@ class CarsController extends Controller
         $car->transmission_type = $request->transmission_type;
         $car->engine_type = $request->engine_type;
         $car->max_passengers = $request->max_passengers;
+        $car->ppd = $request->ppd;
         $car->save();
 
         return redirect()->route('cars.index');
