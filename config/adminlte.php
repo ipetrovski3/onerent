@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => 'ONE RENT A CAR',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => 'One Rent',
+    'logo_img' => 'images/logo-white.png',
+    'logo_img_class' => 'brand-image elevation-10',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'ONE RENT A CAR',
 
     /*
     |--------------------------------------------------------------------------

@@ -5,7 +5,7 @@
         <div class="container">
             <div class="find_car_inner">
                 <h2 class="wow animated fadeInUp" data-wow-delay="0.2s">Let’s find your ideal car</h2>
-                <p class="wow animated fadeIn" data-wow-delay="0.3s" style="color: #DA2128;">No. 1 online Rental Service in Macedonia</p>
+                <p class="wow animated fadeIn" data-wow-delay="0.3s" style="color: #ED6C30;">No. 1 online Rental Service in Macedonia</p>
                 <form action="{{ route('first_step') }}" id="get_dates_form" method="POST">
                     @csrf
                     <div class="search_car_box wow animated fadeInUp" data-wow-delay="0.4s">
