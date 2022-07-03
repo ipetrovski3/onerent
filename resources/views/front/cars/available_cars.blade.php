@@ -4,7 +4,7 @@
     <!-- Button trigger modal -->
 
 <!--================Breadcrumb Area =================-->
-<section class="breadcrumb_area" style="background: url(img/breadcrumb/breadcrumb-bg-6.jpg)">
+<section class="breadcrumb_area" style="background: url({{ asset('images/carsall.jpeg') }})">
     <div class="container">
         <div class="breadcrumb_inner">
             <h3>Available cars</h3>
@@ -60,21 +60,21 @@
             <div class="col-lg-3">
                 <div class="shop_product_sidebar">
 
-                    <aside class="r_widget news_widget">
-                        <div class="r_title">
-                            <h3>Info</h3>
-                        </div>
-                        <div class="news_inner">
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                It has survived not only five centuries, but also the leap into electronic typesetting,
-                                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-                                sheets containing Lorem Ipsum passages, and more recently with desktop publishin
-                            </p>
-                        </div>
-                    </aside>
+{{--                    <aside class="r_widget news_widget">--}}
+{{--                        <div class="r_title">--}}
+{{--                            <h3>Info</h3>--}}
+{{--                        </div>--}}
+{{--                        <div class="news_inner">--}}
+{{--                            <p>--}}
+{{--                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.--}}
+{{--                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,--}}
+{{--                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.--}}
+{{--                                It has survived not only five centuries, but also the leap into electronic typesetting,--}}
+{{--                                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset--}}
+{{--                                sheets containing Lorem Ipsum passages, and more recently with desktop publishin--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                    </aside>--}}
 
                 </div>
             </div>

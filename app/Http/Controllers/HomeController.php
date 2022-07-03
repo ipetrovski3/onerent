@@ -36,6 +36,5 @@ class HomeController extends Controller
     {
         $cars = Car::with('bookings')->get();
         return $cars;
-
     }
 }

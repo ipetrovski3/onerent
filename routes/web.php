@@ -20,6 +20,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
+Route::get('/cars', [CarsController::class, 'front_index'])->name('cars.front.index');
+
+Route::get('about-us', function () {
+    return view('front.about-us');
+})->name('about');
+
+Route::get('terms-and-conditions', function () {
+    return view('front.terms');
+})->name('terms');
 
 Auth::routes();
 

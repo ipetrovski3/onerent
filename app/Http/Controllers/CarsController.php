@@ -16,6 +16,12 @@ class CarsController extends Controller
         return view('dashboard.cars.index', compact('cars'));
     }
 
+    public function front_index()
+    {
+        $cars = Car::all();
+        return view('front.cars.index', compact('cars'));
+    }
+
     public function new()
     {
         $car = new Car;
