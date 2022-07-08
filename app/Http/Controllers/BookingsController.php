@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Models\Car;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BookingsController extends Controller
 {
@@ -18,15 +19,27 @@ class BookingsController extends Controller
 
     public function first_step_booking(Request $request)
     {
-//        return $request->all();
+        $request->validate(
+            [
+               'pick_up_id' => 'required',
+               'drop_off_id' => 'required',
+               'from_date' => 'required',
+               'to_date' => 'required',
+
+            ],
+            [
+                'pick_up_id.required' => 'Please specify pick up location',
+                'drop_off_id.required' => 'Please specify drop off location',
+                'from_date.required' => 'Please add start date',
+                'to_date.required' => 'Please add end_date'
+            ]
+        );
+
         $with_time = explode(' ', $request->from_date);
         $from_time = explode(' ', $request->to_date);
         $from = Carbon::createFromFormat('m/d/yy', $with_time[0]);
         $to = Carbon::createFromFormat('m/d/yy', $from_time[0]);
 
-//        dd(['from' => $from, 'to' => $to]);
-        $f = $from->toDateString();
-//        dd($from == $f);
         $booking = new Booking;
         $booking->pick_up_id = $request->pick_up_id;
         $booking->drop_off_id = $request->drop_off_id;
@@ -35,7 +48,6 @@ class BookingsController extends Controller
         $booking->time_of_pick_up = $with_time[1];
         $booking->save();
 
-//        return Booking::where('from_date', '>=', $from)->get();
         $cars = Car::with('bookings')->whereNotIn('id', function ($query) use ($from, $to) {
             $query->from('bookings')
                 ->select('car_id')
@@ -45,8 +57,6 @@ class BookingsController extends Controller
         })->get();
 
         $days = $from->diffInDays($to);
-//        return $cars;
-//        return $cars->count();
         return view('front.cars.available_cars')
             ->with([
                 'cars' => $cars,

@@ -12525,11 +12525,13 @@ input[type=number] {
   height: 40px;
   width: 40px;
   border-radius: 50%;
+
   text-align: center;
   background: #475993;
-  line-height: 40px;
+  line-height: 40px !important;
   color: #fff;
   position: relative;
+
 }
 .subscribe_widget .nav li a:before {
   content: "";
@@ -12542,12 +12544,13 @@ input[type=number] {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   border-radius: 50%;
+
 }
 .subscribe_widget .nav li:nth-child(2) a {
-  background: #ff2a39;
+  background: #ea2aff;
 }
 .subscribe_widget .nav li:nth-child(2) a:before {
-  border-color: #ff2a39;
+  border-color: #ea2aff;
 }
 .subscribe_widget .nav li:nth-child(3) a {
   background: #5f9dec;

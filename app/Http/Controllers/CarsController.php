@@ -16,6 +16,13 @@ class CarsController extends Controller
         return view('dashboard.cars.index', compact('cars'));
     }
 
+    public function front_show($id)
+    {
+        $car = Car::findOrFail($id);
+
+        return view('front.cars.car-details', compact('car'));
+    }
+
     public function front_index()
     {
         $cars = Car::all();
