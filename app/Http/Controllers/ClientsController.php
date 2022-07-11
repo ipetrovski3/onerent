@@ -6,22 +6,22 @@ use App\Mail\NewBookingEmail;
 use App\Models\Booking;
 use App\Models\Client;
 use App\Services\BookingHandlingService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class ClientsController extends Controller
 {
-    public function create(Request $request)
+    public function create(Request $request, BookingHandlingService  $bookingHandlingService)
     {
-//        return $request->all();
-        $booking = Booking::find($request->booking_id);
         $car_id = $request->car_id;
 
         $client = Client::create($request->all());
-
+        $booking = $bookingHandlingService->make_reservation();
         $booking->update(['client_id' => $client->id, 'car_id' => $car_id]);
         $admin_email = 'igor@test.com';
-        $this->send_emails($admin_email, $client->email);
+//        $this->send_emails($admin_email, $client->email);
+
         return redirect()->route('home')->with(['success' => 'Your Booking was successfully']);
 
     }

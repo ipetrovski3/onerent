@@ -71,9 +71,9 @@
 
         <a href="#">
             <---Previous</a>
-        <--- @php $month=\Carbon\Carbon::now(); echo $month->format('F');
+        --- @php $month=\Carbon\Carbon::now(); echo $month->format('F');
         @endphp
-        --->
+        ---
         <a href="#">Next---></a>
 
         <thead>
@@ -127,7 +127,7 @@
                             $date = \Carbon\Carbon::parse($dates)->format('Y-m-d');
                             @endphp
                             @if($car_booked_start <= $date && $car_booked_end >= $date)
-                                <span  id="p0" title="{{ $car }}" class="text-success">{{\Carbon\Carbon::parse($dates)->format('d') }}</span>
+                                <span id="p0" title="{{ $car->bookings }}" class="badge badge-success">{{\Carbon\Carbon::parse($dates)->format('d') }}</span>
                             @else
                                 <span id="p0" class="">{{\Carbon\Carbon::parse($dates)->format('d') }}</span>
                             @endif

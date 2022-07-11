@@ -9,7 +9,11 @@
         <div class="breadcrumb_inner">
             <h3>Available cars</h3>
             <div class="link">
-                <p>Requested Date: {{ $booking->from_date->format('d.m.Y') . ' - ' . $booking->to_date->format('d.m.Y') }}</p>
+                @php
+                    $from = Carbon\Carbon::parse(session()->get('from_date'))->format('d.m.Y H:i');
+                    $to = Carbon\Carbon::parse(session()->get('to_date'))->format('d.m.Y H:i');
+                @endphp
+                <p>Requested Date: {{  $from . ' - ' . $to }}</p>
             </div>
         </div>
     </div>
@@ -30,7 +34,7 @@
                                 <div class="car_img">
                                     <a href="#"><img class="img-fluid" src="{{ asset('storage/cars/' . $car->model->image) }}" alt=""></a>
                                     <div class="cart_option">
-                                        <a href="#" class="book_car" data-car_id="{{ $car->id }}" data-car="{{ $car->brand_and_model() }}" data-ppd="{{ $car->ppd }}" data-booking_id="{{ $booking->id }}">Book</a>
+                                        <a href="#" class="book_car" data-car_id="{{ $car->id }}" data-car="{{ $car->brand_and_model() }}" data-ppd="{{ $car->ppd }}">Book</a>
                                     </div>
                                 </div>
                                 <div class="text_body">
@@ -83,9 +87,11 @@
 </section>
 <!--================End Product Area =================-->
 
+
     <!-- Modal -->
     <div class="modal fade" id="client_details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
+
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Booking</h5>
@@ -94,10 +100,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p id="car_model" style="margin-bottom: 3px"></p>
-                    <p style="margin-bottom: 3px">From: {{ $booking->from_date->format('d m Y') }}</p>
-                    <p style="margin-bottom: 3px">To: {{ $booking->to_date->format('d m Y') }}</p>
-                    <p id="summary">Total Cost:</p>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="from" class="form-label">From Date</label>
+                            <input disabled id="from" type="text" class="form-control" value="{{ $from }}">
+                        </div>
+                        <div class="col-6">
+                            <label for="to" class="form-label">To Date</label>
+                            <input disabled id="to" type="text" class="form-control" value="{{ $to }}">
+                        </div>
+                    </div>
+                    <hr>
+                    <p id="car_model" class="font-weight-bold" style="margin-bottom: 3px"></p>
+                    <p id="summary" class="font-weight-bold">Total Cost:</p>
                 </div>
                 <form action="{{ route('clients.create') }}" method="POST">
                     @csrf
@@ -137,8 +153,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="main_btn">Confirm Reservation</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="submit_btn">Make Reservation</button>
+                        <button type="button" class="btn booking_btn" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>

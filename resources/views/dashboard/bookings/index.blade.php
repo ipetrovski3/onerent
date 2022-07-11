@@ -31,7 +31,7 @@
                 <td>{{ $booking->pick_up->name  }}</td>
                 <td>{{ $booking->drop_off->name  }}</td>
                 <td>{{ $booking->client ? $booking->client->full_name() : '/'  }}</td>
-                <td class="text-success">Confirmed </td>
+                <td class="text-success">{{ $booking->statuses[$booking->status] }} </td>
 
             </tr>
         @endforeach

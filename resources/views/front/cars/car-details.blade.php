@@ -86,6 +86,80 @@
             </div>
         </div>
     </section>
+    <div class="main_contact_inner trade_container zoom-anim-dialog mfp-hide" id="tradePopup">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="vehicle-tab" data-toggle="tab" href="#vehicle" role="tab" aria-controls="vehicle" aria-selected="true">Vehicle Information</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact Detials</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="vehicle" role="tabpanel" aria-labelledby="vehicle-tab">
+                <form class="row contact_form form_trade" action="#" method="post">
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="brand" name="brand" placeholder="Brand">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="model2" name="model2" placeholder="Model">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="year" name="year" placeholder="Build Year">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="transmission" name="transmission" placeholder="Transmission">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="mileage" name="mileage" placeholder="Mileage">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="number" class="form-control" id="pin" name="pin" placeholder="PIN">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="color" name="color" placeholder="Exterior color">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="color2" name="color2" placeholder="Interior color">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="owner" name="owner" placeholder="Owner">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div class='file-input'>
+                            <p>Upload Vehicle Pictures Here :</p>
+                            <input type='file'>
+                            <span class='button'>Choose File</span>
+                            <span class='label' data-js-label>No File chosen</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <button type="submit" value="submit" class="btn submit_btn red form-control">Continue</button>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <form class="row contact_form form_trade" action="#" method="post">
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="name3" name="name" placeholder="Name">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="phone4" name="phone4" placeholder="Phone">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="number" class="form-control" id="email4" name="email4" placeholder="Email">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <textarea class="form-control" name="messages" id="messages" rows="1" placeholder="Message"></textarea>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <button type="submit" value="submit" class="btn submit_btn red form-control">Submit Information</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection
     <!--================End Product Details Area =================-->
 

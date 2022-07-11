@@ -30,6 +30,17 @@ class Car extends Model
         return $this->brand->name . ' ' . $this->model->name;
     }
 
+    public static function available_cars($from, $to)
+    {
+        return self::with('bookings')->whereNotIn('id', function ($query) use ($from, $to) {
+            $query->from('bookings')
+                ->select('car_id')
+                ->whereDate('from_date', '<=', $to)
+                ->whereDate('to_date', '>=', $from)
+                ->where('car_id', '!=', 'id');
+        })->get();
+    }
+
     public $transmissions = [
         '0' => 'Automatic',
         '1' => 'Manual'

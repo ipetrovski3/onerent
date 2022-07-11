@@ -2,23 +2,40 @@
 
 namespace App\Services;
 
+use App\Models\Booking;
+use Carbon\Carbon;
+
 class BookingHandlingService
 {
-    public function email_content($considered)
+    public function make_reservation()
     {
-        if ($considered == 'client') {
-            return [
-                'title' => 'One Rent a Car | Reservation',
-                'message' => 'Thank you for choosing us for as rental company',
-                'message_two' => 'One of our colleagues will contact you soon so we can confirm the reservation'
-            ];
-        } elseif ($considered == 'admin') {
-            return [
-                'title' => 'New Reservation Received',
-                'message' => 'You have received new car booking',
-                'message_two' => "Click here to go the dashboard to see your reservation"
-            ];
-        }
+        $booking = new Booking;
+        $booking->pick_up_id = session()->get('pick_up_id');
+        $booking->drop_off_id = session()->get('drop_off_id');
+        $booking->from_date = $this->format_from_date()['from_date'];
+        $booking->to_date = $this->format_to_date();
+        $booking->time_of_pick_up = $this->format_from_date()['pick_up_time'];
+        $booking->save();
+
+        session()->flush();
+
+        return $booking;
     }
 
+    public function format_from_date()
+    {
+        $from_date = explode(' ', session()->get('from_date'));
+        return [
+            'from_date' => Carbon::createFromFormat('m/d/yy', $from_date[0]),
+            'pick_up_time' => $from_date[1]
+        ];
+
+    }
+
+    public function format_to_date()
+    {
+        $to_date = explode(' ', session()->get('to_date'));
+        return Carbon::createFromFormat('m/d/yy', $to_date[0]);
+    }
 }
+

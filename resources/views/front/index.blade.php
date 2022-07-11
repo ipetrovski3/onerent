@@ -6,8 +6,7 @@
             <div class="find_car_inner">
                 <h2 class="wow animated fadeInUp" data-wow-delay="0.2s">Let’s find your ideal car</h2>
                 <p class="wow animated fadeIn" data-wow-delay="0.3s" style="color: #ED6C30;">No. 1 online Rental Service in Macedonia</p>
-                <form action="{{ route('first_step') }}" id="get_dates_form" method="POST">
-                    @csrf
+                <form action="{{ route('first_step') }}" id="get_dates_form" method="GET">
                     <div class="search_car_box wow animated fadeInUp" data-wow-delay="0.4s">
                         <div class="search_car_item">
                             <select class="form-control" name="pick_up_id" id="">
@@ -128,10 +127,19 @@
                                             <h4> &euro; {{ $car->ppd }}/day</h4>
                                         </div>
                                         <ul class="nav">
-                                            <li><a href="#"><img src="img/icon/p-cat-icon-1.png" alt="">{{ $car->engines[$car->engine_type] }}</a></li>
-                                            <li><a href="#"><img src="img/icon/p-cat-icon-3.png" alt="">{{ $car->transmissions[$car->transmission_type] }}</a></li>
-{{--                                            <li><a href="#"><img src="img/icon/p-cat-icon-2.png" alt="">07</a></li>--}}
-                                            <li><a href="#"><img src="img/icon/p-cat-icon-4.png" alt="">{{ $car->max_passengers }}</a></li>
+                                            <li><i class="icon-gear1"></i> <span>{{ $car->transmissions[$car->transmission_type] }}</span></li>
+                                            <li><i class="icon-engine"></i><span>{{ $car->engines[$car->engine_type] }}</span></li>
+                                            <li><i class="icon-seat"></i> <span> {{ $car->max_passengers }}</span></li>
+                                            <li><i class="icon-snowflake-o"></i>
+                                                    <span class="text-{{ $car->ac ? 'success' : 'danger'}}">
+                                                        <i class="{{ $car->ac ? 'icon-check' : 'icon-times' }}"></i>
+                                                    </span>
+                                                </li>
+                                            <li><i class="icon-map_marker"></i>
+                                                    <span class="text-{{ $car->navigation ? 'success' : 'danger'}}">
+                                                        <i class="{{ $car->navigation ? 'icon-check' : 'icon-times' }}"></i>
+                                                     </span>
+                                            </li>
                                         </ul>
 
                                     </div>
@@ -259,9 +267,9 @@
     @if(Session::has('success'))
         <script>
             Swal.fire(
-                'Good job!',
-                'You clicked the button!',
-                'success'
+                'Your Reservation is completed',
+                'Please check your email with information about your booking',
+                'Ok'
             )
         </script>
     @endif

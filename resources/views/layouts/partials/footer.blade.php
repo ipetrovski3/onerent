@@ -37,6 +37,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <aside class="f_widget subscribe_widget wow animated fadeInUp" data-wow-delay="0.8s">
                         <div class="f_title">
+                            Follow us on social platforms
                         </div>
                         <ul class="nav">
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -56,7 +57,9 @@
         <div class="container">
             <div class="copyright_inner d-flex justify-content-between">
                 <div class="left">
-                    <p>{{ date('Y') }} &copy; Copyright ONE RENT A CAR | powered by <a href="mailto:ipetrovski3@gmail.com">ipetrovski</a></p>
+                    <p>{{ date('Y') }} &copy; Copyright ONE RENT A CAR | powered by
+                        <a href="https://www.linkedin.com/in/igor-petrovski-6ba7b91b3/" target="_blank">ipetrovski</a>
+                    </p>
                 </div>
                 <div class="right">
                     <ul class="nav">

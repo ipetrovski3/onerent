@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     use HasFactory;
-    protected $fillable = ['client_id', 'car_id'];
+    protected $fillable = ['client_id', 'car_id', 'status'];
 
     public function pick_up()
     {
@@ -29,4 +29,6 @@ class Booking extends Model
     {
         return $this->belongsTo(Car::class);
     }
+
+    public $statuses = ['pending', 'confirmed', 'canceled'];
 }
