@@ -15,7 +15,8 @@ class ContactsController extends Controller
         $phone = $request->phone;
         $email = $request->email;
         $message = $request->message;
+        $admin = User::first()->email;
 
-        Mail::to(User::first()->email)->send(new ContactForm($name, $phone, $email, $message));
+        Mail::to($admin)->send(new ContactForm($name, $phone, $email, $message));
     }
 }
