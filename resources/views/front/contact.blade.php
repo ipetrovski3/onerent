@@ -68,6 +68,7 @@
         		</div>
         		<div class="main_contact_inner">
         			<form class="row contact_form" action="{{ route('contact_us') }}" method="post" id="contactForm" novalidate="novalidate">
+                        @csrf
 						<div class="form-group col-md-4">
 							<input type="text" class="form-control" id="name" name="name" placeholder="Name">
 						</div>
