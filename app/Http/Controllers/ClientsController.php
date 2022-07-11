@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\NewBookingEmail;
 use App\Models\Booking;
 use App\Models\Client;
+use App\Models\User;
 use App\Services\BookingHandlingService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
