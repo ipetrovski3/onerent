@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdminNewBooking;
 use App\Mail\NewBookingEmail;
 use App\Models\Booking;
 use App\Models\Client;
@@ -21,18 +22,17 @@ class ClientsController extends Controller
         $booking = $bookingHandlingService->make_reservation();
         $booking->update(['client_id' => $client->id, 'car_id' => $car_id]);
         $admin_email = User::first()->email;
-        $this->send_emails($admin_email, $client->email, $booking);
+        $this->send_emails($admin_email, $client->email, $booking, $client);
 
         return redirect()->route('home')->with(['success' => 'Your Booking was successfully']);
 
     }
 
-    private function send_emails($admin, $client, $booking)
+    private function send_emails($admin, $client_email, $booking, $client)
     {
-        $for_admin = $this->email_content('admin', $client, $booking);
         $for_client = $this->email_content('client', $client, $booking);
-        Mail::to($admin)->send(new NewBookingEmail($for_admin));
-        Mail::to($client)->send(new NewBookingEmail($for_client));
+        Mail::to($admin)->send(new AdminNewBooking($client, $booking));
+        Mail::to($client_email)->send(new NewBookingEmail($for_client));
     }
 
     private function email_content($considered, $client, $booking)
