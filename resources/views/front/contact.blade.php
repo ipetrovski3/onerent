@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-        <section class="breadcrumb_area" style="background: url(img/breadcrumb/breadcrumb-bg-5.jpg)">
+        <section class="breadcrumb_area" style="background: url({{ asset('images/contactpage.jpg') }})">
         	<div class="container">
         		<div class="breadcrumb_inner">
         			<h3>Contact us</h3>

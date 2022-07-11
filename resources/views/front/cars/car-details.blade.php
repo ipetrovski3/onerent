@@ -58,32 +58,32 @@
                     </div>
                 </div>
             </div>
-            <div class="product_overview_text">
-                <h4>Overview</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do them and eiusmod tempor incididunt labore dolorie magna aliqua. Ut enim adoren minim venim quis nostrud exercitation. Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat</p>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <ul class="nav flex-column">
-                            <li><img src="img/icon/green.png" alt="">Strong engine options, including a plug-in hybrid</li>
-                            <li><img src="img/icon/green.png" alt="">Standard adaptive air suspension delivers a comfortable</li>
-                            <li><img src="img/icon/green.png" alt="">Exceptional rear passenger space</li>
-                            <li><img src="img/icon/green.png" alt="">Abundant standard equipment, including safety tech</li>
-                            <li><img src="img/icon/green.png" alt="">No standard-length wheelbase model available</li>
-                            <li><img src="img/icon/green.png" alt="">Not the driver-focused benchmark it once was</li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6">
-                        <ul class="nav flex-column">
-                            <li><img src="img/icon/green.png" alt="">Strong engine options, including a plug-in hybrid</li>
-                            <li><img src="img/icon/green.png" alt="">Standard adaptive air suspension delivers a comfortable</li>
-                            <li><img src="img/icon/green.png" alt="">Exceptional rear passenger space</li>
-                            <li><img src="img/icon/green.png" alt="">Abundant standard equipment, including safety tech</li>
-                            <li><img src="img/icon/green.png" alt="">No standard-length wheelbase model available</li>
-                            <li><img src="img/icon/green.png" alt="">Not the driver-focused benchmark it once was</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+{{--            <div class="product_overview_text">--}}
+{{--                <h4>Overview</h4>--}}
+{{--                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do them and eiusmod tempor incididunt labore dolorie magna aliqua. Ut enim adoren minim venim quis nostrud exercitation. Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat</p>--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-lg-6">--}}
+{{--                        <ul class="nav flex-column">--}}
+{{--                            <li><img src="img/icon/green.png" alt="">Strong engine options, including a plug-in hybrid</li>--}}
+{{--                            <li><img src="img/icon/green.png" alt="">Standard adaptive air suspension delivers a comfortable</li>--}}
+{{--                            <li><img src="img/icon/green.png" alt="">Exceptional rear passenger space</li>--}}
+{{--                            <li><img src="img/icon/green.png" alt="">Abundant standard equipment, including safety tech</li>--}}
+{{--                            <li><img src="img/icon/green.png" alt="">No standard-length wheelbase model available</li>--}}
+{{--                            <li><img src="img/icon/green.png" alt="">Not the driver-focused benchmark it once was</li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-lg-6">--}}
+{{--                        <ul class="nav flex-column">--}}
+{{--                            <li><img src="img/icon/green.png" alt="">Strong engine options, including a plug-in hybrid</li>--}}
+{{--                            <li><img src="img/icon/green.png" alt="">Standard adaptive air suspension delivers a comfortable</li>--}}
+{{--                            <li><img src="img/icon/green.png" alt="">Exceptional rear passenger space</li>--}}
+{{--                            <li><img src="img/icon/green.png" alt="">Abundant standard equipment, including safety tech</li>--}}
+{{--                            <li><img src="img/icon/green.png" alt="">No standard-length wheelbase model available</li>--}}
+{{--                            <li><img src="img/icon/green.png" alt="">Not the driver-focused benchmark it once was</li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </section>
     <div class="main_contact_inner trade_container zoom-anim-dialog mfp-hide" id="tradePopup">
