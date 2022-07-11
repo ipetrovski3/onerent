@@ -13,10 +13,11 @@ class ContactsController extends Controller
     {
         $name = $request->name;
         $phone = $request->phone;
-        $email = $request->email;
-        $message = $request->message;
+        $from = $request->email;
+        $contact_message = $request->message;
         $admin = User::first()->email;
 
-        Mail::to($admin)->send(new ContactForm($name, $phone, $email, $message));
+
+        Mail::to($admin)->send(new ContactForm($name, $phone, $from, $contact_message));
     }
 }
