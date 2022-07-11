@@ -195,35 +195,35 @@
                         </div>
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
-                                Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price. Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price.
+                                The payment will be at the moment you receive the vehicle.
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-header" id="headingTwo">
                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Can I pay for an trip with cash?
+                                Can I pay for an rental with cash?
                                 <i class="icon-plus"></i>
                                 <i class="icon-minus"></i>
                             </button>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body">
-                                Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price. Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price.
+                                Yes, the rental can be paid with cash with Euro, or with national Macedonian currency (Denar)
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-header" id="headingThree">
                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Can I pay for an trip with credit card or online?
+                                Can I pay for an rental with credit card or online?
                                 <i class="icon-plus"></i>
                                 <i class="icon-minus"></i>
                             </button>
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                             <div class="card-body">
-                                Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price. Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price.
+                                We accept payments with credit cards. At the moment we cannot accept online payments ( very soon it will be available for your service)
                             </div>
                         </div>
                     </div>
@@ -237,21 +237,7 @@
                         </div>
                         <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#accordionExample">
                             <div class="card-body">
-                                Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price. Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingfive">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
-                                How do I get a price estimate in the app?
-                                <i class="icon-plus"></i>
-                                <i class="icon-minus"></i>
-                            </button>
-                        </div>
-                        <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordionExample">
-                            <div class="card-body">
-                                Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price. Working with over 900 companies in 160 countries, we can find the right car in the right place, at the right price.
+                                The Car can be picked up at the Airports location.
                             </div>
                         </div>
                     </div>
