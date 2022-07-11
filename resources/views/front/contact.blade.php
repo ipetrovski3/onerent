@@ -67,7 +67,7 @@
         			<h2><img src="img/icon/flag-2.png" alt="">Contact us</h2>
         		</div>
         		<div class="main_contact_inner">
-        			<form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+        			<form class="row contact_form" action="{{ route('contact_us') }}" method="post" id="contactForm" novalidate="novalidate">
 						<div class="form-group col-md-4">
 							<input type="text" class="form-control" id="name" name="name" placeholder="Name">
 						</div>

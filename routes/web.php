@@ -4,6 +4,7 @@ use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\CarModelsController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,8 @@ Route::get('terms-and-conditions', function () {
 Route::get('/contact', function () {
     return view('front.contact');
 })->name('contact');
+
+Route::post('/contact-us', [ContactsController::class, 'create'])->name('contact_us');
 
 Auth::routes();
 
