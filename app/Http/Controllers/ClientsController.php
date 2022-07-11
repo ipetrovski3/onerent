@@ -19,8 +19,8 @@ class ClientsController extends Controller
         $client = Client::create($request->all());
         $booking = $bookingHandlingService->make_reservation();
         $booking->update(['client_id' => $client->id, 'car_id' => $car_id]);
-        $admin_email = 'igor@test.com';
-//        $this->send_emails($admin_email, $client->email);
+        $admin_email = User::first()->email;
+        $this->send_emails($admin_email, $client->email);
 
         return redirect()->route('home')->with(['success' => 'Your Booking was successfully']);
 
