@@ -11,7 +11,6 @@ class AdminNewBooking extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $for_admin;
     private $client;
     private $booking;
 
@@ -22,7 +21,6 @@ class AdminNewBooking extends Mailable
      */
     public function __construct($client, $booking)
     {
-        //
         $this->client = $client;
         $this->booking = $booking;
     }
@@ -34,6 +32,7 @@ class AdminNewBooking extends Mailable
      */
     public function build()
     {
+
         return $this->view('emails.admin_booking')
             ->with([
                 'client' => $this->client,

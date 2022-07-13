@@ -22,11 +22,11 @@ class ContactForm extends Mailable
      *
      * @return void
      */
-    public function __construct($name, $phone, $from, $contact_message)
+    public function __construct($name, $phone, $sender, $contact_message)
     {
         $this->name = $name;
         $this->phone = $phone;
-        $this->from = $from;
+        $this->sender = $sender;
         $this->contact_message = $contact_message;
     }
 
@@ -37,12 +37,13 @@ class ContactForm extends Mailable
      */
     public function build()
     {
+//        dd($this->contact_message);
         return $this->view('emails.contact_form')
             ->with([
                 'name' => $this->name,
                 'phone' => $this->phone,
-                'email' => $this->from,
-                'message' => $this->contact_message
+                'email' => $this->sender,
+                'content' => $this->contact_message
             ]);
     }
 }

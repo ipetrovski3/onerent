@@ -18,5 +18,11 @@ class LocationSeeder extends Seeder
         $location->lat = 41.9614;
         $location->long = 21.6214;
         $location->save();
+
+        $location = new \App\Models\Location();
+        $location->name = 'Skopje Center';
+        $location->lat = 41.9614;
+        $location->long = 21.6214;
+        $location->save();
     }
 }

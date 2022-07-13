@@ -294,6 +294,32 @@ return [
     */
 
     'plugins' => [
+        'Moment' => [
+            'active' => true,
+            'files' => [
+                [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'js/moment.js'
+                    ]
+            ]
+        ],
+
+        'moment' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'js/rescalendar.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'css/rescalendar.css',
+                ],
+            ],
+        ],
         'Datatables' => [
             'active' => false,
             'files' => [
