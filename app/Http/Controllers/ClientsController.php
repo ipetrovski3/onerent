@@ -16,6 +16,16 @@ class ClientsController extends Controller
 {
     public function create(Request $request, BookingHandlingService  $bookingHandlingService)
     {
+        if ($request->has('from_cars')) {
+//            11/15/2022 10:51 PM
+            $from_date = Carbon::parse($request->from_date)->format('m/d/yy g:i');
+            $to_date = Carbon::parse($request->to_date)->format('m/d/yy g:i');
+                session(['from_date' => $from_date]);
+                session(['to_date' => $to_date]);
+                session(['pick_up_id' => $request->pick_up]);
+                session(['drop_off_id' => $request->drop_off]);
+        }
+
         $car_id = $request->car_id;
 
         $client = Client::create($request->all());

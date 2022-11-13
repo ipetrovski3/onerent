@@ -6,6 +6,7 @@ use App\Http\Requests\CarRequest;
 use App\Models\Car;
 use App\Models\CarBrand;
 use App\Models\CarModel;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class CarsController extends Controller
@@ -26,7 +27,8 @@ class CarsController extends Controller
     public function front_index()
     {
         $cars = Car::all();
-        return view('front.cars.index', compact('cars'));
+        $locations = Location::all();
+        return view('front.cars.index', compact('cars', 'locations'));
     }
 
     public function new()
@@ -66,9 +68,16 @@ class CarsController extends Controller
         return view('dashboard.cars.partials.models')->with(['car_models' => $car_models])->render();
     }
 
+    public function car_status(Request $request)
+    {
+        $car = Car::findOrFail($request->car_id);
+        $car->update(['always_booked' => $request->status]);
+    }
+
     private function clean_plate($plate)
     {
        return strtoupper(preg_replace("/[^a-zA-Z0-9]+/", "", $plate));
-
     }
+
+
 }

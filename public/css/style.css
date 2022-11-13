@@ -12517,6 +12517,13 @@ input[type=number] {
 .subscribe_widget .nav {
   margin-top: 32px;
 }
+
+.disabled-booking {
+    pointer-events: none;
+    opacity: 0.5;
+    background: #CCC;
+}
+
 .subscribe_widget .nav li {
   margin-right: 10px;
 }

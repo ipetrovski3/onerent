@@ -53,6 +53,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::get('/new', [CarsController::class, 'new'])->name('cars.new');
         Route::post('/store', [CarsController::class, 'store'])->name('cars.store');
         Route::post('/select-brand', [CarsController::class, 'select_brand'])->name('select.brand');
+        Route::post('/car-status', [CarsController::class, 'car_status'])->name('car.status');
     });
     Route::prefix('bookings')->group(function () {
         Route::get('/', [BookingsController::class, 'index'])->name('bookings.index');

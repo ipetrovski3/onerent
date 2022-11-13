@@ -23,7 +23,7 @@
                         <div class="row">
                             @foreach($cars as $car)
                                 <div class="col-lg-4 col-md-4 col-sm-6 wow animated fadeInUp" data-wow-delay="0.2s">
-                                    <div class="l_collection_item shop_product_item orange grid_four red">
+                                    <div class="l_collection_item shop_product_item orange grid_four red {{ $car->always_booked ? 'disabled-booking' : ''  }}">
                                         <div class="car_img">
                                             <a href="#"><img class="img-fluid" src="{{ asset('storage/cars/' . $car->model->image) }}" alt=""></a>
                                             <div class="cart_option">
@@ -31,16 +31,10 @@
                                             </div>
                                         </div>
                                         <div class="text_body">
-                                            <a href="#"><h4>{{ $car->brand_and_model() }}</h4></a>
+                                            <a href="#"><h4>{{ $car->brand_and_model() }} {{$car->always_booked ? 'BOOKED' : ''}}</h4></a>
                                             <div class="price">
                                                 <ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&euro;</span>{{ number_format($car->ppd, 2) }}</span> per day</ins>
                                             </div>
-                                            <ul class="nav">
-                                                <li title="Fuel Type"><img src="img/icon/p-cat-icon-1.png" class="mr-1 ml-2" alt="">{{ $car->engines[$car->engine_type] }}</li>
-                                                <li title="Transmission"><img src="img/icon/p-cat-icon-3.png" class="mr-1 ml-2" alt="">{{ $car->transmissions[$car->transmission_type] }}</li>
-                                                <li title="Max Passenger"><img src="img/icon/p-cat-icon-2.png" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li>
-                                                {{--                                        <li><img src="img/icon/p-cat-icon-4.png" class="mr-1 ml-2" alt="">03</li>--}}
-                                            </ul>
                                             <ul class="nav">
                                                 <li title="Fuel Type"><img src="img/icon/p-cat-icon-1.png" class="mr-1 ml-2" alt="">{{ $car->engines[$car->engine_type] }}</li>
                                                 <li title="Transmission"><img src="img/icon/p-cat-icon-3.png" class="mr-1 ml-2" alt="">{{ $car->transmissions[$car->transmission_type] }}</li>
@@ -142,6 +136,102 @@
 {{--        </div>--}}
 {{--    </div>--}}
 
+
+
+
+    <div class="modal fade" id="client_details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Booking</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('clients.create') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="from" class="form-label">From Date</label>
+                                <input id="from" name="from_date" type="datetime-local" class="form-control datetimepicker-input">
+                            </div>
+                            <div class="col-6">
+                                <label for="to" class="form-label">To Date</label>
+                                <input id="to" name="to_date" type="datetime-local" class="form-control datetimepicker-input">
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="from_cars" value="1">
+
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <label for="pick_up" class="form-label">Pick up location</label>
+                                <select class="form-control" name="pick_up" id="pick_up">
+                                    @foreach($locations as $location)
+                                    <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="drop_off" class="form-label">Drop off location</label>
+                                <select class="form-control" name="drop_off" id="drop_off">
+                                    @foreach($locations as $location)
+                                        <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                        <p id="car_model" class="font-weight-bold" style="margin-bottom: 3px"></p>
+                        <p id="summary" class="font-weight-bold">Total Cost:</p>
+                    </div>
+
+                    <input type="hidden" id="booking_id" name="booking_id">
+                    <input type="hidden" id="car_id" name="car_id">
+                    <div class="modal-body">
+                        <div class="row mb-4">
+                            <div class="col">
+                                <input type="text" class="form-control" name="first_name" placeholder="First name">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Last name" name="last_name">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <input type="email" name="email" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="col">
+                                <input type="number" name="phone" class="form-control" placeholder="Telephone Number">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <input type="text" name="personal_id" class="form-control" placeholder="Passport Number">
+                            </div>
+                            <div class="col">
+                                <input type="text" name="address" class="form-control" placeholder="Address">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <input type="checkbox" checked class="form-control">
+                                <label for="">By checking this you are agreeing to our terms and conditions</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="submit_btn">Make Reservation</button>
+                        <button type="button" class="btn booking_btn" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('js')
@@ -154,10 +244,14 @@
             let car_id = $(this).data('car_id')
             {{--let days = "{{ $days }}"--}}
             $('#car_model').text('Selected Vehicle: ' + car_model)
-            $('#summary').text( 'Total Cost: ' + (parseInt(days) * parseInt(summary)) + '\u20AC')
+            // $('#summary').text( 'Total Cost: ' + (parseInt(days) * parseInt(summary)) + '\u20AC')
             $('#booking_id').val(booking_id)
             $('#car_id').val(car_id)
             $('#client_details').modal('show')
         })
+
+        $(document).ready(function() {
+            $('.datetimepicker-input').attr('autocomplete','off');
+        });
     </script>
 @endsection

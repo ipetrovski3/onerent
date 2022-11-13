@@ -21,6 +21,7 @@
             <th scope="col" title="Navigation"><i class="fa fa-map-marked"></i></th>
             <th scope="col" title="Max Passengers"><i class="fa fa-users"></i></th>
             <th scope="col" title="Price Per Day"> &euro; </th>
+            <th scope="col">Disable Booking</th>
         </tr>
         </thead>
         <tbody>
@@ -44,6 +45,7 @@
             @endif
             <td>{{ $car->max_passengers }}</td>
             <td>{{ number_format($car->ppd, 2, ',', '.') }}</td>
+            <td><input data-car_id="{{ $car->id }}" class="form-control booking-status" type="checkbox" {{ $car->always_booked ? 'checked' : '' }}></td>
         </tr>
         @endforeach
         </tbody>
@@ -51,9 +53,26 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script>
+        $(document).on('click', '.booking-status', function () {
+            let status = $(this).is(":checked") ? '1' : '0'
+            let car_id = $(this).data('car_id')
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "{{ route('car.status') }}",
+                data: {status, car_id},
+                success: function () {
+
+                }
+            })
+        })
+    </script>
 @stop
