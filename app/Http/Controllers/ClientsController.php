@@ -24,6 +24,7 @@ class ClientsController extends Controller
                 session(['to_date' => $to_date]);
                 session(['pick_up_id' => $request->pick_up]);
                 session(['drop_off_id' => $request->drop_off]);
+                // dd($request->all());
         }
 
         $car_id = $request->car_id;

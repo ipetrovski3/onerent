@@ -3,8 +3,8 @@
     <div class="main_menu">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('images/logo-white.png') }}" srcset="{{ asset('images/logo-white.png') }} 5x" alt="ONE RENT A CAR"></a>
-                <a class="navbar-brand" href="{{ route('home') }}"><img src="images/logo.png" srcset="images/logo.png 5x" alt="ONE RENT A CAR"></a>
+                <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('images/logo-white.png') }}" srcset="{{ asset('images/logo-white.png') }}" style="max-height: 60px" alt="ONE RENT A CAR"></a>
+                <a class="navbar-brand" href="{{ route('home') }}"><img src="images/logo.png" srcset="images/logo.png" style="max-height: 60px" alt="ONE RENT A CAR"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span></span>
                 </button>

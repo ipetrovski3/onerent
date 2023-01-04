@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <aside class="f_widget about_widget wow animated fadeInUp" data-wow-delay="0.2s">
-                        <a class="f_logo" href="{{ route('home') }}"><img src="{{ asset('images/logo-white.png') }}" srcset="{{ asset('images/logo-white.png') }} 5x" alt="ONE RENT A CAR"></a>
+                        <a class="f_logo" href="{{ route('home') }}"><img src="{{ asset('images/logo-white.png') }}" srcset="{{ asset('images/logo-white.png') }}" style="max-height: 60px;" alt="ONE RENT A CAR"></a>
                         <p><i class="icon-map_marker_2" aria-hidden="true"></i> Skopje, Macedonia</p>
                         <a href="mailto:info@onerentacar.mk"><i class="icon-envelop_2" aria-hidden="true"></i> info@onerentacar.mk</a>
                         <a class="mb-0" href="tel:0951856558"><i class="icon-phone_2" aria-hidden="true"></i> +389 78 230 230</a>

@@ -71,7 +71,6 @@
                             <i class="icon-rent"></i>
                         </div>
                         <h4>Premium Rental Experience</h4>
-{{--                        <p>Premium Service</p>--}}
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">

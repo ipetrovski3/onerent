@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/cars', [CarsController::class, 'front_index'])->name('cars.front.index');
 Route::get('/cars/{id}', [CarsController::class, 'front_show'])->name('front.show');
+Route::post('/get_cars', [CarsController::class, 'set_dates'])->name('set_dates');
 
 Route::get('about-us', function () {
     return view('front.about-us');

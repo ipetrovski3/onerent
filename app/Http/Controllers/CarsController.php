@@ -74,10 +74,23 @@ class CarsController extends Controller
         $car->update(['always_booked' => $request->status]);
     }
 
+    public function set_dates(Request $request)
+    {
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+
+        session()->put(['from_date' => $from_date, 'to_date' => $to_date]);
+
+        $cars = Car::whereDoesntHave('bookings', function ($query) use ($from_date, $to_date) {
+            $query->where('from_date', '<=', $from_date)
+                ->where('to_date', '>=', $to_date);
+        })->get();
+
+        return view('front.cars.free_cars')->with(['cars' => $cars])->render();
+    }
+
     private function clean_plate($plate)
     {
        return strtoupper(preg_replace("/[^a-zA-Z0-9]+/", "", $plate));
     }
-
-
 }
