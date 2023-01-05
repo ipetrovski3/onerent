@@ -32,7 +32,7 @@ class Car extends Model
 
     public static function available_cars($from, $to)
     {
-        return self::with('bookings')->whereNotIn('id', function ($query) use ($from, $to) {
+        return self::with('bookings')->where('always_booked', false)->whereNotIn('id', function ($query) use ($from, $to) {
             $query->from('bookings')
                 ->select('car_id')
                 ->whereDate('from_date', '<=', $to)
