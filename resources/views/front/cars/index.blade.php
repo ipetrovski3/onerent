@@ -58,8 +58,8 @@
                         <input type="hidden" name="to_date" value="{{ session('to_date') }}">
                         <div>
                             <h4>Selected Dates</h4>
-                            <p>from date: {{ \Carbon\Carbon::parse(session('from_date'))->format('m.d.Y') }}</p>
-                            <p>to date: {{ \Carbon\Carbon::parse(session('to_date'))->format('m.d.Y')  }}</p>
+                            <p>from date: {{ \Carbon\Carbon::parse(session()->get('from_date'))->format('d.m.Y') }}</p>
+                            <p>to date: {{ \Carbon\Carbon::parse(session()->get('to_date'))->format('d.m.Y')  }}</p>
                         </div>
                         <div class="row mt-3">
                             <div class="col-6">
@@ -113,6 +113,19 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col">
+                                <select class="form-control" name="country_id" id="">
+                                    @php
+                                        $countries = \App\Models\Country::all();
+                                    @endphp
+                                    <option value="" selected disabled>Select your country...</option>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
                                 <input type="checkbox" checked class="form-control">
                                 <label for="">By checking this you are agreeing to our terms and conditions</label>
                             </div>
@@ -136,13 +149,17 @@
             e.preventDefault()
             let from_date = $('#from_date').val()
             let to_date = $('#to_date').val()
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax({
                 url: "{{ route('set_dates') }}",
                 type: "POST",
                 data: {
                     from_date: from_date,
                     to_date: to_date,
-                    _token: "{{ csrf_token() }}"
                 },
                 success: function (data) {
                     $('#render_cars').html(data)

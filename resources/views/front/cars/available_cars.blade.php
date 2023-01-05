@@ -146,6 +146,19 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col">
+                                <select class="form-control" name="country_id" id="">
+                                    @php
+                                        $countries = \App\Models\Country::all();
+                                    @endphp
+                                    <option value="" selected disabled>Select your country...</option>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
                                 <input type="checkbox" checked class="form-control">
                                 <label for="">By checking this you are agreeing to our terms and conditions</label>
                             </div>

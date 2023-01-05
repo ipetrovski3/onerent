@@ -16,6 +16,17 @@ class ClientsController extends Controller
 {
     public function create(Request $request, BookingHandlingService  $bookingHandlingService)
     {
+        request()->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'pick_up' => 'required',
+            'drop_off' => 'required',
+            'from_date' => 'required',
+            'to_date' => 'required',
+        ]);
+        
         if ($request->has('from_cars')) {
 //            11/15/2022 10:51 PM
             $from_date = Carbon::parse($request->from_date)->format('m/d/yy g:i');
