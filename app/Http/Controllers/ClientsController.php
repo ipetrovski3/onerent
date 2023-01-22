@@ -14,34 +14,37 @@ use Illuminate\Support\Facades\Mail;
 
 class ClientsController extends Controller
 {
-    public function create(Request $request, BookingHandlingService  $bookingHandlingService)
+    public function create(Request $request, BookingHandlingService $bookingHandlingService)
     {
+        // dd($request->all());
         request()->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'pick_up' => 'required',
-            'drop_off' => 'required',
+            'personal_id' => 'required',
             'from_date' => 'required',
             'to_date' => 'required',
+            'pick_up' => 'required',
+            'drop_off' => 'required'
         ]);
-        
+        // dd($request->from_date);
         if ($request->has('from_cars')) {
-//            11/15/2022 10:51 PM
-            $from_date = Carbon::parse($request->from_date)->format('m/d/yy g:i');
-            $to_date = Carbon::parse($request->to_date)->format('m/d/yy g:i');
-                session(['from_date' => $from_date]);
-                session(['to_date' => $to_date]);
-                session(['pick_up_id' => $request->pick_up]);
-                session(['drop_off_id' => $request->drop_off]);
-                // dd($request->all());
+            $date_and_time_of_pick_up = $this->format_date($request->from_date);
+            $booking = new Booking;
+            $booking->pick_up_id = $request->pick_up;
+            $booking->drop_off_id = $request->drop_off;
+            $booking->from_date = $date_and_time_of_pick_up['date'];
+            $booking->to_date = $request->to_date;
+            $booking->time_of_pick_up = $date_and_time_of_pick_up['time'];
+            $booking->save();
+        } else {
+            $booking = Booking::find($request->booking_id);
         }
 
         $car_id = $request->car_id;
 
         $client = Client::create($request->all());
-        $booking = $bookingHandlingService->make_reservation();
         $booking->update(['client_id' => $client->id, 'car_id' => $car_id]);
         $admin_email = User::first()->email;
         $this->send_emails($admin_email, $client->email, $booking, $client);
@@ -53,8 +56,8 @@ class ClientsController extends Controller
     private function send_emails($admin, $client_email, $booking, $client)
     {
         $for_client = $this->email_content('client', $client, $booking);
-        Mail::to($admin)->send(new AdminNewBooking($client, $booking));
-        Mail::to($client_email)->send(new NewBookingEmail($for_client));
+        Mail::to($admin)->queue(new AdminNewBooking($client, $booking));
+        Mail::to($client_email)->queue(new NewBookingEmail($for_client));
     }
 
     private function email_content($considered, $client, $booking)
@@ -76,6 +79,15 @@ class ClientsController extends Controller
                 'booking' => $booking
             ];
         }
+    }
+
+    private function format_date($date)
+    {
+        $date = explode(' ', $date);
+        return [
+            'date' => $date[0],
+            'time' => $date[1]
+        ];
     }
 
 

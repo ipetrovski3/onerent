@@ -37,20 +37,23 @@ class BookingsController extends Controller
             ]
         );
 
-        foreach ($request->all() as $key => $value) {
-            session([$key => $value]);
-        }
+        $date_and_time_of_pick_up = $bookingHandlingService->format_from_date($request->from_date);
+        $booking = new Booking;
+        $booking->pick_up_id = $request->pick_up_id;
+        $booking->drop_off_id = $request->drop_off_id;
+        $booking->from_date = $date_and_time_of_pick_up['from_date'];
+        $booking->to_date = $bookingHandlingService->format_to_date($request->to_date);
+        $booking->time_of_pick_up = $date_and_time_of_pick_up['pick_up_time'];
+        $booking->save();
 
-        $from = $bookingHandlingService->format_from_date()['from_date'];
-        $to = $bookingHandlingService->format_to_date();
-
-        $cars = Car::available_cars($from, $to);
-        $days = $from->diffInDays($to);
+        $cars = Car::available_cars($booking->from_date, $booking->to_date);
+        $days = $booking->from_date->diffInDays($booking->to_date);
 
         return view('front.cars.available_cars')
             ->with([
                 'cars' => $cars,
-                'days' => $days
+                'days' => $days,
+                'booking' => $booking
             ]);
     }
 

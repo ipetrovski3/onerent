@@ -22,7 +22,7 @@ class Car extends Model
 
     public function bookings()
     {
-        return $this->hasOne(Booking::class);
+        return $this->hasMany(Booking::class);
     }
 
     public function brand_and_model()

@@ -10,8 +10,8 @@
             <h3>Available cars</h3>
             <div class="link">
                 @php
-                    $from = Carbon\Carbon::parse(session()->get('from_date'))->format('d.m.Y H:i');
-                    $to = Carbon\Carbon::parse(session()->get('to_date'))->format('d.m.Y H:i');
+                    $from = Carbon\Carbon::parse($booking->from_date)->format('d.m.Y');
+                    $to = Carbon\Carbon::parse($booking->to_date)->format('d.m.Y');
                 @endphp
                 <p>Requested Date: {{  $from . ' - ' . $to }}</p>
             </div>
@@ -108,17 +108,17 @@
                         </div>
                         <div class="col-6">
                             <label for="to" class="form-label">To Date</label>
-                            <input disabled id="to" type="text" class="form-control" value="{{ $to }}">
+                            <input disabled id="to" type="text" class="form-control" value=" {{ $to }}">
                         </div>
                     </div>
                     <hr>
                     <p id="car_model" class="font-weight-bold" style="margin-bottom: 3px"></p>
                     <p id="summary" class="font-weight-bold">Total Cost:</p>
                 </div>
-                <form action="{{ route('clients.create') }}" method="POST">
+                <form action="{{ route('clients.create') }}" id="submit_form" method="POST">
                     @csrf
-                <input type="hidden" id="booking_id" name="booking_id">
                 <input type="hidden" id="car_id" name="car_id">
+                <input type="hidden" id="booking_id" name="booking_id" value="{{ $booking->id }}">
                     <div class="modal-body">
                         <div class="row mb-4">
                             <div class="col">
@@ -159,14 +159,14 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col">
-                                <input type="checkbox" checked class="form-control">
-                                <label for="">By checking this you are agreeing to our terms and conditions</label>
+                                <input id="terms" type="checkbox" checked>
+                                <label for="terms">By checking this you are agreeing to our terms and conditions</label>
                             </div>
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="submit_btn">Make Reservation</button>
+                        <button type="submit" id="confirm_reservation" class="submit_btn">Make Reservation</button>
                         <button type="button" class="btn booking_btn" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -180,16 +180,32 @@
     <script>
         $(document).on('click', '.book_car', function (e) {
             e.preventDefault()
-            let booking_id = $(this).data('booking_id')
             let summary = $(this).data('ppd')
             let car_model = $(this).data('car')
             let car_id = $(this).data('car_id')
             let days = "{{ $days }}"
             $('#car_model').text('Selected Vehicle: ' + car_model)
             $('#summary').text( 'Total Cost: ' + (parseInt(days) * parseInt(summary)) + '\u20AC')
-            $('#booking_id').val(booking_id)
             $('#car_id').val(car_id)
             $('#client_details').modal('show')
+        })
+
+    </script>
+    <script>
+        $(document).on('click', '#terms', function(){
+            if($(this).is(':checked')){
+                $('#confirm_reservation').attr('disabled', false)
+            }else{
+                $('#confirm_reservation').attr('disabled', true)
+            }
+        })        
+    </script>
+    <script>
+        // disable submit button on form submit and loader mouse cursor
+        $(document).on('submit', '#submit_form', function(){
+            $('#confirm_reservation').attr('disabled', true)
+            $('#confirm_reservation').text('Please wait...')
+            $('#confirm_reservation').css('cursor', 'not-allowed')
         })
     </script>
 @endsection

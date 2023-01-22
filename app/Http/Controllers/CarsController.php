@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Models\CarBrand;
 use App\Models\CarModel;
 use App\Models\Location;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CarsController extends Controller
@@ -20,8 +21,9 @@ class CarsController extends Controller
     public function front_show($id)
     {
         $car = Car::findOrFail($id);
+        $booked_days = $this->booked_days($car);
 
-        return view('front.cars.car-details', compact('car'));
+        return view('front.cars.car-details', compact('car', 'booked_days'));
     }
 
     public function front_index()
@@ -89,8 +91,49 @@ class CarsController extends Controller
         return view('front.cars.free_cars')->with(['cars' => $cars])->render();
     }
 
+    public function car_booked_days(Request $request)
+    {
+        $car = Car::findOrFail($request->car_id);
+        $booked_days = $this->booked_days($car);
+
+        return $booked_days;
+    }
+
     private function clean_plate($plate)
     {
        return strtoupper(preg_replace("/[^a-zA-Z0-9]+/", "", $plate));
+    }
+
+    private function booked_days($car)
+    {
+        $booked_days = $car->bookings->map(function ($booking) {
+            return [
+                'from_date' => Carbon::parse($booking->from_date)->format('Y-m-d'),
+                'to_date' => Carbon::parse($booking->to_date)->format('Y-m-d'),
+            ];
+        });
+
+        // convert all booked days with the days in between in one array
+        foreach ($booked_days as $key => $booked_day) {
+            $booked_days[$key] = $this->getDatesFromRange($booked_day['from_date'], $booked_day['to_date']);
+        }
+
+        return $booked_days->flatten()->toArray();
+    }
+
+    public function getDatesFromRange($start, $end, $format = 'Y-m-d') {
+        $array = array();
+        $interval = new \DateInterval('P1D');
+    
+        $realEnd = new \DateTime($end);
+        $realEnd->add($interval);
+    
+        $period = new \DatePeriod(new \DateTime($start), $interval, $realEnd);
+    
+        foreach($period as $date) { 
+            $array[] = $date->format($format); 
+        }
+    
+        return $array;
     }
 }

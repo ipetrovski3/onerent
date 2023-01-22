@@ -14,6 +14,15 @@
 
     <!--================Product Details Area =================-->
     <section class="product_details_area p_100">
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <div class="container">
             <div class="row product_details_inner">
                 <div class="col-lg-8">
@@ -38,8 +47,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="product_list_right">
-
-                        <a class="main_btn red popup-with-zoom-anim" href="#tradePopup">Book This Car</a>
+                        <a class="main_btn red popup-with-zoom-anim" data-car_id="{{ $car->id }}" data-car="{{ $car->brand_and_model() }}" data-ppd="{{ $car->ppd }}" id="book" href="#">Book This Car</a>
                         <ul class="nav flex-column">
                             <li><a href="#"><i class="icon-gear1"></i>Transmission <span>{{ $car->transmissions[$car->transmission_type] }}</span></a></li>
                             <li><a href="#"><i class="icon-engine"></i>Engine Type <span>{{ $car->engines[$car->engine_type] }}</span></a></li>
@@ -58,34 +66,109 @@
                     </div>
                 </div>
             </div>
-{{--            <div class="product_overview_text">--}}
-{{--                <h4>Overview</h4>--}}
-{{--                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do them and eiusmod tempor incididunt labore dolorie magna aliqua. Ut enim adoren minim venim quis nostrud exercitation. Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat</p>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-lg-6">--}}
-{{--                        <ul class="nav flex-column">--}}
-{{--                            <li><img src="img/icon/green.png" alt="">Strong engine options, including a plug-in hybrid</li>--}}
-{{--                            <li><img src="img/icon/green.png" alt="">Standard adaptive air suspension delivers a comfortable</li>--}}
-{{--                            <li><img src="img/icon/green.png" alt="">Exceptional rear passenger space</li>--}}
-{{--                            <li><img src="img/icon/green.png" alt="">Abundant standard equipment, including safety tech</li>--}}
-{{--                            <li><img src="img/icon/green.png" alt="">No standard-length wheelbase model available</li>--}}
-{{--                            <li><img src="img/icon/green.png" alt="">Not the driver-focused benchmark it once was</li>--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-lg-6">--}}
-{{--                        <ul class="nav flex-column">--}}
-{{--                            <li><img src="img/icon/green.png" alt="">Strong engine options, including a plug-in hybrid</li>--}}
-{{--                            <li><img src="img/icon/green.png" alt="">Standard adaptive air suspension delivers a comfortable</li>--}}
-{{--                            <li><img src="img/icon/green.png" alt="">Exceptional rear passenger space</li>--}}
-{{--                            <li><img src="img/icon/green.png" alt="">Abundant standard equipment, including safety tech</li>--}}
-{{--                            <li><img src="img/icon/green.png" alt="">No standard-length wheelbase model available</li>--}}
-{{--                            <li><img src="img/icon/green.png" alt="">Not the driver-focused benchmark it once was</li>--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
         </div>
     </section>
+    <div class="modal fade" id="client_details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Booking</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('clients.create') }}" method="POST">
+                    <div class="modal-body">
+                        @csrf
+                        <input type="hidden" name="from_cars" value="1">
+                        <div>
+                            <h4>Selected Dates</h4>
+                            <label for="from_date" class="form-label">From Date:</label>
+                            <input id="from_date" name="from_date" class="form-control" type="text" autocomplete="off">
+                            <label for="to_date" class="form-label">To Date:</label>
+                            <input id="to_date" name="to_date" class="form-control" type="text" autocomplete="off">
+                        </div>
+                        <div class="row mt-3">
+                            @php
+                                $locations = \App\Models\Location::all();
+                            @endphp
+                            <div class="col-6">
+                                <label for="pick_up" class="form-label">Pick up location</label>
+                                <select class="form-control" name="pick_up" id="pick_up">
+                                    @foreach($locations as $location)
+                                    <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="drop_off" class="form-label">Drop off location</label>
+                                <select class="form-control" name="drop_off" id="drop_off">
+                                    @foreach($locations as $location)
+                                        <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                        <p id="car_model" class="font-weight-bold" style="margin-bottom: 3px"></p>
+                        <p id="summary" class="font-weight-bold">Total Cost:</p>
+                        
+
+                        {{-- <input type="hidden" id="booking_id" name="booking_id"> --}}
+                        <input type="hidden" id="car_id" name="car_id" value="{{ $car->id }}">
+                        <div class="row mb-4">
+                            <div class="col">
+                                <input type="text" class="form-control" name="first_name" placeholder="First name">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Last name" name="last_name">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <input type="email" name="email" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="col">
+                                <input type="number" name="phone" class="form-control" placeholder="Telephone Number">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <input type="text" name="personal_id" class="form-control" placeholder="Passport Number">
+                            </div>
+                            <div class="col">
+                                <input type="text" name="address" class="form-control" placeholder="Address">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <select class="form-control" name="country_id" id="">
+                                    @php
+                                        $countries = \App\Models\Country::all();
+                                    @endphp
+                                    <option value="" selected disabled>Select your country...</option>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <input type="checkbox" checked class="form-control">
+                                <label for="">By checking this you are agreeing to our terms and conditions</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="submit_btn">Make Reservation</button>
+                        <button type="button" class="btn booking_btn" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="main_contact_inner trade_container zoom-anim-dialog mfp-hide" id="tradePopup">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -162,4 +245,32 @@
 
 @endsection
     <!--================End Product Details Area =================-->
+
+@section('js')
+    <script>
+        $(document).on('click', '#book', function (e) {
+            e.preventDefault()
+            let booking_id = $(this).data('booking_id')
+            let summary = $(this).data('ppd')
+            let car_model = $(this).data('car')
+            let car_id = $(this).data('car_id')
+            $('#car_model').text('Selected Vehicle: ' + car_model)
+            // $('#summary').text( 'Total Cost: ' + (parseInt(days) * parseInt(summary)) + '\u20AC')
+            $('#booking_id').val(booking_id)
+            $('#car_id').val(car_id)
+            $('#client_details').modal('show')
+        })
+    </script>
+    <script>
+        let disabled_days = @json($booked_days);
+        $('#from_date').datetimepicker({
+            disabledDates: disabled_days,
+            formatDate: 'Y-m-d'
+        });
+        $('#to_date').datetimepicker({
+            disabledDates: disabled_days,
+            formatDate: 'Y-m-d'
+        });
+    </script>
+@endsection
 

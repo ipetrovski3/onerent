@@ -24,6 +24,7 @@ Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/cars', [CarsController::class, 'front_index'])->name('cars.front.index');
 Route::get('/cars/{id}', [CarsController::class, 'front_show'])->name('front.show');
 Route::post('/get_cars', [CarsController::class, 'set_dates'])->name('set_dates');
+Route::post('/booked-days', [CarsController::class, 'car_booked_days'])->name('car_booked_days');
 
 Route::get('about-us', function () {
     return view('front.about-us');
@@ -44,7 +45,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 //Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-Route::get('/available-cars', [BookingsController::class, 'first_step_booking'])->name('first_step');
+Route::post('/available-cars', [BookingsController::class, 'first_step_booking'])->name('first_step');
 Route::post('/create-client', [ClientsController::class, 'create'])->name('clients.create');
 
 Route::prefix('dashboard')->middleware('auth')->group(function() {

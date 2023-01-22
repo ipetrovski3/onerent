@@ -20,6 +20,7 @@
     <!-- main css -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('css/jquery.datetimepicker.min.css')}}">
 </head>
 <body data-scroll-animation="true">
 
@@ -47,7 +48,7 @@
 <script src="{{asset('vendors/popup/jquery.magnific-popup.min.js')}}"></script>
 <script src="{{asset('vendors/slick/slick.min.js')}}"></script>
 <script src="{{asset('vendors/animate-css/wow.min.js')}}"></script>
-
+<script src="{{asset('js/jquery.datetimepicker.full.js')}}"></script>
 <script src="{{asset('js/theme-dist.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
 @yield('js')
