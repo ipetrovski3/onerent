@@ -25,6 +25,7 @@ Route::get('/cars', [CarsController::class, 'front_index'])->name('cars.front.in
 Route::get('/cars/{id}', [CarsController::class, 'front_show'])->name('front.show');
 Route::post('/get_cars', [CarsController::class, 'set_dates'])->name('set_dates');
 Route::post('/booked-days', [CarsController::class, 'car_booked_days'])->name('car_booked_days');
+Route::post('/update-car-price', [CarsController::class, 'update_car_price'])->name('update_car_price');
 
 Route::get('about-us', function () {
     return view('front.about-us');

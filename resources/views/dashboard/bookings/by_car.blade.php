@@ -15,7 +15,7 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+
     <script>
         const eventData = [
             {
@@ -26,10 +26,10 @@
                 customClass: 'customclass'
             },
             {
-                id: 1,
-                name: 'item1',
-                startDate: '2022-07-16',
-                endDate: '2022-07-22',
+                id: 2,
+                name: 'item2',
+                startDate: '2023-01-20',
+                endDate: '2023-01-24',
                 customClass: 'customclassred'
             },
         ]

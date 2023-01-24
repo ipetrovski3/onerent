@@ -52,5 +52,10 @@
 <script src="{{asset('js/theme-dist.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
 @yield('js')
+@if ($errors->any())
+<script>
+    $('#client_details').modal('show')
+</script>
+@endif  
 </body>
 </html>

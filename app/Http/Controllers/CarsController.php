@@ -99,6 +99,12 @@ class CarsController extends Controller
         return $booked_days;
     }
 
+    public function update_car_price(Request $request)
+    {
+        $car = Car::findOrFail($request->car_id);
+        $car->update(['ppd' => $request->price]);
+    }
+
     private function clean_plate($plate)
     {
        return strtoupper(preg_replace("/[^a-zA-Z0-9]+/", "", $plate));
