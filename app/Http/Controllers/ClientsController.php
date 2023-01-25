@@ -56,8 +56,8 @@ class ClientsController extends Controller
     private function send_emails($admin, $client_email, $booking, $client)
     {
         $for_client = $this->email_content('client', $client, $booking);
-        Mail::to($admin)->queue(new AdminNewBooking($client, $booking));
-        Mail::to($client_email)->queue(new NewBookingEmail($for_client));
+        Mail::to($admin)->send(new AdminNewBooking($client, $booking));
+        Mail::to($client_email)->send(new NewBookingEmail($for_client));
     }
 
     private function email_content($considered, $client, $booking)
