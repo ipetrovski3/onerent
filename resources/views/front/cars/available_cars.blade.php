@@ -108,6 +108,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form action="{{ route('clients.create') }}" id="submit_form" method="POST">
                 <div class="modal-body">
 
                     <div class="row">
@@ -117,18 +118,21 @@
                         </div>
                         <div class="col-6">
                             <label for="to" class="form-label">To Date</label>
-                            <input disabled id="to" type="text" class="form-control" value=" {{ $to }}">
+                            <input disabled id="to"type="text" class="form-control" value=" {{ $to }}">
                         </div>
                     </div>
                     <hr>
                     <p id="car_model" class="font-weight-bold" style="margin-bottom: 3px"></p>
                     <p id="summary" class="font-weight-bold">Total Cost:</p>
                 </div>
-                <form action="{{ route('clients.create') }}" id="submit_form" method="POST">
                     @csrf
                 <input type="hidden" id="car_id" name="car_id">
                 <input type="hidden" id="booking_id" name="booking_id" value="{{ $booking->id }}">
-                    <div class="modal-body">
+            <input type="hidden" name="pick_up" value="{{ $booking->pick_up_id }}">
+            <input type="hidden" name="drop_off" value="{{ $booking->drop_off_id }}">
+            <input type="hidden" name="from_date" value="{{ $booking->from_date }}">
+            <input type="hidden" name="to_date" value="{{ $booking->to_date }}">
+                <div class="modal-body">
                         <div class="row mb-4">
                             <div class="col">
                                 <input type="text" class="form-control" name="first_name" placeholder="First name">
