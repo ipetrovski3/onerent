@@ -46,7 +46,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 //Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-Route::post('/available-cars', [BookingsController::class, 'first_step_booking'])->name('first_step');
+Route::get('/available-cars', [BookingsController::class, 'first_step_booking'])->name('first_step');
 Route::post('/create-client', [ClientsController::class, 'create'])->name('clients.create');
 
 Route::prefix('dashboard')->middleware('auth')->group(function() {

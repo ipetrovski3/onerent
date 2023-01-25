@@ -256,6 +256,7 @@
     <!--================End Product Details Area =================-->
 
 @section('js')
+<script src="{{asset('js/jquery.datetimepicker.full.js')}}"></script>
     <script>
         $(document).on('click', '#book', function (e) {
             e.preventDefault()

@@ -167,6 +167,7 @@
 @endsection
 
 @section('js')
+<script src="{{asset('js/jquery.datetimepicker.full.js')}}"></script>
     <script>
         $(document).on('click', '.book_car', function (e) {
             e.preventDefault()
