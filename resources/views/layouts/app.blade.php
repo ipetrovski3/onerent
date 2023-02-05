@@ -6,13 +6,16 @@
     <meta property = "og:description" content = "Number one rental company in North Macedonia" />
     <meta property = "og:image" content = "{{ asset('images/logo.png') }}" />
     <meta property = "og:site_name" content = "ONE RENT A CAR" />
+    <meta name="description" content="Cheapest rent a car service in North Macedonia, Skopje">
+    <meta name="keywords" content="rentacar skopje, rentacar macedonia, rent a car macedonia, cheap rent a car in macedonia, best rent a car in macedonia">
+    <meta name="google-site-verification" content="ALer7Iwb8HyKkaOsnsv-hCBa4R3t_zv9LsRCUGshVEU" />
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="icon" href="{{ asset('images/logoico.png')}}" type="image/png">
-    <title>One Rent a Car</title>
+    <title>One Rent a Car Macedonia</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
