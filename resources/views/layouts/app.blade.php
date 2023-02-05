@@ -1,5 +1,12 @@
 <html lang="en">
 <head>
+    <meta property = "og:type" content = "website" /> <!-- For website -->
+    <meta property = "og:title" content = "ONE RENT A CAR" />
+    <meta property = "og:url" content = "https://onerentacar.mk/" />
+    <meta property = "og:description" content = "Number one rental company in North Macedonia" />
+    <meta property = "og:image" content = "{{ asset('images/logo.png') }}" />
+    <meta property = "og:site_name" content = "ONE RENT A CAR" />
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
