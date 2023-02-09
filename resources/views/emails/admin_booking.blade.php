@@ -9,6 +9,6 @@
     <p>{{ $client->personal_id}}</p>
     <hr>
 
-    <p>{{ Carbon\Carbon::parse($booking->from_date)->format('d.m.Y') . "-" . $booking->pick_up_time . ' - ' . \Carbon\Carbon::parse($booking->to_date) }}</p>
+    <p>{{ Carbon\Carbon::parse($booking->from_date)->format('d.m.Y') . "-" . $booking->time_of_pick_up . ' - ' . \Carbon\Carbon::parse($booking->to_date)->format('d.m.Y') }}</p>
     <p>{{ $booking->car->brand_and_model() . ' - ' . $booking->car->plate }}</p>
 
