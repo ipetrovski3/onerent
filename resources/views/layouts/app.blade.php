@@ -4,7 +4,7 @@
     <meta property = "og:title" content = "ONE RENT A CAR" />
     <meta property = "og:url" content = "https://onerentacar.mk/" />
     <meta property = "og:description" content = "Number one rental company in North Macedonia" />
-    <meta property = "og:image" content = "{{ asset('images/logo.png') }}" />
+    <meta property = "og:image" content = "{{ asset('images/metalogo.png') }}" />
     <meta property = "og:site_name" content = "ONE RENT A CAR" />
     <meta name="description" content="Cheapest rent a car service in North Macedonia, Skopje">
     <meta name="keywords" content="rentacar skopje, rentacar macedonia, rent a car macedonia, cheap rent a car in macedonia, best rent a car in macedonia">

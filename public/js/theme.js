@@ -196,7 +196,9 @@
 	
 	function datetime_picker(){
 		if( $('#datetimepicker3') ){
-			$('#datetimepicker3').datetimepicker();
+			$('#datetimepicker3').datetimepicker({
+                
+            });
 		}
 	}
 	datetime_picker();

@@ -34,7 +34,7 @@
                                     <div class="text_div">
                                         {{ \Carbon\Carbon::tomorrow()->format('d.m.yy') }} <span>12:00</span>
                                     </div>
-                                    <input name="from_date" type="text" class="form-control datetimepicker-input input_1" data-target="#datetimepicker3" data-toggle="datetimepicker"/>
+                                    <input name="from_date" type="text" class="form-control datetimepicker-input input_1" data-target="#datetimepicker3" id="from_date" data-toggle="datetimepicker"/>
                                 </div>
                             </div>
                         </div>
@@ -262,27 +262,19 @@
     <script>
         $(document).ready(function() {
             $('.datetimepicker-input').attr('autocomplete','off');
+            $(document).ready(function() {
+                $('#from_date').datetimepicker({
+                    format: 'DD/MM/YYYY',
+                    minDate: moment(),
+                    locale: 'en',
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-arrow-up",
+                        down: "fa fa-arrow-down"
+                    }
+                });
+            })
         });
-
-    {{--    $(document).on('submit', '#get_dates_form', function (e) {--}}
-    {{--        e.preventDefault()--}}
-    {{--        let data = $(this).serialize()--}}
-    {{--        $.ajaxSetup({--}}
-    {{--            headers: {--}}
-    {{--                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-    {{--            }--}}
-    {{--        });--}}
-    {{--        $.ajax({--}}
-    {{--            type: "POST",--}}
-    {{--            url: "{{ route('first_step') }}",--}}
-    {{--            data: data,--}}
-    {{--            success: function (view) {--}}
-    {{--                console.log(view)--}}
-    {{--                $('#car_list').empty()--}}
-    {{--                $('#car_list').html(view)--}}
-    {{--                // document.getElementById('car_list').scrollIntoView();--}}
-
-    {{--            }--}}
-    {{--        })--}}
     </script>
 @endsection

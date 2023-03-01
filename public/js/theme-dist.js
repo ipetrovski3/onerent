@@ -196,7 +196,14 @@
 	
 	function datetime_picker(){
 		if( $('#datetimepicker3') ){
-			$('#datetimepicker3').datetimepicker();
+			$('#datetimepicker3').datetimepicker({
+                // date format 'DD/MM/YYYY'
+                // hours format 'HH:mm'
+                format: 'DD.MM.YYYY HH:mm',
+                // step the minutes every 30 minutes
+                stepping: 30,
+
+            });
 		}
 	}
 	datetime_picker();
