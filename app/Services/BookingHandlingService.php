@@ -24,9 +24,10 @@ class BookingHandlingService
 
     public function format_from_date($from)
     {
+        // dd($from);
         $from_date = explode(' ', $from);
         return [
-            'from_date' => Carbon::createFromFormat('m/d/yy', $from_date[0]),
+            'from_date' => Carbon::createFromFormat('m.d.yy', $from_date[0]),
             'pick_up_time' => $from_date[1]
         ];
 
@@ -35,7 +36,7 @@ class BookingHandlingService
     public function format_to_date($to)
     {
         $to_date = explode(' ', $to);
-        return Carbon::createFromFormat('m/d/yy', $to_date[0]);
+        return Carbon::createFromFormat('m.d.yy', $to_date[0]);
     }
 }
 
