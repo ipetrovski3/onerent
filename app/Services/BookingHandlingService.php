@@ -36,7 +36,7 @@ class BookingHandlingService
     public function format_to_date($to)
     {
         $to_date = explode(' ', $to);
-        return Carbon::createFromFormat('m.d.yy', $to_date[0]);
+        return Carbon::createFromFormat('m/d/yy', $to_date[0]);
     }
 }
 

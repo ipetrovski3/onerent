@@ -21,6 +21,7 @@ class BookingsController extends Controller
 
     public function first_step_booking(Request $request, BookingHandlingService $bookingHandlingService)
     {
+        // dd($request->all());
         $request->validate(
             [
                'pick_up_id' => 'required',
