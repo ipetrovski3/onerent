@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\BookingsController;
-use App\Http\Controllers\CarModelsController;
-use App\Http\Controllers\CarsController;
-use App\Http\Controllers\ClientsController;
-use App\Http\Controllers\ContactsController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarsController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\BookingsController;
+use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\CarModelsController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,12 +47,13 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 //Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-Route::get('/available-cars', [BookingsController::class, 'first_step_booking'])->name('first_step');
+// Route::get('/available-cars', [BookingsController::class, 'first_step_booking'])->name('first_step');
+Route::get('/available-cars', [App\Http\Livewire\Bookings::class, 'first_step_booking'])->name('first_step');
 Route::post('/create-client', [ClientsController::class, 'create'])->name('clients.create');
 
-Route::prefix('dashboard')->middleware('auth')->group(function() {
+Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::prefix('cars')->group(function() {
+    Route::prefix('cars')->group(function () {
         Route::get('/', [CarsController::class, 'index'])->name('cars.index');
         Route::get('/new', [CarsController::class, 'new'])->name('cars.new');
         Route::post('/store', [CarsController::class, 'store'])->name('cars.store');
@@ -62,8 +64,13 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::get('/', [BookingsController::class, 'index'])->name('bookings.index');
         Route::get('/by-car', [BookingsController::class, 'by_car'])->name('bookings.by_car');
     });
-    Route::prefix('models')->group(function() {
+    Route::prefix('models')->group(function () {
         Route::get('/new', [CarModelsController::class, 'new'])->name('models.new');
         Route::post('/store', [CarModelsController::class, 'store'])->name('models.store');
     });
+});
+
+
+Route::get('/test', function () {
+    return view('livewire.bookings')->name('test');
 });

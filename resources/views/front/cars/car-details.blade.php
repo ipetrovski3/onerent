@@ -15,14 +15,14 @@
     <!--================Product Details Area =================-->
     <section class="product_details_area p_100">
         @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="container">
             <div class="row product_details_inner">
                 <div class="col-lg-8">
@@ -90,12 +90,44 @@
                     <div class="modal-body">
                         @csrf
                         <input type="hidden" name="from_cars" value="1">
-                        <div>
-                            <h4>Selected Dates</h4>
-                            <label for="from_date" class="form-label">From Date:</label>
-                            <input id="from_date" name="from_date" class="form-control" type="text" autocomplete="off">
-                            <label for="to_date" class="form-label">To Date:</label>
-                            <input id="to_date" name="to_date" class="form-control" type="text" autocomplete="off">
+                        <h4>Selected Dates</h4>
+                        <div class="row">
+                            <div class="col-6 search_car_item">
+                                <label for="from_date" class="form-label">From Date:</label>
+                                <div class="form-group">
+                                    <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                        <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                            <div class="input-group-text client_2"><i class="icon-calendar_2"></i></div>
+                                        </div>
+                                        <div class="text_div">
+                                            {{-- {{ \Carbon\Carbon::tomorrow()->format('d.m.Y') }} <span>12:00</span> --}}
+                                        </div>
+                                        <input name="from_date" id="from_date" autocomplete="off" x-data
+                                            x-init="flatpickr($refs.input, {enableTime: true, disableMobile: true, dateFormat: 'd.m.Y    H:i'});"
+                                            class="text_div form-control datetimepicker-input input_2"
+                                            x-ref="input" type="text" placeholder="{{ \Carbon\Carbon::tomorrow()->format('d.m.Y    H:i') }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- <input id="from_date" name="from_date" class="form-control" type="text" autocomplete="off"> --}}
+                            <div class="col-6 search_car_item">
+                                <label for="to_date" class="form-label">To Date:</label>
+                                <div class="form-group">
+                                    <div class="input-group time" id="datetimepicker4" data-target-input="nearest">
+                                        <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                            <div class="input-group-text client_2"><i class="icon-calendar_2"></i></div>
+                                        </div>
+                                        <div class="text_div">
+                                            {{-- {{ \Carbon\Carbon::tomorrow()->addDay()->format('d.m.Y') }} <span>12:00</span> --}}
+                                        </div>
+                                        <input name="to_date" id="to_date" autocomplete="off" x-data
+                                            x-init="flatpickr($refs.input, {enableTime: true, disableMobile: true, dateFormat: 'd.m.Y    H:i'});"
+                                            class="text_div form-control datetimepicker-input input_2"
+                                            x-ref="input" type="text" placeholder="{{ \Carbon\Carbon::tomorrow()->addDay()->format('d.m.Y    H:i') }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- <input id="to_date" name="to_date" class="form-control" type="text" autocomplete="off"> --}}
                         </div>
                         <div class="row mt-3">
                             @php
@@ -164,8 +196,8 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col">
-                                <input type="checkbox" checked class="form-control">
-                                <label for="">By checking this you are agreeing to our terms and conditions</label>
+                                <input id="terms" type="checkbox" checked>
+                                <label for="terms">By checking this you are agreeing to our terms and conditions</label>
                             </div>
                         </div>
 

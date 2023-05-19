@@ -37,12 +37,12 @@
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <aside class="f_widget subscribe_widget wow animated fadeInUp" data-wow-delay="0.8s">
-                        <div class="f_title">
+                        <div class="f_title d-flex justify-content-center">
                             Follow us on social platforms
                         </div>
-                        <ul class="nav">
-                            <li><a href="https://www.facebook.com/Onerentacar.mk"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="https://www.instagram.com/onerentacarskopje" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        <ul class="nav d-flex justify-content-center">
+                            <li><a href="https://www.facebook.com/Onerentacar.mk" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+                            <li><a href="https://www.instagram.com/onerentacarskopje" target="_blank"><i class="fa fa-instagram fa-2x"></i></a></li>
 {{--                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>--}}
 {{--                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>--}}
                         </ul>

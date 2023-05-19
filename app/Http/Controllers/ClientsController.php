@@ -29,18 +29,21 @@ class ClientsController extends Controller
             'drop_off' => 'required'
         ]);
         // dd($request->from_date);
-        if ($request->has('from_cars')) {
-            $date_and_time_of_pick_up = $this->format_date($request->from_date);
+        // if ($request->has('from_cars')) {
+        if ($request) {
+            // $date_and_time_of_pick_up = $this->format_date($request->from_date);
+            $date_and_time_of_pick_up = $bookingHandlingService->format_from_date($request->from_date);
             $booking = new Booking;
             $booking->pick_up_id = $request->pick_up;
             $booking->drop_off_id = $request->drop_off;
-            $booking->from_date = $date_and_time_of_pick_up['date'];
-            $booking->to_date = $request->to_date;
-            $booking->time_of_pick_up = $date_and_time_of_pick_up['time'];
+            $booking->from_date = $date_and_time_of_pick_up['from_date'];
+            $booking->to_date = $bookingHandlingService->format_to_date($request->to_date);
+            $booking->time_of_pick_up = $date_and_time_of_pick_up['pick_up_time'];
             $booking->save();
-        } else {
-            $booking = Booking::find($request->booking_id);
         }
+        // else {
+        //     $booking = Booking::find($request->booking_id);
+        // }
 
         $car_id = $request->car_id;
 
@@ -50,7 +53,6 @@ class ClientsController extends Controller
         $this->send_emails($admin_email, $client->email, $booking, $client);
 
         return redirect()->route('home')->with(['success' => 'Your Booking was successfully']);
-
     }
 
     private function send_emails($admin, $client_email, $booking, $client)
@@ -89,6 +91,4 @@ class ClientsController extends Controller
             'time' => $date[1]
         ];
     }
-
-
 }

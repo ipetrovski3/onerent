@@ -6,10 +6,10 @@
         <div class="container">
             <div class="breadcrumb_inner">
                 <h3>Terms and Condtions</h3>
-                <div class="link">
+                {{-- <div class="link">
                     <a href="{{ route('home') }}">Home</a>
                     <a href="#">Terms and Conditions</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

@@ -4,10 +4,10 @@
         	<div class="container">
         		<div class="breadcrumb_inner">
         			<h3>Contact us</h3>
-        			<div class="link">
+        			{{-- <div class="link">
         				<a href="{{ route('home') }}">Home</a>
         				<a href="#">Contact</a>
-        			</div>
+        			</div> --}}
         		</div>
         	</div>
         </section>

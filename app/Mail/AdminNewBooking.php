@@ -32,7 +32,6 @@ class AdminNewBooking extends Mailable
      */
     public function build()
     {
-
         return $this->view('emails.admin_booking')
             ->with([
                 'client' => $this->client,

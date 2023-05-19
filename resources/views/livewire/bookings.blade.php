@@ -1,4 +1,5 @@
-@extends('layouts.app')
+<div>
+    @extends('layouts.app')
 
 @section('content')
     <!-- Button trigger modal -->
@@ -7,7 +8,7 @@
 <section class="breadcrumb_area" style="background: url({{ asset('images/carsall.jpeg') }})">
     <div class="container">
         <div class="breadcrumb_inner">
-            <h3>Available cars</h3>
+            <h3>Goce Available cars</h3>
             <div class="link">
                 @php
                     $from = Carbon\Carbon::parse($booking->from_date)->format('d.m.Y');
@@ -220,3 +221,5 @@
         })
     </script>
 @endsection
+
+</div>

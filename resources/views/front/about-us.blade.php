@@ -14,10 +14,10 @@
         <div class="container">
             <div class="breadcrumb_inner">
                 <h3>About us</h3>
-                <div class="link">
+                {{-- <div class="link">
                     <a href="#">Home</a>
                     <a href="#">About</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

@@ -27,14 +27,14 @@ Table of Content:
 06/ breadcrumb
 07/ about
 08/ team
-09/ project 
-10/ price 
-11/ team 
-12/ blog 
-13/ video  
-14/ features  
-15/ career  
-16/ contact 
+09/ project
+10/ price
+11/ team
+12/ blog
+13/ video
+14/ features
+15/ career
+16/ contact
 17/ footer
 
 =====================================================================*/
@@ -1155,7 +1155,7 @@ button:focus {
 }
 .header_area.menu_nine .main_menu .navbar.navbar-expand-lg .navbar-nav li.submenu .dropdown-menu li:hover > a {
   color: #fff;
-  background: #0cc533;
+  background: #ED6C30;
 }
 .header_area.menu_nine .main_menu .navbar.navbar-expand-lg .navbar-nav li.submenu .dropdown-menu li:last-child a {
   border-bottom: 0px;
@@ -1201,7 +1201,7 @@ button:focus {
 }
 .header_area.menu_nine .main_menu .navbar.navbar-expand-lg .navbar-nav li:hover > a, .header_area.menu_nine .main_menu .navbar.navbar-expand-lg .navbar-nav li.active > a {
   color: #fff;
-  background: #0cc533;
+  background: #ED6C30;
 }
 .header_area.menu_nine .main_menu .navbar.navbar-expand-lg .navbar-nav li:hover > a:before, .header_area.menu_nine .main_menu .navbar.navbar-expand-lg .navbar-nav li.active > a:before {
   width: 100%;
@@ -1216,7 +1216,7 @@ button:focus {
 .header_area.menu_nine .main_menu .navbar.navbar-expand-lg .nav.navbar-nav.navbar-right li .cart:before {
   right: 16px;
   top: 15px;
-  background: #0cc533;
+  background: #ED6C30;
   color: #fff;
 }
 .header_area.menu_nine .main_menu .navbar.navbar-expand-lg .nav.navbar-nav.navbar-right li .search {
@@ -1618,11 +1618,11 @@ button:focus {
 .header_area.navbar_fixed.menu_two.menu_nine .main_menu .navbar.navbar-expand-lg .nav.navbar-nav.navbar-right li .cart:before {
   right: 16px;
   top: 15px;
-  background: #0cc533;
+  background: #ED6C30;
   color: #fff;
 }
 .header_area.navbar_fixed.menu_two.menu_nine .main_menu .navbar.navbar-expand-lg .nav.navbar-nav.navbar-right li .cart:hover {
-  color: #0cc533;
+  color: #ED6C30;
 }
 .header_area.navbar_fixed.menu_two.menu_nine .main_menu .navbar.navbar-expand-lg .nav.navbar-nav.navbar-right li .search {
   background: transparent;
@@ -1631,7 +1631,7 @@ button:focus {
   left: -7px;
 }
 .header_area.navbar_fixed.menu_two.menu_nine .main_menu .navbar.navbar-expand-lg .nav.navbar-nav.navbar-right li .search:hover {
-  color: #0cc533;
+  color: #ED6C30;
 }
 .header_area.navbar_fixed.menu_two.menu_nine .main_menu .navbar.navbar-expand-lg .nav.navbar-nav.navbar-right li:last-child {
   margin-right: 0px;
@@ -1768,7 +1768,7 @@ button:focus {
   color: #34373b;
 }
 .main_menu .navbar.navbar-expand-lg .navbar-nav li.submenu .dropdown-menu .submenu .dropdown-menu li:hover a {
-  background: #0cc533;
+  background: #ED6C30;
   color: #fff;
 }
 @media (min-width: 992px) {
@@ -2286,7 +2286,7 @@ button:focus {
 /* Find Car Banner Area css
 ============================================================================================ */
 .find_car_area {
-  background: url(/images/car-rental-banner.jpg?adc3ffc532adfa62c4c0d0e7bb257e1c) no-repeat scroll center center;
+  background: url(/images/hero_1-black1.jpeg) no-repeat scroll center center;
   min-height: 900px;
   display: flex;
   align-self: center;
@@ -2318,13 +2318,14 @@ button:focus {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .find_car_area .container .search_car_box .search_car_item {
   padding: 0px 2px;
-  flex: 0 0 37.5%;
-  max-width: 37.5%;
+  flex: 0 0 20%;
+  max-width: 20%;
 }
-.find_car_area .container .search_car_box .search_car_item input {
+.find_car_area .container .search_car_box .search_car_item select {
   height: 60px;
   border-radius: 0px;
   outline: none;
@@ -2359,8 +2360,8 @@ button:focus {
   max-width: 22.5%;
 }
 .find_car_area .container .search_car_box .search_car_item:nth-child(4) {
-  flex: 0 0 17.5%;
-  max-width: 17.5%;
+  flex: 0 0 22.5%;
+  max-width: 22.5%;
 }
 .find_car_area .container .search_car_box .search_car_item .form-group {
   position: relative;
@@ -3029,9 +3030,9 @@ button:focus {
   padding: 0px 42px;
 }
 .tractor_slider_area .taxi_slider_text .left_text .main_btn.white:hover {
-  background: #0cc533;
+  background: #ED6C30;
   color: #fff;
-  border-color: #0cc533;
+  border-color: #ED6C30;
 }
 .tractor_slider_area .taxi_slider_text .taxi_s_form {
   background: rgba(0, 0, 0, 0.8);
@@ -3651,7 +3652,7 @@ button:focus {
   margin-bottom: 0px;
 }
 .easy_way .easy_text .nav li i {
-  color: #0cc533;
+  color: #ED6C30;
   position: absolute;
   left: 0px;
   top: 7px;
@@ -4335,7 +4336,7 @@ button:focus {
   transform: scale(1.1);
 }
 .explore_item:hover .explore_text a {
-  color: #0cc533;
+  color: #ED6C30;
 }
 
 /* End Explore Area css
@@ -4399,7 +4400,7 @@ button:focus {
 }
 .tractor_brand_slider .owl-dots button.active {
   transform: scale(1.8);
-  background: #0cc533;
+  background: #ED6C30;
 }
 
 /* End Tractor Brand Area css
@@ -5773,7 +5774,7 @@ button:focus {
 }
 .car_comparisom_area.tractor_compare .comparisom_slider .owl-dots button.active {
   transform: scale(1.8);
-  background: #0cc533;
+  background: #ED6C30;
 }
 .car_comparisom_area.tractor_compare .comparisom_slider .owl-item.active .item {
   padding-right: 15px;
@@ -6763,10 +6764,10 @@ button:focus {
 }
 
 .tractor_green_bus .g_fillter .nav li:hover a, .tractor_green_bus .g_fillter .nav li.active a {
-  color: #0cc533;
+  color: #ED6C30;
 }
 .tractor_green_bus .g_fillter .nav li:hover a:before, .tractor_green_bus .g_fillter .nav li.active a:before {
-  background: #0cc533;
+  background: #ED6C30;
 }
 .tractor_green_bus .all_load .main_btn {
   padding: 0px 49px;
@@ -7236,7 +7237,7 @@ button:focus {
   font: 600 16px "Barlow", sans-serif;
 }
 .cart_box .cart_list_inner .list_itme .right h6.green {
-  color: #0cc533;
+  color: #ED6C30;
 }
 .cart_box .cart_list_inner .list_itme .right .nice_select {
   width: 100%;
@@ -7703,7 +7704,7 @@ button:focus {
   color: #34373b;
 }
 .order_box_price .count_part h5 span.green {
-  color: #0cc533;
+  color: #ED6C30;
 }
 .order_box_price .count_part h5:last-child {
   margin-bottom: 0px;
@@ -8886,28 +8887,28 @@ button:focus {
   text-transform: uppercase;
 }
 .cart_sidebar.green .cart_sidebar_inner .sidebar_top .top_bar p:hover {
-  color: #0cc533;
+  color: #ED6C30;
 }
 .cart_sidebar.green .cart_sidebar_inner .sidebar_top .top_bar p:hover i {
-  color: #0cc533;
+  color: #ED6C30;
 }
 .cart_sidebar.green .cart_sidebar_inner .cart_side_list .media .media-body p span {
-  color: #0cc533;
+  color: #ED6C30;
 }
 .cart_sidebar.green .cart_sidebar_inner .cart_side_list .media .media-body i:hover {
-  color: #0cc533;
+  color: #ED6C30;
 }
 .cart_sidebar.green .cart_sidebar_inner .sidebar_bottom h6 {
-  color: #0cc533;
+  color: #ED6C30;
 }
 .cart_sidebar.green .cart_sidebar_inner .sidebar_bottom .main_btn.green.border {
-  color: #0cc533;
+  color: #ED6C30;
   transition: all 300ms linear 0s;
 }
 .cart_sidebar.green .cart_sidebar_inner .sidebar_bottom .main_btn.green.border:hover {
-  background: #0cc533;
+  background: #ED6C30;
   color: #fff;
-  border-color: #0cc533;
+  border-color: #ED6C30;
 }
 .cart_sidebar.orange .cart_sidebar_inner .sidebar_top .top_bar p:hover {
   color: #f75d34;
@@ -9421,13 +9422,13 @@ button:focus {
   background: #c1c9cc;
 }
 .testimonials_area.green_testi .testi_item i {
-  color: #0cc533;
+  color: #ED6C30;
 }
 .testimonials_area.green_testi .testi_slider .owl-dots .owl-dot {
   background: #c1c9cc;
 }
 .testimonials_area.green_testi .testi_slider .owl-dots .owl-dot.active {
-  background: #0cc533;
+  background: #ED6C30;
 }
 .testimonials_area.testi_red {
   background: #f5f7f7;
@@ -12516,6 +12517,13 @@ input[type=number] {
 .subscribe_widget .nav {
   margin-top: 32px;
 }
+
+.disabled-booking {
+    pointer-events: none;
+    opacity: 0.5;
+    background: #CCC;
+}
+
 .subscribe_widget .nav li {
   margin-right: 10px;
 }
@@ -12524,11 +12532,13 @@ input[type=number] {
   height: 40px;
   width: 40px;
   border-radius: 50%;
+
   text-align: center;
   background: #475993;
-  line-height: 40px;
+  line-height: 40px !important;
   color: #fff;
   position: relative;
+
 }
 .subscribe_widget .nav li a:before {
   content: "";
@@ -12542,11 +12552,20 @@ input[type=number] {
   animation-duration: 1s;
   border-radius: 50%;
 }
+.subscribe_widget .nav li a {
+  position: relative;
+}
+.subscribe_widget .nav li a i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .subscribe_widget .nav li:nth-child(2) a {
-  background: #ff2a39;
+  background: #ea2aff;
 }
 .subscribe_widget .nav li:nth-child(2) a:before {
-  border-color: #ff2a39;
+  border-color: #ea2aff;
 }
 .subscribe_widget .nav li:nth-child(3) a {
   background: #5f9dec;
@@ -12569,7 +12588,7 @@ input[type=number] {
 }
 
 .footer_card .f_card_inner {
-  background: #1a782e;
+  background: #DA2128;
   padding: 25px 28px;
   border-radius: 5px;
 }
@@ -12998,27 +13017,27 @@ input[type=number] {
 /*================== Start color css ===================*/
 /*================== Start green color css ===================*/
 .main_menu .navbar.navbar-expand-lg .navbar-nav li:hover a, .main_menu .navbar.navbar-expand-lg .navbar-nav li.active a, .single_title h2 span, .choose_item .icon i, .find_us_text h2 span, .find_us_text .list_finding .nav li a:hover, .drive_item .left .nav li a.active, .drive_item .left .nav li:hover a, .drive_item .right .hourly_toggle .nice_select .current, .drive_item .right .hourly_toggle .nice_select:after, .car_product_item .product_content .title h3:hover, .car_product_item .product_content .title h4, .top_ques_inner .accordion .card .card-header button, .about_widget i, .link_widget .nav li:hover a, .footer_copyright .copyright_inner .left p a, .footer_copyright .copyright_inner .right .nav li a:hover, .header_area.navbar_fixed .main_menu .navbar.navbar-expand-lg .nav.navbar-nav > li:hover > a, .header_area.navbar_fixed .main_menu .navbar.navbar-expand-lg .nav.navbar-nav > li.active > a, .quickly_text_part h3 span, .quickly_item .media .d-flex i {
-  color: #0cc533;
+  color: #ED6C30;
 }
 
 .main_menu .navbar.navbar-expand-lg .navbar-nav li.submenu .dropdown-menu li:hover a {
-  background: #0cc533;
+  background: #ED6C30;
   color: #fff;
 }
 
 .main_btn, .submit_btn, .subscribe_widget .input-group .input-group-append button {
-  background: #0cc533;
+  background: #ED6C30;
   color: #fff;
-  border-color: #0cc533;
+  border-color: #ED6C30;
 }
 .main_btn:hover, .submit_btn:hover, .subscribe_widget .input-group .input-group-append button:hover {
   color: #fff;
-  background: #0ab12d;
-  border-color: #0ab12d;
+  background: #DA2128;
+  border-color: #DA2128;
 }
 
 .find_us_text .list_finding .nav li a:hover:before, .drive_item .left .nav li a:before {
-  background: #0cc533;
+  background: #ED6C30;
 }
 
 .download_app_area:before {
@@ -13135,19 +13154,19 @@ input[type=number] {
 }
 
 .top_menu_nine .top_menu_inner .right .nav li a:hover, .middle_menu .right .media .d-flex i, .explore_item .explore_text h6, .explore_item:hover .explore_text a, .tractor_green_bus .g_fillter .nav li:hover a, .tractor_green_bus .g_fillter .nav li.active a, .bus_item.green .bus_footer a i, .bus_item.green:hover .bus_body h4, .compare_item.green .right h5, .compare_item.green .left h5, .compare_item.green .right h4:hover, .compare_item.green .left h4:hover, .testimonials_area.green_testi .testi_item i, .taxi_l_item.green:hover .taxi_text h4, .green_footer .f_title h3, .green_footer .about_widget i, .green_footer .link_widget .nav li:hover a, .green_footer .footer_copyright .copyright_inner .left p a, .green_footer .footer_copyright .copyright_inner .right .nav li:hover a {
-  color: #0cc533;
+  color: #ED6C30;
 }
 
 .header_area.menu_nine .main_menu .navbar.navbar-expand-lg .navbar-nav li:hover > a, .header_area.menu_nine .main_menu .navbar.navbar-expand-lg .navbar-nav li.active > a, .header_area.menu_nine .main_menu .navbar.navbar-expand-lg .navbar-nav li.submenu .dropdown-menu li:hover > a, .header_area.menu_two .main_menu .navbar.navbar-expand-lg .navbar-nav li.submenu .dropdown-menu li:hover a, .header_area.menu_two .main_menu .navbar.navbar-expand-lg .navbar-nav li.submenu .dropdown-menu .submenu .dropdown-menu li:hover a, .header_area.menu_two .main_menu .navbar.navbar-expand-lg .nav.navbar-nav.navbar-right li .cart:before, .tractor_brand_slider .owl-dots button.active, .tractor_green_bus .g_fillter .nav li a:before, .tractor_green_bus .g_fillter .nav li.active a:before, .bus_item.green .bus_body h3, .taxi_l_item.green .taxi_img .taxi_date, .green_footer .subscribe_widget .input-group .input-group-append button {
-  background: #0cc533;
+  background: #ED6C30;
 }
 
 .car_comparisom_area.tractor_compare .comparisom_slider .owl-dots button.active, .testimonials_area.green_testi .testi_slider .owl-dots .owl-dot.active {
-  background: #0cc533 !important;
+  background: #ED6C30 !important;
 }
 
 .bus_item.green .bus_body h3:before {
-  border-color: transparent transparent #0cc533 transparent;
+  border-color: transparent transparent #ED6C30 transparent;
 }
 
 .green_footer .subscribe_widget .input-group .input-group-append button:hover {

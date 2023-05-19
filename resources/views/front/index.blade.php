@@ -10,15 +10,15 @@
                     @csrf
                     <div class="search_car_box wow animated fadeInUp" data-wow-delay="0.4s">
                         <div class="search_car_item">
-                            <select class="form-control" name="pick_up_id" id="">
-                                <option disabled selected value="">Pick up Location</option>
+                            <select class="text-body form-control" name="pick_up_id" id="pick_up_id">
+                                <option disabled selected value="" class="text-muted">Pick up Location</option>
                                 @foreach($locations as $location)
                                     <option value="{{ $location->id }}">{{ $location->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="search_car_item">
-                            <select class="form-control" name="drop_off_id" id="drop_off_id">
+                            <select class="text-body form-control" name="drop_off_id" id="drop_off_id">
                                 <option disabled selected value="">Drop Off Location</option>
                                 @foreach($locations as $location)
                                     <option value="{{ $location->id }}">{{ $location->name }}</option>
@@ -27,14 +27,17 @@
                         </div>
                         <div class="search_car_item">
                             <div class="form-group">
-                                <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                                    <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
-                                        <div class="input-group-text click_1"><i class="icon-calendar_2"></i></div>
+                                <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                    <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                        <div class="input-group-text client_2"><i class="icon-calendar_2"></i></div>
                                     </div>
                                     <div class="text_div">
-                                        {{ \Carbon\Carbon::tomorrow()->format('d.m.yy') }} <span>12:00</span>
+                                        {{-- {{ \Carbon\Carbon::tomorrow()->format('d.m.Y') }} <span>12:00</span> --}}
                                     </div>
-                                    <input name="from_date" type="text" class="form-control datetimepicker-input input_1" data-target="#datetimepicker3" id="from_date" data-toggle="datetimepicker"/>
+                                    <input name="from_date" id="from_date" autocomplete="off" x-data
+                                        x-init="flatpickr($refs.input, {enableTime: true, disableMobile: true, dateFormat: 'd.m.Y    H:i'});"
+                                        class="text_div form-control datetimepicker-input input_2"
+                                        x-ref="input" type="text" placeholder="{{ \Carbon\Carbon::tomorrow()->format('d.m.Y    H:i') }}" />
                                 </div>
                             </div>
                         </div>
@@ -45,9 +48,12 @@
                                         <div class="input-group-text client_2"><i class="icon-calendar_2"></i></div>
                                     </div>
                                     <div class="text_div">
-                                        {{ \Carbon\Carbon::tomorrow()->addDay()->format('d.m.yy') }} <span>12:00</span>
+                                        {{-- {{ \Carbon\Carbon::tomorrow()->addDay()->format('d.m.Y') }} <span>12:00</span> --}}
                                     </div>
-                                    <input type="text" name="to_date" class="form-control datetimepicker-input input_2" data-target="#datetimepicker4" data-toggle="datetimepicker"/>
+                                    <input name="to_date" id="to_date" autocomplete="off" x-data
+                                        x-init="flatpickr($refs.input, {enableTime: true, disableMobile: true, dateFormat: 'd.m.Y    H:i'});"
+                                        class="text_div form-control datetimepicker-input input_2"
+                                        x-ref="input" type="text" placeholder="{{ \Carbon\Carbon::tomorrow()->addDay()->format('d.m.Y    H:i') }}" />
                                 </div>
                             </div>
                         </div>
@@ -127,8 +133,13 @@
                                             <h4> &euro; {{ $car->ppd }}/day</h4>
                                         </div>
                                         <ul class="nav">
+                                            {{-- <li title="Fuel Type"><img src="img/icon/p-cat-icon-1.png" class="mr-1 ml-2" alt="">{{ $car->engines[$car->engine_type] }}</li>
+                                            <li title="Transmission"><img src="img/icon/p-cat-icon-3.png" class="mr-1 ml-2" alt="">{{ $car->transmissions[$car->transmission_type] }}</li>
+                                            <li title="Max Passenger"><img src="img/icon/p-cat-icon-2.png" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li> --}}
+                                            
                                             <li><i class="icon-gear1"></i> <span>{{ $car->transmissions[$car->transmission_type] }}</span></li>
-                                            <li><i class="icon-engine"></i><span>{{ $car->engines[$car->engine_type] }}</span></li>
+                                            <li title="Fuel Type"><img src="img/icon/p-cat-icon-1.png" class="mr-1 ml-2" alt=""><span>{{ $car->engines[$car->engine_type] }}</span></li>
+                                            {{-- <li><i class="icon-engine"></i><span>{{ $car->engines[$car->engine_type] }}</span></li> --}}
                                             <li><i class="icon-seat"></i> <span> {{ $car->max_passengers }}</span></li>
                                             <li><i class="icon-snowflake-o"></i>
                                                     <span class="text-{{ $car->ac ? 'success' : 'danger'}}">
@@ -259,7 +270,7 @@
             )
         </script>
     @endif
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('.datetimepicker-input').attr('autocomplete','off');
             $(document).ready(function() {
@@ -276,5 +287,5 @@
                 });
             })
         });
-    </script>
+    </script> --}}
 @endsection

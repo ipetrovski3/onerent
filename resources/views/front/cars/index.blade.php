@@ -38,7 +38,7 @@
                                             <li title="Fuel Type"><img src="img/icon/p-cat-icon-1.png" class="mr-1 ml-2" alt="">{{ $car->engines[$car->engine_type] }}</li>
                                             <li title="Transmission"><img src="img/icon/p-cat-icon-3.png" class="mr-1 ml-2" alt="">{{ $car->transmissions[$car->transmission_type] }}</li>
                                             <li title="Max Passenger"><img src="img/icon/p-cat-icon-2.png" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li>
-                                            {{--                                        <li><img src="img/icon/p-cat-icon-4.png" class="mr-1 ml-2" alt="">03</li>--}}
+                                                                                   <li><img src="img/icon/p-cat-icon-4.png" class="mr-1 ml-2" alt="">03</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('clients.create') }}" method="POST">
+                {{-- <form action="{{ route('clients.create') }}" method="POST"> --}}
                     <div class="modal-body">
                         @csrf
                         <input type="hidden" name="from_cars" value="1">
@@ -82,7 +82,7 @@
                             <input id="from_date" name="from_date" class="form-control" type="text" autocomplete="off">
                             <label for="to_date" class="form-label dates">To Date:</label>
                             <input id="to_date" name="to_date" class="form-control" type="text" autocomplete="off">
-      
+
                         </div>
                         <div class="row mt-3">
                             <div class="col-6">
@@ -105,8 +105,8 @@
                         <hr>
                         <p id="car_model" class="font-weight-bold" style="margin-bottom: 3px"></p>
                         <p class="font-weight-bold">Total Cost: <span id="summary"></span>  &euro;</p>
-                        
-      
+
+
                         <input type="hidden" id="booking_id" name="booking_id">
                         <input type="hidden" id="car_id" name="car_id">
                         <input type="hidden" id="ppd">
@@ -149,21 +149,21 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col">
-                                <input type="checkbox" checked class="form-control">
-                                <label for="">By checking this you are agreeing to our terms and conditions</label>
+                                <input id="terms" type="checkbox" checked>
+                                <label for="terms">By checking this you are agreeing to our terms and conditions</label>
                             </div>
                         </div>
-      
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="submit_btn">Make Reservation</button>
                         <button type="button" class="btn booking_btn" data-dismiss="modal">Cancel</button>
                     </div>
-                </form>
+                {{-- </form> --}}
             </div>
         </div>
       </div>
-      
+
 @endsection
 
 @section('js')
