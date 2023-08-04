@@ -2,28 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CarRequest;
+use Carbon\Carbon;
 use App\Models\Car;
+use App\Models\Booking;
 use App\Models\CarBrand;
 use App\Models\CarModel;
 use App\Models\Location;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Requests\CarRequest;
 
 class CarsController extends Controller
 {
-    public function index()
-    {
-        $cars = Car::all();
-        return view('dashboard.cars.index', compact('cars'));
-    }
+    // public function index()
+    // {
+    //     $cars = Car::all();
+    //     return view('dashboard.cars.index', compact('cars'));
+    // }
 
-    public function front_show($id)
+    public function show_car($car_id)
     {
-        $car = Car::findOrFail($id);
-        $booked_days = $this->booked_days($car);
-
-        return view('front.cars.car-details', compact('car', 'booked_days'));
+        return view('cars.show-car', compact('car_id'));
     }
 
     public function front_index()
@@ -33,35 +31,45 @@ class CarsController extends Controller
         return view('front.cars.index', compact('cars', 'locations'));
     }
 
-    public function new()
+    public function available_cars($booking_id)
     {
-        $car = new Car;
-        $car_brands = CarBrand::all();
-        $car_models = CarModel::all();
-        return view('dashboard.cars.new')
-            ->with([
-                    'car_brands' => $car_brands,
-                    'car_models' => $car_models,
-                    'car' => $car
-            ]);
+        $booking = Booking::findOrFail($booking_id);
+        $cars = Car::available_cars($booking->from_date, $booking->to_date);
+        $days = Carbon::parse($booking->from_date)->diffInDays($booking->to_date);
+
+        return view('cars.available-cars', compact('cars', 'days', 'booking'));
     }
 
-    public function store(CarRequest $request)
-    {
-        $data = $request->validated();
-        $car = new Car;
-        $car->car_model_id = $request->car_model_id;
-        $car->plate = $this->clean_plate($request->plate);
-        $car->ac = $request->ac;
-        $car->navigation = $request->navigation;
-        $car->transmission_type = $request->transmission_type;
-        $car->engine_type = $request->engine_type;
-        $car->max_passengers = $request->max_passengers;
-        $car->ppd = $request->ppd;
-        $car->save();
+    // public function new()
+    // {
+    //     $car = new Car;
+    //     $car_brands = CarBrand::all();
+    //     $car_models = CarModel::all();
+    //     return view('dashboard.cars.new')
+    //         ->with([
+    //                 'car_brands' => $car_brands,
+    //                 'car_models' => $car_models,
+    //                 'car' => $car
+    //         ]);
+    // }
 
-        return redirect()->route('cars.index');
-    }
+    // public function store(CarRequest $request)
+    // {
+    //     $data = $request->validated();
+    //     $car = new Car;
+    //     $car->car_model_id = $request->car_model_id;
+    //     $car->plate = $this->clean_plate($request->plate);
+    //     $car->ac = $request->ac;
+    //     $car->navigation = $request->navigation;
+    //     $car->transmission_type = $request->transmission_type;
+    //     $car->engine_type = $request->engine_type;
+    //     $car->max_passengers = $request->max_passengers;
+    //     $car->ppd = $request->ppd;
+    //     $car->save();
+
+    //     return redirect()->route('cars.index');
+    // }
+
     public function select_brand(Request $request)
     {
         $brand = CarBrand::findOrFail($request->brand_id);
@@ -105,10 +113,10 @@ class CarsController extends Controller
         $car->update(['ppd' => $request->price]);
     }
 
-    private function clean_plate($plate)
-    {
-       return strtoupper(preg_replace("/[^a-zA-Z0-9]+/", "", $plate));
-    }
+    // private function clean_plate($plate)
+    // {
+    //    return strtoupper(preg_replace("/[^a-zA-Z0-9]+/", "", $plate));
+    // }
 
     private function booked_days($car)
     {
@@ -127,19 +135,20 @@ class CarsController extends Controller
         return $booked_days->flatten()->toArray();
     }
 
-    public function getDatesFromRange($start, $end, $format = 'Y-m-d') {
+    public function getDatesFromRange($start, $end, $format = 'Y-m-d')
+    {
         $array = array();
         $interval = new \DateInterval('P1D');
-    
+
         $realEnd = new \DateTime($end);
         $realEnd->add($interval);
-    
+
         $period = new \DatePeriod(new \DateTime($start), $interval, $realEnd);
-    
-        foreach($period as $date) { 
-            $array[] = $date->format($format); 
+
+        foreach ($period as $date) {
+            $array[] = $date->format($format);
         }
-    
+
         return $array;
     }
 }

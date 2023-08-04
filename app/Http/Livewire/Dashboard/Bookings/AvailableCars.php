@@ -1,32 +1,18 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Dashboard\Bookings;
 
 use Carbon\Carbon;
 use App\Models\Car;
-use App\Models\User;
-use App\Models\Client;
 use App\Models\Booking;
 use Livewire\Component;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Services\BookingHandlingService;
 
-class Bookings extends Component
+class AvailableCars extends Component
 {
-    protected $listeners = ['booking_car'];
     public $booking;
-    public $cars;
-    public $days;
-
-    public function booking()
-    {
-        return view('front.cars.available_cars')
-            ->with([
-                'cars' => $cars,
-                'days' => $days,
-                'booking' => $booking
-            ]);
-    }
 
     public function first_step_booking(Request $request, BookingHandlingService $bookingHandlingService)
     {
@@ -65,15 +51,10 @@ class Bookings extends Component
             ]);
     }
 
-    // public function by_car()
-    // {
-    //     $cars = Car::with('bookings')->whereHas('bookings')->get();
-
-    //     return view('dashboard.bookings.by_car', compact('cars'));
-    // }
-
     public function render()
     {
-        return view('livewire.bookings');
+        $cars = Car::where('always_booked', false)->get();
+        $locations = Location::all();
+        return view('livewire.dashboard.bookings.available-cars', compact('cars', 'locations'));
     }
 }

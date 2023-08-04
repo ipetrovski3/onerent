@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="{{asset('css/jquery.datetimepicker.min.css')}}">
     <!-- flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Livewire Styles -->
+    @livewireStyles
 </head>
 <body data-scroll-animation="true">
 
@@ -67,11 +69,18 @@
 
 <script src="{{asset('js/theme-dist.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
+
 @yield('js')
+@livewireScripts
 @if ($errors->any())
 <script>
     $('#client_details').modal('show')
 </script>
+<script type="text/javascript">
+        window.livewire.on('bookCar', () => {
+            $('#book_car').modal('hide');
+        });
+    </script>
 @endif  
 </body>
 </html>

@@ -4,7 +4,7 @@
         <div class="container">
             <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
                 <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" srcset="{{ asset('images/logo.png') }}" style="max-height: 60px" alt="ONE RENT A CAR"></a>
-                <a class="navbar-brand" href="{{ route('home') }}"><img src="images/logo.png" srcset="images/logo.png" style="max-height: 60px" alt="ONE RENT A CAR"></a>
+                <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" srcset="{{ asset('images/logo.png') }}" style="max-height: 60px" alt="ONE RENT A CAR"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span></span>
                 </button>
@@ -14,7 +14,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('home') }}" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
                         </li>
                         <li class="dropdown submenu">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('cars.front.index') }}" role="button" aria-haspopup="true" aria-expanded="false">Cars</a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('cars.index') }}" role="button" aria-haspopup="true" aria-expanded="false">Cars</a>
                         </li>
                         <li class="dropdown submenu">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('about') }}" role="button" aria-haspopup="true" aria-expanded="false">About Us</a>

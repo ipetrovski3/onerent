@@ -21,34 +21,45 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('homepage');
-Route::get('/cars', [CarsController::class, 'front_index'])->name('cars.front.index');
-Route::get('/cars/{id}', [CarsController::class, 'front_show'])->name('front.show');
-Route::post('/get_cars', [CarsController::class, 'set_dates'])->name('set_dates');
+// Route::get('/', [HomeController::class, 'index'])->name('homepage');
+// Route::get('/cars', [CarsController::class, 'front_index'])->name('cars.front.index');
+// Route::get('/cars/{id}', [CarsController::class, 'front_show'])->name('front.show');
+// Route::post('/get_cars', [CarsController::class, 'set_dates'])->name('set_dates');
 Route::post('/booked-days', [CarsController::class, 'car_booked_days'])->name('car_booked_days');
-Route::post('/update-car-price', [CarsController::class, 'update_car_price'])->name('update_car_price');
+// Route::post('/update-car-price', [CarsController::class, 'update_car_price'])->name('update_car_price');
+
+// Route::get('/', [HomeController::class, 'index'])->name('homepage');
+// Route::get('/', function () {
+//     return view('front.index');
+// })->name('homepage');
+
+// Route::get('/cars', [CarsController::class, 'front_index'])->name('cars.front.index');
+Route::get('/cars/{id}', [CarsController::class, 'show_car'])->name('show.car');
+// Route::post('/get_cars', [CarsController::class, 'set_dates'])->name('set_dates');
+// Route::post('/booked-days', [CarsController::class, 'car_booked_days'])->name('car_booked_days');
+// Route::post('/update-car-price', [CarsController::class, 'update_car_price'])->name('update_car_price');
 
 Route::get('about-us', function () {
-    return view('front.about-us');
+    return view('about-us');
 })->name('about');
 
 Route::get('terms-and-conditions', function () {
-    return view('front.terms');
+    return view('terms');
 })->name('terms');
 
 Route::get('/contact', function () {
-    return view('front.contact');
+    return view('contact');
 })->name('contact');
 
 Route::post('/contact-us', [ContactsController::class, 'create'])->name('contact_us');
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 //Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
 // Route::get('/available-cars', [BookingsController::class, 'first_step_booking'])->name('first_step');
-Route::get('/available-cars', [App\Http\Livewire\Bookings::class, 'first_step_booking'])->name('first_step');
+// Route::get('/available-cars', [App\Http\Livewire\Bookings::class, 'first_step_booking'])->name('first_step');
 Route::post('/create-client', [ClientsController::class, 'create'])->name('clients.create');
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {
@@ -71,6 +82,20 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 });
 
 
-Route::get('/test', function () {
-    return view('livewire.bookings')->name('test');
-});
+
+
+Route::controller(CarsController::class)
+    ->group(function () {
+        Route::get('/available-cars/{booking_id}', 'available_cars')->name('available-cars');
+        // Route::get('/registration-dog-info', 'registration_dog_info')->name('registration_dog_info');
+        // Route::get('/registration-map', 'registration_map')->name('registration_map');
+        // Route::get('/registration-subscription', 'registration_subscription')->name('registration_subscription');
+    });
+
+// Route::get('/available-cars/{booking_id}', function () {
+//     return view('cars.available-cars');
+// })->name('available-cars');
+
+Route::get('/cars', function () {
+    return view('cars.index');
+})->name('cars.index');

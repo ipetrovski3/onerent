@@ -195,11 +195,25 @@
                 </form>
             </div>
         </div>
-      </div>
+    </div>
 
+    <!-- Include the Livewire component -->
+    {{-- @livewire('bookings.confirm-form') --}}
 @endsection
 
 @section('js')
+<!-- Register the listeners -->
+{{-- @push('scripts') --}}
+<script>
+    document.addEventListener('livewire:load', function () {
+        Livewire.on('formConfirmed', () => {
+            $('#confirmModal').modal('hide');
+            // TODO: Handle form confirmation success event
+        });
+    })
+</script>
+{{-- @endpush --}}
+
 <script src="{{asset('js/jquery.datetimepicker.full.js')}}"></script>
     <script>
         $(document).on('click', '.book_car', function (e) {

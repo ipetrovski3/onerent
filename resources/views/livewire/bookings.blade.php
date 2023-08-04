@@ -8,8 +8,9 @@
 <section class="breadcrumb_area" style="background: url({{ asset('images/carsall.jpeg') }})">
     <div class="container">
         <div class="breadcrumb_inner">
-            <h3>Goce Available cars</h3>
+            <h3>Available cars</h3>
             <div class="link">
+                {{-- {{ dd($booking) }} --}}
                 @php
                     $from = Carbon\Carbon::parse($booking->from_date)->format('d.m.Y');
                     $to = Carbon\Carbon::parse($booking->to_date)->format('d.m.Y');
@@ -127,11 +128,11 @@
                     </div>
                     @csrf
                     <input type="hidden" id="car_id" name="car_id">
-                    <input type="hidden" id="booking_id" name="booking_id" value="{{ $booking->id }}">
-                    <input type="hidden" name="pick_up" value="{{ $booking->pick_up_id }}">
-                    <input type="hidden" name="drop_off" value="{{ $booking->drop_off_id }}">
-                    <input type="hidden" name="from_date" value="{{ $booking->from_date }}">
-                    <input type="hidden" name="to_date" value="{{ $booking->to_date }}">
+                    <input type="hidden" id="booking_id" name="booking_id" value="{{ $booking ?? ''->id }}">
+                    <input type="hidden" name="pick_up" value="{{ $booking ?? ''->pick_up_id }}">
+                    <input type="hidden" name="drop_off" value="{{ $booking ?? ''->drop_off_id }}">
+                    <input type="hidden" name="from_date" value="{{ $booking ?? ''->from_date }}">
+                    <input type="hidden" name="to_date" value="{{ $booking ?? ''->to_date }}">
                     <div class="modal-body">
                         <div class="row mb-4">
                             <div class="col">
@@ -189,7 +190,7 @@
 
 @endsection
 
-@section('js')
+{{-- @section('js')
     <script>
         $(document).on('click', '.book_car', function (e) {
             e.preventDefault()
@@ -211,7 +212,7 @@
                 $('#confirm_reservation').attr('disabled', true)
             }
         })
-    </script>
+    </script> --}}
     <script>
         // disable submit button on form submit and loader mouse cursor
         $(document).on('submit', '#submit_form', function(){
