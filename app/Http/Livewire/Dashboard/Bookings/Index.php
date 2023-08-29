@@ -9,7 +9,9 @@ class Index extends Component
 {
     public function render()
     {
-        $bookings = Booking::all();
+        // $bookings = Booking::all()->sortByDesc('id');
+        $bookings = Booking::paginate(10);
+
         return view('livewire.dashboard.bookings.index', compact('bookings'));
     }
 }

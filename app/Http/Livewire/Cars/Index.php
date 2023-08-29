@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Cars;
 
-use App\Jobs\NewBookingJob;
+use Carbon\Carbon;
 use App\Models\Car;
 use App\Models\User;
 use App\Models\Client;
@@ -10,6 +10,7 @@ use App\Models\Booking;
 use App\Models\Country;
 use Livewire\Component;
 use App\Models\Location;
+use App\Jobs\NewBookingJob;
 use App\Mail\AdminNewBooking;
 use App\Mail\NewBookingEmail;
 use App\Services\SendEmailsService;
@@ -30,6 +31,8 @@ class Index extends Component
     public $pick_up;
     public $drop_off;
     public $car_id;
+    public $selected_car;
+    public $total_price;
 
     protected function rules()
     {
@@ -54,6 +57,12 @@ class Index extends Component
         'from_date.required' => 'Please add start date',
         'to_date.required' => 'Please add end_date',
     ];
+
+    public function carInfo($car_id)
+    {
+        $this->car_id = $car_id;
+        $this->selected_car = Car::findOrFail($car_id);
+    }
 
     public function bookCar($car_id)
     {
@@ -99,6 +108,9 @@ class Index extends Component
         $cars = Car::all();
         $locations = Location::all();
         $countries = Country::all();
-        return view('livewire.cars.index', compact('cars', 'locations', 'countries'));
+        $transmissions = Car::transmissions();
+        $engines = Car::engines();
+
+        return view('livewire.cars.index', compact('cars', 'locations', 'countries', 'transmissions', 'engines'));
     }
 }

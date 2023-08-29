@@ -1,105 +1,76 @@
 <div>
-    @extends('adminlte::page')
+    <div class="container">
+        <div class="col-5 mb-5">
 
-    @section('title', 'Cars')
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-    @section('content_header')
-        <h1>Create new Car</h1>
-        {{--    <a href="{{ route('cars.new') }}"></a>--}}
-    @stop
-
-    @section('content')
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <div class="container">
-            <div class="col-6 mb-5">
-                <form action="{{ route('cars.store') }}" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label class="form-label" for="car_brands">Car Brand</label>
-                        <select class="form-control" name="brand" id="car_brands">
-                            @foreach($car_brands as $brand)
-                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group" id="car_model_list">
-
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="plate">Licence Plate</label>
-                        <input class="form-control" id="plate" type="text" name="plate">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="transmission">Transmission</label>
-                        <select class="form-control" name="transmission_type" id="transmission">
-                            @foreach($car->transmissions as $key => $transmission)
-                                <option value="{{ $key }}">{{ $transmission }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="engine_type">Fuel</label>
-                        <select class="form-control" name="engine_type" id="engine_type">
-                            @foreach($car->engines as $key => $type)
-                                <option value="{{ $key }}">{{ $type }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <p>
-                        <input data-val="true" value="1" id="ac" type="checkbox" name="ac" checked>
-                        <label class="form-label" for="ac">Air Conditioner</label>
-                    </p>
-                    <p>
-                        <input data-val="true" value="1" id="navigation" type="checkbox" name="navigation" checked>
-                        <label class="form-label" for="navigation">Navigation</label>
-                    </p>
-                    <div class="form-group">
-                        <label class="form-label" for="max_passengers">Max Passengers</label>
-                        <input class="form-control" type="number" name="max_passengers">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="max_passengers">Price per day</label>
-                        <input class="form-control" type="number" name="ppd">
-                    </div>
-                    <button type="submit" class="btn btn-success">Save Car</button>
-                </form>
-            </div>
+            <form wire:submit.prevent="store">
+                <div class="form-group">
+                    <label for="brand">Car Brand</label>
+                    <select wire:model="brand" id="brand" class="form-control">
+                        <option value="">Select car brand</option>
+                        @foreach ($car_brands as $brand)
+                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="brand">Model</label>
+                    <select wire:model="model" id="model" class="form-control">
+                        <option value="">Select model</option>
+                        @foreach ($car_models as $model)
+                            <option value="{{ $model->id }}">{{ $model->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="plate">License Plate</label>
+                    <input wire:model="plate" id="plate" type="text" name="plate" class="form-control" placeholder="SK-1111-AB">
+                </div>
+                <div class="form-group">
+                    <label for="transmission_type">Transmission</label>
+                    <select wire:model="transmission_type" id="transmission_type" class="form-control">
+                        <option value="">Select transmission type</option>
+                        @foreach ($transmissions as $key => $transmission_type)
+                            <option value="{{ $key }}">{{ $transmission_type }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="engine_type">Engine</label>
+                    <select wire:model="engine_type" id="engine_type" class="form-control">
+                        <option value="">Select engine type</option>
+                        @foreach ($engines as $key => $engine_type)
+                            <option value="{{ $key }}">{{ $engine_type }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="max_passengers">Max Passengers</label>
+                    <input wire:model="max_passengers" id="max_passengers" type="number" name="max_passengers" class="col-2 form-control text-right">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="ppd">Price per day</label>
+                    <input wire:model="ppd" id="ppd" type="number" name="ppd" class="col-2 form-control text-right" placeholder="€">
+                </div>
+                <div class="form-check">
+                    <input wire:model="ac" id="ac" type="checkbox" class="form-check-input">
+                    <label class="form-check-label" for="ac">Air Conditioner</label>
+                </div>
+                <div class="form-check">
+                    <input wire:model="navigation" id="navigation" type="checkbox" class="form-check-input">
+                    <label class="form-check-label" for="navigation">Navigation</label>
+                </div>
+                <button type="submit" class="btn btn-success mt-3">Save Car</button>
+            </form>
         </div>
-
-    @stop
-
-    @section('css')
-        <link rel="stylesheet" href="/css/admin_custom.css">
-    @stop
-
-    @section('js')
-        <script>
-            $(document).on('change', '#car_brands', function () {
-                let brand_id = $(this).val()
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('select.brand') }}",
-                    data: {brand_id},
-                    success: function (view) {
-                        $('#car_model_list').empty()
-                        $('#car_model_list').html(view)
-                    }
-                })
-            })
-        </script>
-    @stop
-
+    </div>
 </div>

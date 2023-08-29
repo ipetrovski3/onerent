@@ -18,7 +18,7 @@ class Car extends Model
 
     public function brand()
     {
-        return $this->model->brand();
+        return $this->model->brand;
     }
 
     public function bookings()
@@ -28,31 +28,39 @@ class Car extends Model
 
     public function brand_and_model()
     {
-        return $this->brand->name . ' ' . $this->model->name;
+        return $this->model->brand->name . ' ' . $this->model->name; // Access brand through model relationship
     }
 
     public static function available_cars($from, $to)
     {
-        return self::with('bookings')->where('always_booked', false)->whereNotIn('id', function ($query) use ($from, $to) {
-            $query->from('bookings')
-                ->select('car_id')
-                ->whereDate('from_date', '<=', $to)
-                ->whereDate('to_date', '>=', $from)
-                ->where('car_id', '!=', 'id');
-        })->get();
+        return self::with(['bookings' => function ($query) use ($from, $to) {
+            $query->whereDate('from_date', '<=', $to)
+                ->whereDate('to_date', '>=', $from);
+        }])
+        ->where('always_booked', false)
+        ->get()
+        ->filter(function ($car) {
+            return $car->bookings->isEmpty();
+        });
     }
 
-    public $transmissions = [
-        '0' => 'Automatic',
-        '1' => 'Manual'
-    ];
+    public static function transmissions()
+    {
+        return [
+            '0' => 'Automatic',
+            '1' => 'Manual',
+        ];
+    }
 
-    public $engines = [
-        '0' => 'Petrol',
-        '1' => 'Diesel',
-        '2' => 'LPG',
-        '3' => 'Hybrid',
-        '4' => 'Electric'
-    ];
-
+    public static function engines()
+    {
+        return [
+            '0' => 'Petrol',
+            '1' => 'Diesel',
+            '2' => 'LPG',
+            '3' => 'Hybrid',
+            '4' => 'Electric',
+        ];
+    }
 }
+

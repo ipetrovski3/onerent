@@ -81,7 +81,9 @@ class AvailableCars extends Component
     {
         $cars = Car::where('always_booked', false)->get();
         $locations = Location::all();
+        $transmissions = Car::transmissions();
+        $engines = Car::engines();
 
-        return view('livewire.cars.available-cars', compact('cars', 'locations'));
+        return view('livewire.cars.available-cars', compact('cars', 'locations', 'transmissions', 'engines'));
     }
 }

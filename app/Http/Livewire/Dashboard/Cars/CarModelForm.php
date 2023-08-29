@@ -5,17 +5,20 @@ namespace App\Http\Livewire\Dashboard\Cars;
 use Livewire\Component;
 use App\Models\CarBrand;
 use App\Models\CarModel;
+use Livewire\WithFileUploads;
 
 class CarModelForm extends Component
 {
-    public $brands;
+    use WithFileUploads;
+
+    public $car_brands;
     public $name;
     public $car_brand_id;
     public $image;
 
     public function mount()
     {
-        $this->brands = CarBrand::all();
+        $this->car_brands = CarBrand::all();
     }
 
     public function rules()
@@ -36,6 +39,8 @@ class CarModelForm extends Component
         $this->image->store('cars', 'public');
         $model->image = $this->image->hashName();
         $model->save();
+
+        return redirect()->route('cars.index');
     }
 
     public function render()

@@ -12,33 +12,28 @@ class CarForm extends Component
     public $car;
     public $car_brands;
     public $car_models;
-    public $car_model_id;
+    public $brand;
+    public $model;
     public $plate;
-    public $ac;
-    public $navigation;
+    public $ac = true;
+    public $navigation = true;
     public $transmission_type;
     public $engine_type;
-    public $max_passengers;
+    public $max_passengers = 5;
     public $ppd;
-
-    public function mount()
-    {
-        $this->car = new Car;
-        $this->car_brands = CarBrand::all();
-        $this->car_models = CarModel::all();
-    }
 
     public function rules()
     {
         return [
-            'car.car_model_id' => 'required',
-            'car.plate' => 'required',
-            'car.ac' => 'required',
-            'car.navigation' => 'required',
-            'car.transmission_type' => 'required',
-            'car.engine_type' => 'required',
-            'car.max_passengers' => 'required',
-            'car.ppd' => 'required',
+            'brand' => 'required',
+            'model' => 'required',
+            'plate' => 'required',
+            'ac' => 'required',
+            'navigation' => 'required',
+            'transmission_type' => 'required',
+            'engine_type' => 'required',
+            'max_passengers' => 'required',
+            'ppd' => 'required',
         ];
     }
 
@@ -53,7 +48,7 @@ class CarForm extends Component
     {
         $this->validate();
         $car = new Car;
-        $car->car_model_id = $this->car_model_id;
+        $car->car_model_id = $this->model;
         $car->plate = $this->clean_plate($this->plate);
         $car->ac = $this->ac;
         $car->navigation = $this->navigation;
@@ -68,6 +63,12 @@ class CarForm extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.cars.car-form');
+        $this->car_brands = CarBrand::all();
+        $this->car_models = CarModel::where('car_brand_id', $this->brand)->get();
+
+        $transmissions = Car::transmissions();
+        $engines = Car::engines();
+
+        return view('livewire.dashboard.cars.car-form', compact('transmissions', 'engines'));
     }
 }

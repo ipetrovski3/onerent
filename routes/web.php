@@ -26,7 +26,7 @@ use App\Http\Controllers\DashboardController;
 // Route::get('/cars/{id}', [CarsController::class, 'front_show'])->name('front.show');
 // Route::post('/get_cars', [CarsController::class, 'set_dates'])->name('set_dates');
 Route::post('/booked-days', [CarsController::class, 'car_booked_days'])->name('car_booked_days');
-// Route::post('/update-car-price', [CarsController::class, 'update_car_price'])->name('update_car_price');
+Route::post('/update-car-price', [CarsController::class, 'update_car_price'])->name('update_car_price');
 
 // Route::get('/', [HomeController::class, 'index'])->name('homepage');
 // Route::get('/', function () {
@@ -96,6 +96,26 @@ Route::controller(CarsController::class)
 //     return view('cars.available-cars');
 // })->name('available-cars');
 
+
+Route::prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('/cars', function () {
+        return view('dashboard.cars.index');
+    })->name('detail.cars.index');
+    
+    Route::get('/cars/new', function () {
+        return view('dashboard.cars.car-form');
+    })->name('add.car');
+    
+    Route::get('/models/new', function () {
+        return view('dashboard.cars.car-model-form');
+    })->name('add.car.model');
+    
+});
+
 Route::get('/cars', function () {
     return view('cars.index');
 })->name('cars.index');
+
+Route::get('/calendar', function () {
+    return view('test');
+})->name('calendar');

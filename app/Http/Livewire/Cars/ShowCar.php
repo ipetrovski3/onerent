@@ -26,6 +26,7 @@ class ShowCar extends Component
     public $pick_up;
     public $drop_off;
     public $car_id;
+    public $selected_car;
 
     public function mount($car_id)
     {
@@ -55,6 +56,12 @@ class ShowCar extends Component
         'from_date.required' => 'Please add start date',
         'to_date.required' => 'Please add end_date',
     ];
+
+    public function carInfo($car_id)
+    {
+        $this->car_id = $car_id;
+        $this->selected_car = Car::findOrFail($car_id);
+    }
 
     public function bookCar($car_id)
     {
@@ -91,7 +98,9 @@ class ShowCar extends Component
     {
         $locations = Location::all();
         $countries = Country::all();
+        $transmissions = Car::transmissions();
+        $engines = Car::engines();
 
-        return view('livewire.cars.show-car', compact('locations', 'countries'));
+        return view('livewire.cars.show-car', compact('locations', 'countries', 'transmissions', 'engines'));
     }
 }

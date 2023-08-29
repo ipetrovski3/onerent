@@ -31,6 +31,8 @@ class BookCar extends Component
     public $address;
     public $country;
     public $car_id;
+    public $selected_car;
+    public $total_price;
 
     public function mount($cars, $days, $booking)
     {
@@ -69,6 +71,13 @@ class BookCar extends Component
         'from_date.required' => 'Please add start date',
         'to_date.required' => 'Please add end_date',
     ];
+
+    public function carInfo($car_id)
+    {
+        $this->car_id = $car_id;
+        $this->selected_car = Car::findOrFail($car_id);
+        $this->total_price = $this->selected_car->ppd * $this->days;
+    }
 
     public function bookCar($booking_id, $car_id)
     {
@@ -124,10 +133,12 @@ class BookCar extends Component
 
     public function render()
     {
-        $cars = Car::where('always_booked', false)->get();
+        // $cars = Car::where('always_booked', false)->get();
         $locations = Location::all();
         $countries = Country::all();
+        $transmissions = Car::transmissions();
+        $engines = Car::engines();
 
-        return view('livewire.bookings.book-car', compact('locations', 'countries'));
+        return view('livewire.bookings.book-car', compact('locations', 'countries', 'transmissions', 'engines'));
     }
 }

@@ -4,8 +4,10 @@
     <!-- Button trigger modal -->
 
     {{-- @livewire('cars.available-cars', ['booking' => $booking, 'cars' => $cars, 'days' => $days]) --}}
-    
+
+@section('content')
     @livewire('bookings.book-car', ['booking' => $booking, 'cars' => $cars, 'days' => $days])
+@endsection
 
 {{-- @section('js')
     <script>
