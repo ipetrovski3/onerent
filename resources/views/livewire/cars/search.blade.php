@@ -12,6 +12,9 @@
                                 <option value="{{ $location->id }}">{{ $location->name }}</option>
                             @endforeach
                         </select>
+                        @error('pick_up_id')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="search_car_item">
                         <select wire:model="drop_off_id" class="text-body form-control" name="drop_off_id" id="drop_off_id">
@@ -20,11 +23,14 @@
                                 <option value="{{ $location->id }}">{{ $location->name }}</option>
                             @endforeach
                         </select>
+                        @error('drop_off_id')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="search_car_item">
                         <div class="form-group">
-                            <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                            <div class="input-group date">
+                                <div class="input-group-append">
                                     <div class="input-group-text client_2"><i class="icon-calendar_2"></i></div>
                                 </div>
                                 <input wire:model="from_date" name="from_date" id="from_date" autocomplete="off" x-data
@@ -33,11 +39,14 @@
                                     x-ref="input" type="text" placeholder="{{ \Carbon\Carbon::tomorrow()->format('d.m.Y    H:i') }}" />
                             </div>
                         </div>
+                        @error('from_date')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="search_car_item">
                         <div class="form-group">
-                            <div class="input-group time" id="datetimepicker4" data-target-input="nearest">
-                                <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                            <div class="input-group time">
+                                <div class="input-group-append">
                                     <div class="input-group-text client_2"><i class="icon-calendar_2"></i></div>
                                 </div>
                                 <input wire:model="to_date" name="to_date" id="to_date" autocomplete="off" x-data
@@ -46,6 +55,9 @@
                                     x-ref="input" type="text" placeholder="{{ \Carbon\Carbon::tomorrow()->addDay()->format('d.m.Y    H:i') }}" />
                             </div>
                         </div>
+                        @error('to_date')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button class="submit_btn" type="submit">Search Car</button>
                 </div>

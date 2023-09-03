@@ -42,7 +42,7 @@
                                 x-on:input="ppd = $event.target.value"
                                 x-on:blur="$wire.changePrice({{ $car->id }}, ppd)"
                                 type="text"
-                                class="form-control price-input"
+                                class="form-control price-input text-center"
                                 value="{{ $car->ppd }}"
                             >
                         </div>

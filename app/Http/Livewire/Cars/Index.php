@@ -33,6 +33,7 @@ class Index extends Component
     public $car_id;
     public $selected_car;
     public $total_price;
+    public $terms_and_conditions = false;
 
     protected function rules()
     {
@@ -44,10 +45,11 @@ class Index extends Component
             'personal_id' => 'required',
             'address' => 'required',
             'country' => 'required',
-            'from_date' => 'required',
-            'to_date' => 'required',
             'pick_up' => 'required',
-            'drop_off' => 'required'
+            'drop_off' => 'required',
+            'from_date' => 'required|after_or_equal:today',
+            'to_date' => 'required|after_or_equal:from_date',
+            'terms_and_conditions' => 'accepted'
         ];
     }
 
@@ -55,7 +57,10 @@ class Index extends Component
         'pick_up_id.required' => 'Please specify pick up location',
         'drop_off_id.required' => 'Please specify drop off location',
         'from_date.required' => 'Please add start date',
-        'to_date.required' => 'Please add end_date',
+        'to_date.required' => 'Please add end date',
+        'from_date.after_or_equal' => 'Start date must be after or equal to today',
+        'to_date.after_or_equal' => 'End date must be after or equal to start date',
+        'terms_and_conditions.accepted' => 'Please accept terms and conditions'
     ];
 
     public function carInfo($car_id)
@@ -90,15 +95,7 @@ class Index extends Component
         $booking->time_of_pick_up = $date_and_time_of_pick_up['pick_up_time'];
         $booking->save();
 
-        // $admin_email = User::first()->email;
-        // $for_client = $this->email_content('client', $client, $booking);
-        // Mail::to($admin_email)->queue(new AdminNewBooking($client, $booking));
-        // Mail::to($client->email)->queue(new NewBookingEmail($for_client));
-
         NewBookingJob::dispatch($client, $booking);
-
-        // $sendEmailsService = new SendEmailsService;
-        // $sendEmailsService->send_emails($admin_email, $client->email, $booking, $client);
 
         return redirect()->route('home')->with(['success' => 'Your Booking was successfully']);
     }

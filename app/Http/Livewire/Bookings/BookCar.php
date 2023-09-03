@@ -33,6 +33,7 @@ class BookCar extends Component
     public $car_id;
     public $selected_car;
     public $total_price;
+    public $terms_and_conditions = false;
 
     public function mount($cars, $days, $booking)
     {
@@ -41,35 +42,30 @@ class BookCar extends Component
         $this->booking = $booking;
     }
 
-    protected $rules = [
-        // 'pick_up_id' => 'required',
-        // 'drop_off_id' => 'required',
-        // 'from_date' => 'required',
-        // 'to_date' => 'required',
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'email' => 'required|email',
-        'phone' => 'required',
-        'personal_id' => 'required',
-        'address' => 'required',
-        'country' => 'required'
-    ];
-
-        // 'first_name' => 'required',
-        // 'last_name' => 'required',
-        // 'email' => 'required|email',
-        // 'phone' => 'required',
-        // 'personal_id' => 'required',
-        // 'from_date' => 'required',
-        // 'to_date' => 'required',
-        // 'pick_up' => 'required',
-        // 'drop_off' => 'required'
+    protected function rules()
+    {
+        return [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'personal_id' => 'required',
+            'address' => 'required',
+            'country' => 'required',
+            'terms_and_conditions' => 'accepted'
+        ];
+    }
 
     protected $messages = [
-        'pick_up_id.required' => 'Please specify pick up location',
-        'drop_off_id.required' => 'Please specify drop off location',
-        'from_date.required' => 'Please add start date',
-        'to_date.required' => 'Please add end_date',
+        'first_name.required' => 'First Name is required',
+        'last_name.required' => 'Last Name is required',
+        'email.required' => 'Email is required',
+        'email.email' => 'Email is not valid',
+        'phone.required' => 'Phone is required',
+        'personal_id.required' => 'Personal ID is required',
+        'address.required' => 'Address is required',
+        'country.required' => 'Country is required',
+        'terms_and_conditions.accepted' => 'Please accept terms and conditions'
     ];
 
     public function carInfo($car_id)
@@ -104,31 +100,6 @@ class BookCar extends Component
         $sendEmailsService->send_emails($admin_email, $client->email, $booking, $client);
 
         return redirect()->route('home')->with(['success' => 'Your Booking was successfully']);
-
-        // // if ($request->has('from_cars')) {
-        // // if ($request) {
-        // // $date_and_time_of_pick_up = $this->format_date($request->from_date);
-        // $date_and_time_of_pick_up = $bookingHandlingService->format_from_date($request->from_date);
-        // $booking = new Booking;
-        // $booking->pick_up_id = $request->pick_up;
-        // $booking->drop_off_id = $request->drop_off;
-        // $booking->from_date = $date_and_time_of_pick_up['from_date'];
-        // $booking->to_date = $bookingHandlingService->format_to_date($request->to_date);
-        // $booking->time_of_pick_up = $date_and_time_of_pick_up['pick_up_time'];
-        // $booking->save();
-        // // }
-        // // else {
-        // //     $booking = Booking::find($request->booking_id);
-        // // }
-
-        // $car_id = $request->car_id;
-
-        // $client = Client::create($request->all());
-        // $booking->update(['client_id' => $client->id, 'car_id' => $car_id]);
-        // $admin_email = User::first()->email;
-        // $this->send_emails($admin_email, $client->email, $booking, $client);
-
-        // return redirect()->route('home')->with(['success' => 'Your Booking was successfully']);
     }
 
     public function render()

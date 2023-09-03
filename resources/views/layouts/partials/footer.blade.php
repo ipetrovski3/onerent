@@ -20,7 +20,7 @@
                         <ul class="nav flex-column">
                             <li><a href="{{ route('about') }}">About us</a></li>
                             <li><a href="#">Our Services</a></li>
-                            <li><a href="{{ route('contact') }}">Contact us</a></li>
+                            <li><a href="{{ route('contact_us') }}">Contact us</a></li>
                         </ul>
                     </aside>
                 </div>

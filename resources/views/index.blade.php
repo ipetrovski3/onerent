@@ -1,7 +1,3 @@
-{{-- @extends('adminlte::page')
-
-@section('title', 'Dashboard') --}}
-
 @extends('layouts.app')
 @section('content')
     <!--================Find Car Banner Area =================-->

@@ -22,7 +22,7 @@
                         <li class="dropdown submenu">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('terms') }}" role="button" aria-haspopup="true" aria-expanded="false">Terms</a>
                         </li>
-                        <li><a href="{{ route('contact') }}">Contact</a></li>
+                        <li><a href="{{ route('contact_us') }}">Contact</a></li>
                     </ul>
 
                 </div>

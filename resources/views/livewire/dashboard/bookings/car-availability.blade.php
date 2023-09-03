@@ -5,13 +5,13 @@
         </button>
         <div>
             <label for="selectMonth">Select Month:</label>
-            <select wire:model="selectedMonth" id="selectMonth" class="bg-gray-100 border rounded p-1">
+            <select wire:model.defer="selectedMonth" id="selectMonth" class="bg-gray-100 border rounded p-1">
                 @for ($month = 1; $month <= 12; $month++)
                     <option value="{{ $month }}">{{ date('F', mktime(0, 0, 0, $month, 1)) }}</option>
                 @endfor
             </select>
             <label for="selectYear">Select Year:</label>
-            <select wire:model="selectedYear" id="selectYear" class="bg-gray-100 border rounded p-1">
+            <select wire:model.defer="selectedYear" id="selectYear" class="bg-gray-100 border rounded p-1">
                 @for ($year = date('Y') - 5; $year <= date('Y') + 5; $year++)
                     <option value="{{ $year }}">{{ $year }}</option>
                 @endfor

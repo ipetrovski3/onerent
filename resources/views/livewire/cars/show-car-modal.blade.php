@@ -2,20 +2,20 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 <h5 class="modal-title">Booking</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="modal-body">
                 <div class="row">
                     <div class="col-6">
@@ -100,7 +100,7 @@
                 </div>
                 <div class="row mb-4">
                     <div class="col">
-                        <input id="terms" type="checkbox" checked>
+                        <input wire:model="terms_and_conditions" id="terms" type="checkbox">
                         <label for="terms">By checking this you are agreeing to our terms and conditions</label>
                     </div>
                 </div>

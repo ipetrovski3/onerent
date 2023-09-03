@@ -1,8 +1,3 @@
-{{-- @extends('adminlte::page') --}}
-{{-- @extends('layouts.tailwind') --}}
-
-
-
 @extends('adminlte::page')
 
 @extends('layouts.tailwind')
@@ -17,10 +12,6 @@
     @livewire('dashboard.bookings.car-availability')
 @stop
 
-
-{{-- <div>
-    @livewire('dashboard.bookings.car-availability')
-</div> --}}
 @push('styles')
     <style>
         .slash-line {
@@ -60,4 +51,3 @@
         }
     </style>
 @endpush
-

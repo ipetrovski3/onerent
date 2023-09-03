@@ -13,15 +13,6 @@
 
     <!--================Product Details Area =================-->
     <section class="product_details_area p_100">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <div class="container">
             <div class="row product_details_inner">
                 <div class="col-lg-8">
