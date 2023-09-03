@@ -72,12 +72,12 @@
                                                 <li title="Max Passenger"><img src="img/icon/p-cat-icon-2.png" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li>
                                             {{-- <li><img src="img/icon/p-cat-icon-4.png" class="mr-1 ml-2" alt="">03</li> --}}
                                             </ul>
-                                            <ul class="nav">
+                                            {{-- <ul class="nav">
                                                 <li title="Fuel Type"><img src="img/icon/p-cat-icon-1.png" class="mr-1 ml-2" alt="">{{ $engines[$car->engine_type] }}</li>
                                                 <li title="Transmission"><img src="img/icon/p-cat-icon-3.png" class="mr-1 ml-2" alt="">{{ $transmissions[$car->transmission_type] }}</li>
-                                                <li title="Max Passenger"><img src="img/icon/p-cat-icon-2.png" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li>
+                                                <li title="Max Passenger"><img src="img/icon/p-cat-icon-2.png" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li> --}}
                                                 {{--                                        <li><img src="img/icon/p-cat-icon-4.png" class="mr-1 ml-2" alt="">03</li>--}}
-                                            </ul>
+                                            {{-- </ul> --}}
                                         </div>
 
                                     </div>

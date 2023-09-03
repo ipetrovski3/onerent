@@ -35,9 +35,17 @@
                         <td><i class="fa fa-times text-danger"></i></td>
                     @endif
                     <td>{{ $car->max_passengers }}</td>
-                    <td> 
-                        <span type="disabled" class="form-control show-price">{{ number_format($car->ppd, 2, ',', '.') }}</span>
-                        <input type="text" hidden class="form-control price-input" value="{{ $car->ppd}}" data-car_id="{{ $car->id }}">
+                    <td>
+                        <div x-data="{ ppd: {{ $car->ppd }} }">
+                            <input
+                                x-model="ppd"
+                                x-on:input="ppd = $event.target.value"
+                                x-on:blur="$wire.changePrice({{ $car->id }}, ppd)"
+                                type="text"
+                                class="form-control price-input"
+                                value="{{ $car->ppd }}"
+                            >
+                        </div>
                     </td>
                     <td><input wire:click="disableBooking({{ $car->id }})" class="form-control booking-status" type="checkbox" {{ $car->always_booked ? 'checked' : '' }}></td>
                 </tr>

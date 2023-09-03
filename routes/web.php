@@ -9,6 +9,7 @@ use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\CarModelsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Livewire\Dashboard\Bookings\CarAvailabilityMonth;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +80,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/new', [CarModelsController::class, 'new'])->name('models.new');
         Route::post('/store', [CarModelsController::class, 'store'])->name('models.store');
     });
+    Route::get('/calendar', function () {
+        return view('calendar');
+    })->name('calendar');
 });
 
 
@@ -116,6 +120,12 @@ Route::get('/cars', function () {
     return view('cars.index');
 })->name('cars.index');
 
-Route::get('/calendar', function () {
-    return view('test');
-})->name('calendar');
+// Route::get('/calendar', function () {
+//     return view('calendar');
+// })->name('calendar');
+
+Route::get('/calendar-month', function () {
+    return view('calendar-month');
+})->name('calendar-month');
+
+// Route::livewire('calendar/month', CarAvailabilityMonth::class)->name('calendar.month');

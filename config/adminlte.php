@@ -251,8 +251,8 @@ return [
             'icon' => 'fa fa-car'
         ],
         [
-            'text' => 'Bookings By Car',
-            'route'  => 'bookings.by_car',
+            'text' => 'Cars Availability',
+            'route'  => 'calendar',
             'icon' => 'fa fa-car'
         ],
 

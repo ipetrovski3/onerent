@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Dashboard\Bookings;
 
+use Carbon\Carbon;
 use App\Models\Car;
 use Livewire\Component;
-use App\Models\CarModel;
 use Illuminate\Support\Facades\DB;
 
 class CarAvailability extends Component
@@ -54,7 +54,9 @@ class CarAvailability extends Component
     {
         // Fetch all cars
         $cars = Car::all();
-    
+
+        $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
         foreach ($cars as $car) {
             $availabilityArray = [];
             for ($day = 1; $day <= $this->daysInMonth; $day++) {
@@ -64,7 +66,77 @@ class CarAvailability extends Component
                     ->where('from_date', '<=', $date)
                     ->where('to_date', '>=', $date)
                     ->get();
-    
+
+                // Initialize availability and client name
+                $availability = 'green'; // Default to available
+                $clientName = '';
+
+                foreach ($bookings as $booking) {
+                    if ($booking->from_date === $date) {
+                        $availability = 'from'; // Mark as "from" date
+                    }
+                    if ($booking->to_date === $date) {
+                        $availability = 'to'; // Mark as "to" date
+                    }
+                    if ($booking->from_date < $date && $booking->to_date > $date) {
+                        $availability = 'red'; // Mark as booked
+                    }
+                    // Fetch and set the client's name
+                    $client = DB::table('clients')->where('id', $booking->client_id)->first();
+                    if ($client) {
+                        $clientName = $client->first_name;
+                    }
+                }
+                // Add availability and client name to the array
+                $clientName ?? $clientName = '';
+                $availabilityArray[] = [
+                    'availability' => $availability,
+                    'clientName' => $clientName,
+                ];
+            }
+            $this->cars[] = [
+                'model' => $car->brand_and_model(),
+                'availability' => $availabilityArray,
+            ];
+        }
+    }
+
+
+    public function nextMonth()
+    {
+        $this->updateAvailability(date('n') + 1, date('Y'));
+        $this->selectedMonth = date('n') + 1;
+        $this->daysInMonth = cal_days_in_month(CAL_GREGORIAN, $this->selectedMonth, $this->selectedYear);
+    }
+
+    public function previousMonth()
+    {
+        $this->updateAvailability(date('n') - 1, date('Y'));
+        $this->selectedMonth = date('n') - 1;
+        $this->daysInMonth = cal_days_in_month(CAL_GREGORIAN, $this->selectedMonth, $this->selectedYear);
+    }
+
+    private function updateAvailability($month, $year)
+    {
+        // Calculate the number of days in the given month and year
+        $daysInMonth = Carbon::create($year, $month)->daysInMonth;
+
+        // Clear existing availability data for cars
+        $this->cars = [];
+
+        // Fetch all cars
+        $cars = Car::all();
+
+        foreach ($cars as $car) {
+            $availabilityArray = [];
+            for ($day = 1; $day <= $daysInMonth; $day++) {
+                $date = Carbon::create($year, $month, $day)->toDateString();
+                $bookings = DB::table('bookings')
+                    ->where('car_id', $car->id)
+                    ->where('from_date', '<=', $date)
+                    ->where('to_date', '>=', $date)
+                    ->get();
+
                 $availability = 'green'; // Default to available
                 foreach ($bookings as $booking) {
                     if ($booking->from_date === $date) {
@@ -76,71 +148,23 @@ class CarAvailability extends Component
                     if ($booking->from_date < $date && $booking->to_date > $date) {
                         $availability = 'red'; // Mark as booked
                     }
+                    // Fetch and set the client's name
+                    $client = DB::table('clients')->where('id', $booking->client_id)->first();
+                    if ($client) {
+                        $clientName = $client->first_name;
+                    }
                 }
-    
-                $availabilityArray[] = $availability;
+                // Add availability and client name to the array
+                $clientName ?? $clientName = '';
+                $availabilityArray[] = [
+                    'availability' => $availability,
+                    'clientName' => $clientName,
+                ];
             }
             $this->cars[] = [
-                'model' => $car->brand_and_model(),
-                'availability' => $availabilityArray,
+            'model' => $car->brand_and_model(),
+            'availability' => $availabilityArray,
             ];
-        }
-    }
-    
-    public function nextMonth()
-    {
-        $this->updateAvailability(date('n') + 1, date('Y'));
-        $this->selectedMonth = date('n') + 1;
-    }
-
-    public function previousMonth()
-    {
-        $this->updateAvailability(date('n') - 1, date('Y'));
-        $this->selectedMonth = date('n') - 1;
-    }
-
-    private function updateAvailability($month, $year)
-    {
-        // Clear the existing availability data
-        foreach ($this->cars as &$car) {
-            $car['availability'] = [];
-        }
-
-        // Calculate the number of days in the new month
-        $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-
-        foreach ($this->cars as &$car) {
-            $availabilityArray = [];
-            $carBrandAndModel = $car['model'];
-
-            // Separate the brand and model names
-            [$brand, $model] = explode(' ', $carBrandAndModel);
-
-            // Fetch cars based on brand and model names
-            $matchingCars = Car::whereHas('model.brand', function ($query) use ($brand) {
-                $query->where('name', $brand);
-            })->whereHas('model', function ($query) use ($model) {
-                $query->where('name', $model);
-            })->get();
-
-            foreach ($matchingCars as $matchingCar) {
-                $carId = $matchingCar->id;
-
-                for ($day = 1; $day <= $daysInMonth; $day++) {
-                    $date = $year . '-' . $month . '-' . $day;
-                    
-                    // Check if the car is booked for the specific day
-                    $isBooked = DB::table('bookings')
-                        ->where('car_id', $carId)
-                        ->whereDate('from_date', '<=', $date)
-                        ->whereDate('to_date', '>=', $date)
-                        ->count() > 0;
-
-                    // Mark the day as available if not booked, otherwise mark it as booked
-                    $availabilityArray[] = !$isBooked ? 'green' : 'red';
-                }
-            }
-            $car['availability'] = $availabilityArray;
         }
     }
 

@@ -72,7 +72,7 @@
                     <div class="row mb-4">
                         <div class="col">
                             <input id="terms" type="checkbox" checked>
-                            <label for="terms">By checking this you are agreeing to our terms and conditions</label>
+                            <label for="terms">grens</label>
                         </div>
                     </div>
                 </div>

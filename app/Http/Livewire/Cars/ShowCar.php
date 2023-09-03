@@ -63,7 +63,7 @@ class ShowCar extends Component
         $this->selected_car = Car::findOrFail($car_id);
     }
 
-    public function bookCar($car_id)
+    public function bookCar()
     {
         $this->validate();
 
@@ -80,7 +80,7 @@ class ShowCar extends Component
         $bookingHandlingService = new BookingHandlingService;
         $date_and_time_of_pick_up = $bookingHandlingService->format_from_date($this->from_date);
         $booking = new Booking;
-        $booking->car_id = $car_id;
+        $booking->car_id = $this->car_id;
         $booking->client_id = $client->id;
         $booking->pick_up_id = $this->pick_up;
         $booking->drop_off_id = $this->drop_off;

@@ -95,7 +95,7 @@ class BookCar extends Component
 
         $booking = Booking::find($booking_id);
         $booking->update([
-            'car_id' => $car_id,
+            'car_id' => $this->car_id,
             'client_id' => $client->id
         ]);
 

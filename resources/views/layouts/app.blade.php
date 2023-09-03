@@ -37,9 +37,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- Livewire Styles -->
     @livewireStyles
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body data-scroll-animation="true">
-
     {{--<div class="preloader">--}}
     {{--    <div class="main-loader">--}}
     {{--        <img src="img/loader_5.gif" alt="">--}}
@@ -65,7 +65,10 @@
     <script src="{{asset('vendors/slick/slick.min.js')}}"></script>
     <script src="{{asset('vendors/animate-css/wow.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
+    {{-- <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script> --}}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script> --}}
 
     <script src="{{asset('js/theme-dist.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
