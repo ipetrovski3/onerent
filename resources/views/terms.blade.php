@@ -2,7 +2,8 @@
 
 @section('content')
     <!--================Breadcrumb Area =================-->
-    <section class="breadcrumb_area" style="background: url({{ asset('images/termspage.jpg') }})">
+    {{-- <section class="breadcrumb_area" style="background: url({{ asset('images/termspage.jpg') }})"> --}}
+    <section>
         <div class="container">
             <div class="breadcrumb_inner">
                 <h3>Terms and Condtions</h3>

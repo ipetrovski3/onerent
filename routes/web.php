@@ -41,9 +41,9 @@ Route::get('terms-and-conditions', function () {
 
 Route::get('/contact-us', function () {
     return view('contact');
-})->name('contact_us');
+})->name('contact');
 
-Route::post('/contact-us', [ContactsController::class, 'create'])->name('contact_us');
+Route::post('/contact-us', [ContactsController::class, 'create'])->name('contact');
 
 //Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 

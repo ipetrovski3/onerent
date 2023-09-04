@@ -29,10 +29,10 @@
     <link rel="stylesheet" href="{{asset('vendors/animate-css/animate.css')}}">
     <!-- main css -->
     {{-- <link rel="stylesheet" href="{{asset('css/style.css')}}"> --}}
-    <link rel="stylesheet" href="{{asset('css/theme_style.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('css/custom_style.css')}}"> --}}
+    {{-- <link rel="stylesheet" href="{{asset('css/theme_style.css')}}"> --}}
+    <link rel="stylesheet" href="{{asset('css/custom_style.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
-    <link rel="stylesheet" href="{{asset('css/jquery.datetimepicker.min.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('css/jquery.datetimepicker.min.css')}}"> --}}
     <!-- flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- Livewire Styles -->

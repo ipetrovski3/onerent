@@ -1,44 +1,43 @@
 @extends('layouts.app')
 @section('content')
+    <style>
+        .no-bullets {
+            list-style-type: none; /* Removes bullet points */
+            padding-left: 0; /* Removes default left padding */
+            text-align: center; /* Center-align the text */
+        }
+
+        .no-bullets li {
+            font-size: 24px; /* Adjust the font size as needed */
+            margin-bottom: 20px; /* Adds space between list items */
+        }
+    </style>
     <!--================Find Car Banner Area =================-->
     @livewire('cars.search')
     <!--================End Find Car Banner Area =================-->
 
     <!--================Choose Area =================-->
-    <section class="choose_area p_100">
+    <section class="choose_area p_10">
         <div class="container">
             <div class="single_title text-center wow animated fadeInUp" data-wow-delay="0.2s">
                 <h2>Why Choose <span>One Rent a Car</span></h2>
             </div>
             <div class="row choose_inner2 justify-content-center">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="choose_item wow animated fadeIn" data-wow-delay="0.2s">
-                        <div class="icon">
-                            <i class="icon-rent"></i>
-                        </div>
-                        <h4>Premium Rental Experience</h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="choose_item wow animated fadeIn" data-wow-delay="0.4s">
-                        <div class="icon">
-                            <i class="icon-web"></i>
-                        </div>
-                        <h4>Manage Booking Online</h4>
-
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="choose_item wow animated fadeIn" data-wow-delay="0.6s">
-                        <div class="icon">
-                            <i class="icon-rating"></i>
-                        </div>
-                        <h4>Rated by many users</h4>
-                       {{-- <p>Working with over 900 companies in 160 countries, we can find </p> --}}
+                <div class="col-lg-10 col-sm-6" style="bottom: 50px;">
+                    <div class="wow animated fadeIn" data-wow-delay="0.2s">
+                        <ul class="no-bullets">
+                            <li><i class="fa fa-check"></i> No deposit for some cars</li>
+                            <li><i class="fa fa-check"></i> Free delivery to your home address or hotel</li>
+                            <li><i class="fa fa-check"></i> Time-saving and fast service</li>
+                            <li><i class="fa fa-check"></i> 24/7 professional customer support</li>
+                            <li><i class="fa fa-check"></i> No hidden fees</li>
+                            <li><i class="fa fa-check"></i> New vehicles with the highest standard of maintenance</li>
+                            <li><i class="fa fa-check"></i> Unlimited mileage</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
     </section>
     <!--================End Choose Area =================-->
 

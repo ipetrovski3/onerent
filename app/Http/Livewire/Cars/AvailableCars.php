@@ -57,24 +57,8 @@ class AvailableCars extends Component
         $cars = Car::available_cars($this->booking->from_date, $this->booking->to_date);
         $days = Carbon::parse($this->booking->from_date)->diffInDays($this->booking->to_date);
         $booking = $this->booking;
-        // dd($booking);
-        // return to livewire bookings component
-        // return view('cars.available-cars', compact('cars', 'days', 'booking'));
+
         return redirect()->to('/available-cars')->with(['cars' => $cars, 'days' => $days, 'booking' => $booking]);
-        // $this->emit('booking_car', $available_cars, $days, $this->booking);
-
-
-
-        // return view('livewire.bookings')
-        //     ->with([
-        //         'cars' => $cars,
-        //         'days' => $days,
-        //         'booking' => $this->booking
-        //     ]);
-        // redirect to the available cars page
-        // dd($this->booking);
-        // return redirect('/available-cars')->with(['cars' => $cars, 'days' => $days, 'booking' => $this->booking]);
-        //, compact('cars', 'days', 'booking'));
     }
 
     public function render()

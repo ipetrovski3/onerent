@@ -285,9 +285,9 @@
                                                                                     <tbody>
                                                                                         <tr>
                                                                                             <td class="" style="border-collapse:collapse;">
-                                                                                                <div class="" style="border-radius:10px 10px 0 0;  text-align: left; padding: 40px 30px 40px 30px; background: #69B578; background-image:linear-gradient(#69B578,#69B578);">
+                                                                                                <div class="" style="border-radius:10px 10px 0 0;  text-align: left; padding: 40px 30px 40px 30px; background: #fff; background-image:linear-gradient(#fff,#fff);">
                                                                                                     <center style="position: relative; z-index: 100;">
-                                                                                                        <p style="margin: 0 0 0px 0;"><img src="{{ asset('/images/logo.png') }}" alt="logo" width="414" height="53" style="width: auto; height: auto; max-width: 100%; display: inline-block; width:225px"></p>
+                                                                                                        <p style="margin: 0 0 0px 0;"><img src="{{ asset('images/logo.png') }}" alt="logo" width="414" height="53" style="width: auto; height: auto; max-width: 100%; display: inline-block; width:225px"></p>
                                                                                                     </center>
                                                                                                 </div>
                                                                                             </td>
@@ -337,7 +337,7 @@
                                                                                                                 </li>
                                                                                                             </ul>
 
-                                                                                                            <p class="mobile-f-18" style="margin: 0 0 0px 0; color: #262626; font-weight: 400; font-size: 20px; line-height: 160%;">The One-Rent a car team</p>
+                                                                                                            <p class="mobile-f-18" style="margin: 0 0 0px 0; color: #262626; font-weight: 400; font-size: 20px; line-height: 160%;">The One-Rent a Car team</p>
                                                                                                             <br>
                                                                                                         </center>
                                                                                                     </div>
@@ -378,7 +378,7 @@
                                                                                                                 </li>
                                                                                                             </ul>
 
-                                                                                                            <p class="mobile-f-18" style="margin: 0 0 0px 0; color: #262626; font-weight: 400; font-size: 20px; line-height: 160%;">The One-Rent a car team</p>
+                                                                                                            <p class="mobile-f-18" style="margin: 0 0 0px 0; color: #262626; font-weight: 400; font-size: 20px; line-height: 160%;">The One-Rent a Car team</p>
                                                                                                             <br>
                                                                                                         </center>
                                                                                                     </div>

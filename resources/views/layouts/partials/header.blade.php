@@ -10,23 +10,25 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="dropdown mega_menu active">
+                        <li class="dropdown mega_menu @if(Route::is('home')) active @endif">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('home') }}" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
                         </li>
-                        <li class="dropdown submenu">
+                        <li class="dropdown submenu @if(Route::is('cars.index')) active @endif">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('cars.index') }}" role="button" aria-haspopup="true" aria-expanded="false">Cars</a>
                         </li>
-                        <li class="dropdown submenu">
+                        <li class="dropdown submenu @if(Route::is('about')) active @endif">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('about') }}" role="button" aria-haspopup="true" aria-expanded="false">About Us</a>
                         </li>
-                        <li class="dropdown submenu">
+                        <li class="dropdown submenu @if(Route::is('terms')) active @endif">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('terms') }}" role="button" aria-haspopup="true" aria-expanded="false">Terms</a>
                         </li>
-                        <li><a href="{{ route('contact_us') }}">Contact</a></li>
+                        <li class="dropdown submenu @if(Route::is('contact')) active @endif">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('contact') }}" role="button" aria-haspopup="true" aria-expanded="false">Contact us</a>
+                        </li>
                     </ul>
-
                 </div>
             </nav>
         </div>
     </div>
 </header>
+<!--================End Header Area =================-->

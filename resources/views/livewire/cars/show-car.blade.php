@@ -1,5 +1,6 @@
 <div>
-    <section class="breadcrumb_area" style="background: url({{ asset('images/cardetails.jpg') }})">
+    {{-- <section class="breadcrumb_area" style="background: url({{ asset('images/cardetails.jpg') }})"> --}}
+    <section>
         <div class="container">
             <div class="breadcrumb_inner">
                 <div class="link">

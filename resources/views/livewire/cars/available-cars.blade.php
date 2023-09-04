@@ -19,7 +19,7 @@
                             <div class="car_product_item">
                                 <div class="car_img">
                                     <a href="{{ route('show.car', $car->id) }}"><img src="{{ asset('storage/cars/' . $car->model->image) }}" alt=""></a>
-                                    <a type="button" data-toggle="modal" data-target="#book_car">Book</a>
+                                    {{-- <a type="button" data-toggle="modal" data-target="#book_car">Book</a> --}}
                                 </div>
                                 <div class="product_content">
                                     <div class="title d-flex justify-content-between">

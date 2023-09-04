@@ -10,7 +10,8 @@
     </div>
 
     <!--================Breadcrumb Area =================-->
-    <section class="breadcrumb_area" style="background: url({{ asset('images/carsall.jpeg') }})">
+    {{-- <section class="breadcrumb_area" style="background: url({{ asset('images/carsall.jpeg') }})"> --}}
+    <section>
         <div class="container">
             <div class="breadcrumb_inner">
                 <h3>About us</h3>
