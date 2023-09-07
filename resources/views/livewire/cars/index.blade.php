@@ -113,7 +113,9 @@
     </section>
     <!--================End Product Area =================-->
 
-    @include('livewire.cars.show-car-modal')
+    @if ($available_cars == [])
+        @include('livewire.cars.show-car-modal')
+    @endif
 
     <!-- Include the Livewire component -->
     {{-- @livewire('bookings.confirm-form') --}}

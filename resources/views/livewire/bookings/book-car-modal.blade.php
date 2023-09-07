@@ -28,6 +28,24 @@
                             <input disabled id="to"type="text" class="form-control" value=" {{ $booking->to_date }}">
                         </div>
                     </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <label for="pick_up" class="form-label">Pick up location</label>
+                            <select disabled class="form-control" name="pick_up" id="pick_up">
+                                @foreach($locations as $location)
+                                <option value="{{ $booking->pick_up_id }}">{{ $pick_up->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="drop_off" class="form-label">Drop off location</label>
+                            <select disabled class="form-control" name="drop_off" id="drop_off">
+                                @foreach($locations as $location)
+                                    <option value="{{ $booking->drop_off_id }}">{{ $drop_off->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <hr>
                     @if (isset($selected_car))
                         <p class="font-weight-bold" style="margin-bottom: 3px">{{ $selected_car->brand()->name }} {{ $selected_car->model->name }}</p>

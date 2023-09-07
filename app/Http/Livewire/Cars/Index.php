@@ -103,11 +103,12 @@ class Index extends Component
     public function render()
     {
         $cars = Car::all();
+        $available_cars = Car::where('always_booked', false)->get();
         $locations = Location::all();
         $countries = Country::all();
         $transmissions = Car::transmissions();
         $engines = Car::engines();
 
-        return view('livewire.cars.index', compact('cars', 'locations', 'countries', 'transmissions', 'engines'));
+        return view('livewire.cars.index', compact('cars', 'available_cars', 'locations', 'countries', 'transmissions', 'engines'));
     }
 }

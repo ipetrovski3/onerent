@@ -19,6 +19,8 @@ class BookCar extends Component
     public $booking = [];
     public $pick_up_id = '';
     public $drop_off_id = '';
+    public $pick_up;
+    public $drop_off;
     public $from_date;
     public $to_date;
     public $cars;
@@ -37,7 +39,7 @@ class BookCar extends Component
 
     public function mount($cars, $days, $booking)
     {
-        $available_cars = Car::where('always_booked', false)->get();
+        $available_cars = Car::where('always_booked', true)->get();
         if ($available_cars->count() == $cars->count()) {
             $this->cars = null;
         } else {
@@ -46,6 +48,8 @@ class BookCar extends Component
 
         $this->days = $days;
         $this->booking = $booking;
+        $this->pick_up = Location::find($booking['pick_up_id']);
+        $this->drop_off = Location::find($booking['drop_off_id']);
     }
 
     protected function rules()
@@ -110,7 +114,7 @@ class BookCar extends Component
 
     public function render()
     {
-        // $available_cars = Car::where('always_booked', false)->get();
+        // $cars = Car::where('always_booked', false)->get();
         $locations = Location::all();
         $countries = Country::all();
         $transmissions = Car::transmissions();
