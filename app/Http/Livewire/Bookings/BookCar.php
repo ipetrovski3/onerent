@@ -39,13 +39,7 @@ class BookCar extends Component
     {
         $available_cars = Car::where('always_booked', false)->get();
         if ($available_cars->count() == $cars->count()) {
-            // addd error message
             $this->cars = null;
-
-
-
-
-            // return redirect()->route('home')->with(['error' => 'Sorry, there are no available cars']);
         } else {
             $this->cars = $cars;
         }
