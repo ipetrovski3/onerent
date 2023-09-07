@@ -235,13 +235,13 @@ return [
 
         [
             'text' => 'Cars',
-            'route'  => 'cars.index',
+            'route'  => 'detail.cars.index',
             'icon' => 'fa fa-car'
         ],
 
         [
             'text' => 'New Car Model',
-            'route'  => 'models.new',
+            'route'  => 'add.car.model',
             'icon' => 'fa fa-car'
         ],
 
@@ -251,8 +251,8 @@ return [
             'icon' => 'fa fa-car'
         ],
         [
-            'text' => 'Bookings By Car',
-            'route'  => 'bookings.by_car',
+            'text' => 'Cars Availability',
+            'route'  => 'calendar',
             'icon' => 'fa fa-car'
         ],
 

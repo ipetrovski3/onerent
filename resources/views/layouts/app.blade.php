@@ -29,49 +29,61 @@
     <link rel="stylesheet" href="{{asset('vendors/animate-css/animate.css')}}">
     <!-- main css -->
     {{-- <link rel="stylesheet" href="{{asset('css/style.css')}}"> --}}
-    <link rel="stylesheet" href="{{asset('css/theme_style.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('css/custom_style.css')}}"> --}}
+    {{-- <link rel="stylesheet" href="{{asset('css/theme_style.css')}}"> --}}
+    <link rel="stylesheet" href="{{asset('css/custom_style.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
-    <link rel="stylesheet" href="{{asset('css/jquery.datetimepicker.min.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('css/jquery.datetimepicker.min.css')}}"> --}}
     <!-- flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Livewire Styles -->
+    @livewireStyles
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body data-scroll-animation="true">
+    {{--<div class="preloader">--}}
+    {{--    <div class="main-loader">--}}
+    {{--        <img src="img/loader_5.gif" alt="">--}}
+    {{--    </div>--}}
+    {{--</div>--}}
+    @include('layouts.partials.header')
 
-{{--<div class="preloader">--}}
-{{--    <div class="main-loader">--}}
-{{--        <img src="img/loader_5.gif" alt="">--}}
-{{--    </div>--}}
-{{--</div>--}}
-@include('layouts.partials.header')
+    @yield('content')
 
-@yield('content')
-
-@include('layouts.partials.footer')
-@include('layouts.partials.sidemenu')
+    @include('layouts.partials.footer')
+    @include('layouts.partials.sidemenu')
 
 
-<script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
-<script src="{{asset('js/popper.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
-<!-- Extra Plugin js -->
-<script src="{{asset('vendors/datetimepicker/moment.js')}}"></script>
-<script src="{{asset('vendors/datetimepicker/tempusdominus-bootstrap-4.min.js')}}"></script>
-<script src="{{asset('vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
-<script src="{{asset('vendors/owl-carousel/owl.carousel.min.js')}}"></script>
-<script src="{{asset('vendors/popup/jquery.magnific-popup.min.js')}}"></script>
-<script src="{{asset('vendors/slick/slick.min.js')}}"></script>
-<script src="{{asset('vendors/animate-css/wow.min.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
+    <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+    <script src="{{asset('js/popper.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <!-- Extra Plugin js -->
+    <script src="{{asset('vendors/datetimepicker/moment.js')}}"></script>
+    <script src="{{asset('vendors/datetimepicker/tempusdominus-bootstrap-4.min.js')}}"></script>
+    <script src="{{asset('vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
+    <script src="{{asset('vendors/owl-carousel/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('vendors/popup/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{asset('vendors/slick/slick.min.js')}}"></script>
+    <script src="{{asset('vendors/animate-css/wow.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    {{-- <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script> --}}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<script src="{{asset('js/theme-dist.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
-@yield('js')
-@if ($errors->any())
-<script>
-    $('#client_details').modal('show')
-</script>
-@endif  
+    {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script> --}}
+
+    <script src="{{asset('js/theme-dist.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
+
+    @livewireScripts
+    @yield('js')
+    @if ($errors->any())
+    <script>
+        $('#client_details').modal('show')
+    </script>
+    <script type="text/javascript">
+        window.livewire.on('bookCar', () => {
+            $('#book_car').modal('hide');
+        });
+    </script>
+    @endif
 </body>
 </html>

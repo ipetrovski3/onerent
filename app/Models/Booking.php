@@ -8,7 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     use HasFactory;
-    protected $fillable = ['client_id', 'car_id', 'status', 'pick_up_id', 'drop_off_id', 'from_date', 'to_date'];
+
+    protected $fillable = [
+        'client_id',
+        'car_id',
+        'status',
+        'pick_up_id',
+        'drop_off_id',
+        'from_date',
+        'to_date',
+    ];
 
     public function pick_up()
     {
@@ -31,4 +40,14 @@ class Booking extends Model
     }
 
     public $statuses = ['pending', 'confirmed', 'canceled'];
+
+    public function getFromDateAttribute($value)
+    {
+        return date('d.m.Y', strtotime($value));
+    }
+
+    public function getToDateAttribute($value)
+    {
+        return date('d.m.Y', strtotime($value));
+    }
 }

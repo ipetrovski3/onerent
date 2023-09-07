@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         $cars = Car::where('always_booked', false)->get();
         $locations = Location::all();
-        return view('front.index')->with([
+        return view('index')->with([
             'cars' => $cars,
             'locations' => $locations
         ]);

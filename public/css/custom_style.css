@@ -68,7 +68,7 @@ body {
   font-size: 16px;
   font-family: "Barlow", sans-serif;
   font-weight: normal;
-  color: #fff;
+  color: #777777;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -2314,7 +2314,7 @@ button:focus {
   margin-bottom: 52px;
 }
 .find_car_area .container .search_car_box {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.2);
   padding: 50px 28px;
   width: 100%;
   display: flex;
@@ -3574,7 +3574,7 @@ button:focus {
 /* Choose Area css
 ============================================================================================ */
 .choose_area .single_title {
-  margin-bottom: 110px;
+  margin-bottom: 70px;
 }
 
 .choose_item {
@@ -4958,6 +4958,7 @@ button:focus {
 .top_ques_inner .accordion .card .card-body {
   border: none;
   padding: 0px 10px 25px 0px;
+  color: #777777;
 }
 
 .service_top_ques .top_ques_inner .accordion .card .card-header button {
@@ -11052,6 +11053,7 @@ input[type=number] {
   padding-left: 0px;
   padding-top: 0px;
   padding-bottom: 25px;
+  color: #777777;
 }
 .general_ques_inner .accordion .card:first-child {
   border-top: 1px solid #e4e4e4 !important;
