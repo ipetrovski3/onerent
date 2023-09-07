@@ -20,36 +20,42 @@
                 <div class="col-lg-9">
                     <div class="product_grid_inner">
                         <div class="row">
-                            @foreach($cars as $car)
-                                <div class="col-lg-4 col-md-4 col-sm-6 wow animated fadeInUp" data-wow-delay="0.2s">
-                                    <div class="l_collection_item shop_product_item orange grid_four red">
-                                        <div class="car_img">
-                                            <a href="#"><img class="img-fluid" src="{{ asset('storage/cars/' . $car->model->image) }}" alt=""></a>
-                                            <div class="cart_option">
-                                                <a type="button" data-toggle="modal" data-target="#book_car" wire:click="carInfo({{ $car->id }})">Book</a>
+                            @if ($cars)
+                                @foreach($cars as $car)
+                                    <div class="col-lg-4 col-md-4 col-sm-6 wow animated fadeInUp" data-wow-delay="0.2s">
+                                        <div class="l_collection_item shop_product_item orange grid_four red">
+                                            <div class="car_img">
+                                                <a href="#"><img class="img-fluid" src="{{ asset('storage/cars/' . $car->model->image) }}" alt=""></a>
+                                                <div class="cart_option">
+                                                    <a type="button" data-toggle="modal" data-target="#book_car" wire:click="carInfo({{ $car->id }})">Book</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="text_body">
-                                            <a href="#"><h4>{{ $car->brand_and_model() }}</h4></a>
-                                            <div class="price">
-                                                <ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&euro;</span>{{ number_format($car->ppd, 2) }}</span> per day</ins>
+                                            <div class="text_body">
+                                                <a href="#"><h4>{{ $car->brand_and_model() }}</h4></a>
+                                                <div class="price">
+                                                    <ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&euro;</span>{{ number_format($car->ppd, 2) }}</span> per day</ins>
+                                                </div>
+                                                <ul class="nav">
+                                                    <li title="Fuel Type"><img src="img/icon/p-cat-icon-1.png" class="mr-1 ml-2" alt="">{{ $engines[$car->engine_type] }}</li>
+                                                    <li title="Transmission"><img src="img/icon/p-cat-icon-3.png" class="mr-1 ml-2" alt="">{{ $transmissions[$car->transmission_type] }}</li>
+                                                    <li title="Max Passenger"><img src="img/icon/p-cat-icon-2.png" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li>
+                                                {{-- <li><img src="img/icon/p-cat-icon-4.png" class="mr-1 ml-2" alt="">03</li> --}}
+                                                </ul>
+                                                <ul class="nav">
+                                                    <li title="Fuel Type"><img src="img/icon/p-cat-icon-1.png" class="mr-1 ml-2" alt="">{{ $engines[$car->engine_type] }}</li>
+                                                    <li title="Transmission"><img src="img/icon/p-cat-icon-3.png" class="mr-1 ml-2" alt="">{{ $transmissions[$car->transmission_type] }}</li>
+                                                    <li title="Max Passenger"><img src="img/icon/p-cat-icon-2.png" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li>
+                                                    {{--                                        <li><img src="img/icon/p-cat-icon-4.png" class="mr-1 ml-2" alt="">03</li>--}}
+                                                </ul>
                                             </div>
-                                            <ul class="nav">
-                                                <li title="Fuel Type"><img src="img/icon/p-cat-icon-1.png" class="mr-1 ml-2" alt="">{{ $engines[$car->engine_type] }}</li>
-                                                <li title="Transmission"><img src="img/icon/p-cat-icon-3.png" class="mr-1 ml-2" alt="">{{ $transmissions[$car->transmission_type] }}</li>
-                                                <li title="Max Passenger"><img src="img/icon/p-cat-icon-2.png" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li>
-                                            {{-- <li><img src="img/icon/p-cat-icon-4.png" class="mr-1 ml-2" alt="">03</li> --}}
-                                            </ul>
-                                            <ul class="nav">
-                                                <li title="Fuel Type"><img src="img/icon/p-cat-icon-1.png" class="mr-1 ml-2" alt="">{{ $engines[$car->engine_type] }}</li>
-                                                <li title="Transmission"><img src="img/icon/p-cat-icon-3.png" class="mr-1 ml-2" alt="">{{ $transmissions[$car->transmission_type] }}</li>
-                                                <li title="Max Passenger"><img src="img/icon/p-cat-icon-2.png" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li>
-                                                {{--                                        <li><img src="img/icon/p-cat-icon-4.png" class="mr-1 ml-2" alt="">03</li>--}}
-                                            </ul>
                                         </div>
                                     </div>
+                                @endforeach
+                            @else
+                                <div class="single_title text-center wow animated fadeInUp" data-wow-delay="0.2s">
+                                    <h2><span>Sorry, there are no available cars.</span></h2>
                                 </div>
-                            @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -58,6 +64,8 @@
     </section>
     <!--================End Product Area =================-->
 
-    @include('livewire.bookings.book-car-modal')
+    @if ($cars)
+        @include('livewire.bookings.book-car-modal')
+    @endif
 
 </div>
