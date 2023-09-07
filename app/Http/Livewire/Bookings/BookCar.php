@@ -39,8 +39,7 @@ class BookCar extends Component
 
     public function mount($cars, $days, $booking)
     {
-        $available_cars = Car::where('always_booked', true)->get();
-        if ($available_cars->count() == $cars->count()) {
+        if ($cars->count() == 0) {
             $this->cars = null;
         } else {
             $this->cars = $cars;
