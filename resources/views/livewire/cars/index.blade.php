@@ -49,9 +49,11 @@
                                         <div class="image-container">
                                             <div class="car_img">
                                                 <a href="#"><img class="img-fluid" src="{{ asset('storage/cars/' . $car->model->image) }}" alt=""></a>
+                                                @if(!$car->always_booked)
                                                 <div class="cart_option">
                                                     <a type="button" data-toggle="modal" data-target="#book_car" wire:click="carInfo({{ $car->id }})">Book</a>
                                                 </div>
+                                                @endif
                                             </div>
                                             <div class="overlay-text">Booked</div>
                                         </div>
@@ -113,7 +115,7 @@
     </section>
     <!--================End Product Area =================-->
 
-    @if ($available_cars == [])
+    @if ($available_cars == [] || $cars != [])
         @include('livewire.cars.show-car-modal')
     @endif
 

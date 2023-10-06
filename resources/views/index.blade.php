@@ -26,13 +26,13 @@
                 <div class="col-lg-10 col-sm-6" style="bottom: 50px;">
                     <div class="wow animated fadeIn" data-wow-delay="0.2s">
                         <ul class="no-bullets">
-                            <li><i class="fa fa-check"></i> No deposit for some cars</li>
-                            <li><i class="fa fa-check"></i> Free delivery to your home address or hotel</li>
-                            <li><i class="fa fa-check"></i> Time-saving and fast service</li>
-                            <li><i class="fa fa-check"></i> 24/7 professional customer support</li>
-                            <li><i class="fa fa-check"></i> No hidden fees</li>
-                            <li><i class="fa fa-check"></i> New vehicles with the highest standard of maintenance</li>
-                            <li><i class="fa fa-check"></i> Unlimited mileage</li>
+                            <li><i class="fa fa-check text-success"></i> No deposit for some cars</li>
+                            <li><i class="fa fa-check text-success"></i> Free delivery to your home address or hotel</li>
+                            <li><i class="fa fa-check text-success"></i> Time-saving and fast service</li>
+                            <li><i class="fa fa-check text-success"></i> 24/7 professional customer support</li>
+                            <li><i class="fa fa-check text-success"></i> No hidden fees</li>
+                            <li><i class="fa fa-check text-success"></i> New vehicles with the highest standard of maintenance</li>
+                            <li><i class="fa fa-check text-success"></i> Unlimited mileage</li>
                         </ul>
                     </div>
                 </div>

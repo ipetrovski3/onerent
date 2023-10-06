@@ -84,7 +84,7 @@ class BookCar extends Component
         $this->total_price = $this->selected_car->ppd * $this->days;
     }
 
-    public function bookCar($booking_id, $car_id)
+    public function bookCar($booking_id)
     {
         $this->validate();
 

@@ -10,6 +10,7 @@ use App\Models\CarModel;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Requests\CarRequest;
+use App\Services\BookingHandlingService;
 
 class CarsController extends Controller
 {
@@ -31,10 +32,25 @@ class CarsController extends Controller
         return view('front.cars.index', compact('cars', 'locations'));
     }
 
-    public function available_cars($booking_id)
+    public function available_cars($booking_id, BookingHandlingService $bookingHandlingService)
     {
         $booking = Booking::findOrFail($booking_id);
         $cars = Car::available_cars($booking->from_date, $booking->to_date);
+        $date_and_time_of_pick_up = $bookingHandlingService->format_from_date($booking->from_date);
+        $from_date = $date_and_time_of_pick_up['from_date'];
+        $from_time = $date_and_time_of_pick_up['pick_up_time'];
+
+        $date_and_time_of_drop_off = $bookingHandlingService->format_to_date($booking->to_date);
+        $to_date = $date_and_time_of_drop_off['to_date'];
+        $to_time = $date_and_time_of_drop_off['drop_off_time'];
+
+        foreach ($cars as $key => $car) {
+            // if car is booked for the same period, remove it from the list
+            if ($bookingHandlingService->isCarBooked($car->id, $from_date, $from_time, $to_date, $to_time)) {
+                unset($cars[$key]);
+            }
+        }
+
         $days = Carbon::parse($booking->from_date)->diffInDays($booking->to_date);
 
         return view('cars.available-cars', compact('cars', 'days', 'booking'));

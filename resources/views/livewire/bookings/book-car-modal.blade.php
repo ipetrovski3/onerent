@@ -33,7 +33,7 @@
                             <label for="pick_up" class="form-label">Pick up location</label>
                             <select disabled class="form-control" name="pick_up" id="pick_up">
                                 @foreach($locations as $location)
-                                <option value="{{ $booking->pick_up_id }}">{{ $pick_up->name }}</option>
+                                    <option value="{{ $booking->pick_up_id }}">{{ $pick_up->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -80,7 +80,7 @@
                     <div class="row mb-4">
                         <div class="col">
                             <select wire:model.defer="country" class="form-control" name="country_id">
-                                <option value="" selected disabled>Select your country...</option>
+                                <option value="" selected>Select your country...</option>
                                 @foreach($countries as $country)
                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
@@ -96,7 +96,7 @@
                 </div>
 
                     <div class="modal-footer">
-                        <button wire:click.prevent="bookCar({{ $booking->id }}, {{ $car->id }})" type="submit" id="confirm_reservation" class="submit_btn">Make Reservation</button>
+                        <button wire:click.prevent="bookCar({{ $booking->id }})" type="submit" id="confirm_reservation" class="submit_btn">Make Reservation</button>
                         <button type="button" class="btn booking_btn" data-dismiss="modal">Cancel</button>
                     </div>
             {{-- </form> --}}

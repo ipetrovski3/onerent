@@ -43,7 +43,7 @@
                 <tr class="border-b">
                     <td class="p-2">{{ $car['model'] }}</td>
                     @foreach ($car['availability'] as $availability)
-                    <td class="calendar-cell relative
+                    <td wire:click="bookCar({{ $car['id'] }})" class="cursor-pointer calendar-cell relative
                         {{ $availability['availability'] === 'green' ? 'bg-green-400' : '' }}
                         {{ $availability['availability'] === 'from' ? 'bg-diagonal-line-from' : '' }}
                         {{ $availability['availability'] === 'to' ? 'bg-diagonal-line-to' : '' }}
@@ -71,5 +71,9 @@
                 @endfor
             </tr>
         </thead>
-    </table>    
+    </table>
+    
+    @if ($openBookModal)
+        @include('livewire.dashboard.bookings.book-car-modal')
+    @endif
 </div>

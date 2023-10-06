@@ -34,6 +34,7 @@ class Index extends Component
     public $selected_car;
     public $total_price;
     public $terms_and_conditions = false;
+    public $booked;
 
     protected function rules()
     {
@@ -69,7 +70,7 @@ class Index extends Component
         $this->selected_car = Car::findOrFail($car_id);
     }
 
-    public function bookCar($car_id)
+    public function bookCar()
     {
         $this->validate();
 
@@ -85,15 +86,35 @@ class Index extends Component
 
         $bookingHandlingService = new BookingHandlingService;
         $date_and_time_of_pick_up = $bookingHandlingService->format_from_date($this->from_date);
-        $booking = new Booking;
-        $booking->car_id = $this->car_id;
-        $booking->client_id = $client->id;
-        $booking->pick_up_id = $this->pick_up;
-        $booking->drop_off_id = $this->drop_off;
-        $booking->from_date = $date_and_time_of_pick_up['from_date'];
-        $booking->to_date = $bookingHandlingService->format_to_date($this->to_date);
-        $booking->time_of_pick_up = $date_and_time_of_pick_up['pick_up_time'];
-        $booking->save();
+        $from_date = $date_and_time_of_pick_up['from_date'];
+        $from_time = $date_and_time_of_pick_up['pick_up_time'];
+
+        $date_and_time_of_drop_off = $bookingHandlingService->format_to_date($this->to_date);
+        $to_date = $date_and_time_of_drop_off['to_date'];
+        $to_time = $date_and_time_of_drop_off['drop_off_time'];
+
+        // check if from_time is greater than now
+        if ($from_date == now()->format('Y-m-d') && $from_time < now()->format('h:i')) {
+            $this->addError('booked', 'Pick up time must be greater than now');
+            return;
+        }
+
+        // check if car is booked for the same period
+        if (!$bookingHandlingService->isCarBooked($this->car_id, $from_date, $from_time, $to_date, $to_time)) {
+            $booking = new Booking;
+            $booking->car_id = $this->car_id;
+            $booking->client_id = $client->id;
+            $booking->pick_up_id = $this->pick_up;
+            $booking->drop_off_id = $this->drop_off;
+            $booking->from_date = $from_date;
+            $booking->to_date = $to_date;
+            $booking->time_of_pick_up = $from_time;
+            $booking->time_of_drop_off = $to_time;
+            $booking->save();
+        } else {
+            $this->addError('booked', 'This car is already booked for the same period');
+            return;
+        }
 
         NewBookingJob::dispatch($client, $booking);
 

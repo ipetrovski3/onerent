@@ -20,31 +20,65 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="from" class="form-label">From Date</label>
-                        <input wire:model="from_date" name="from_date" id="from_date" autocomplete="off" x-data
-                            x-init="flatpickr($refs.input, {enableTime: true, disableMobile: true, dateFormat: 'd.m.Y    H:i'});"
+                        <input
+                            readonly
+                            wire:model="from_date"
+                            name="from_date"
+                            id="from_date"
+                            autocomplete="off"
+                            x-data
+                            x-init="flatpickr($refs.input, { 
+                                enableTime: true, 
+                                disableMobile: true, 
+                                dateFormat: 'd.m.Y H:i', 
+                                time_24hr: true,
+                                minDate: 'today'
+                            });"
                             class="text_div form-control datetimepicker-input input_2"
-                            x-ref="input" type="text" placeholder="{{ \Carbon\Carbon::tomorrow()->format('d.m.Y    H:i') }}" />
+                            x-ref="input"
+                            type="text"
+                            placeholder="{{ \Carbon\Carbon::today()->addDay()->format('d.m.Y - H:i') }}"
+                            style="cursor: pointer;"
+                        />
                     </div>
                     <div class="col-6">
                         <label for="to" class="form-label">To Date</label>
-                        <input wire:model="to_date" name="to_date" id="to_date" autocomplete="off" x-data
-                            x-init="flatpickr($refs.input, {enableTime: true, disableMobile: true, dateFormat: 'd.m.Y    H:i'});"
+                        <input
+                            readonly
+                            wire:model="to_date"
+                            name="to_date"
+                            id="to_date"
+                            autocomplete="off"
+                            x-data
+                            x-init="flatpickr($refs.input, { 
+                                enableTime: true, 
+                                disableMobile: true, 
+                                dateFormat: 'd.m.Y H:i', 
+                                time_24hr: true,
+                                minDate: 'today'
+                            });"
                             class="text_div form-control datetimepicker-input input_2"
-                            x-ref="input" type="text" placeholder="{{ \Carbon\Carbon::tomorrow()->addDay()->format('d.m.Y    H:i') }}" />
+                            x-ref="input"
+                            type="text"
+                            placeholder="{{ \Carbon\Carbon::tomorrow()->addDay()->format('d.m.Y - H:i') }}"
+                            style="cursor: pointer;"
+                        />
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-6">
                         <label for="pick_up" class="form-label">Pick up location</label>
                         <select wire:model="pick_up" class="form-control" name="pick_up" id="pick_up">
+                            <option selected value="" class="text-muted">Pick up Location</option>
                             @foreach($locations as $location)
-                            <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                <option value="{{ $location->id }}">{{ $location->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-6">
                         <label for="drop_off" class="form-label">Drop off location</label>
                         <select wire:model="drop_off" class="form-control" name="drop_off" id="drop_off">
+                            <option selected value="">Drop off Location</option>
                             @foreach($locations as $location)
                                 <option value="{{ $location->id }}">{{ $location->name }}</option>
                             @endforeach
@@ -91,13 +125,13 @@
                 <div class="row mb-4">
                     <div class="col">
                         <select wire:model.defer="country" class="form-control" name="country_id">
-                            <option value="" selected disabled>Select your country...</option>
+                            <option value="" selected>Select your country...</option>
                             @foreach($countries as $country)
                                 <option value="{{ $country->id }}">{{ $country->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div>  
                 <div class="row mb-4">
                     <div class="col">
                         <input wire:model="terms_and_conditions" id="terms" type="checkbox">
@@ -107,7 +141,7 @@
             </div>
 
             <div class="modal-footer">
-                <button wire:click.prevent="bookCar({{ $car->id }})" type="submit" id="confirm_reservation" class="submit_btn">Make Reservation</button>
+                <button wire:click.prevent="bookCar" type="submit" id="confirm_reservation" class="submit_btn">Make Reservation</button>
                 <button type="button" class="btn booking_btn" data-dismiss="modal">Cancel</button>
             </div>
         </div>

@@ -10,7 +10,7 @@
             </div>
             <div class="cart_side_list">
                 <div class="media">
-                    <div class="d-flex"><img src="img/product/cart-details/cart-1.jpg" alt=""></div>
+                    {{-- <div class="d-flex"><img src="img/product/cart-details/cart-1.jpg" alt=""></div> --}}
                     <div class="media-body">
                         <h4>Smart light wood edition</h4>
                         <p>1 x <span>$40.00</span></p>
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="media">
-                    <div class="d-flex"><img src="img/product/cart-details/cart-1.jpg" alt=""></div>
+                    {{-- <div class="d-flex"><img src="img/product/cart-details/cart-1.jpg" alt=""></div> --}}
                     <div class="media-body">
                         <h4>Smart light wood edition</h4>
                         <p>1 x <span>$40.00</span></p>

@@ -28,7 +28,7 @@
     <section class="auto_market_area p_100">
         <div class="container">
             <div class="row market_inner">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="market_text">
                         <h3><img src="img/icon/flag-2.png" alt="">About Us</h3>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -84,11 +84,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                {{-- <div class="col-lg-6">
                     <div class="market_image">
                         <img class="img-fluid" src="{{asset('images/aboutcontent.jpg')}}" alt="">
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

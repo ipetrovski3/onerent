@@ -4,8 +4,12 @@ namespace App\Http\Livewire\Dashboard\Bookings;
 
 use Carbon\Carbon;
 use App\Models\Car;
+use App\Models\Client;
+use App\Models\Booking;
 use Livewire\Component;
+use App\Models\Location;
 use Illuminate\Support\Facades\DB;
+use App\Services\BookingHandlingService;
 
 class CarAvailability extends Component
 {
@@ -27,6 +31,15 @@ class CarAvailability extends Component
         11 => 'November',
         12 => 'December',
     ];
+    public $openBookModal = false;
+    public $from_date;
+    public $to_date;
+    public $selected_car;
+    public $pick_up;
+    public $drop_off;
+    public $locations;
+    public $description;
+    public $booked;
 
     public function getListeners()
     {
@@ -41,6 +54,41 @@ class CarAvailability extends Component
         $this->selectedYear = date('Y');
         $this->daysInMonth = cal_days_in_month(CAL_GREGORIAN, $this->selectedMonth, $this->selectedYear);
         $this->loadCarAvailability();
+        $this->locations = Location::all();
+    }
+
+    public function rules()
+    {
+        return [
+            'from_date' => 'required|after_or_equal:today',
+            'to_date' => 'required|after_or_equal:from_date',
+            'pick_up' => 'required',
+            'drop_off' => 'required',
+            'description' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'pick_up.required' => 'Please specify pick up location',
+            'drop_off.required' => 'Please specify drop off location',
+            'from_date.required' => 'Please add start date',
+            'to_date.required' => 'Please add end date',
+            'from_date.after_or_equal' => 'Start date must be after or equal to today',
+            'to_date.after_or_equal' => 'End date must be after or equal to start date',
+        ];
+    }
+
+    public function openModal()
+    {
+        $this->openBookModal = true;
+    }
+
+    public function closeModal()
+    {
+        $this->openBookModal = false;
+        $this->emptyFields();
     }
 
     public function updateSelectedMonth()
@@ -65,6 +113,7 @@ class CarAvailability extends Component
                     ->where('car_id', $car->id)
                     ->where('from_date', '<=', $date)
                     ->where('to_date', '>=', $date)
+                    ->orderBy('from_date', 'asc')
                     ->get();
 
                 // Initialize availability and client name
@@ -95,12 +144,13 @@ class CarAvailability extends Component
                 ];
             }
             $this->cars[] = [
+                'id' => $car->id,
                 'model' => $car->brand_and_model(),
+                'ppd' => $car->ppd,
                 'availability' => $availabilityArray,
             ];
         }
     }
-
 
     public function nextMonth()
     {
@@ -135,6 +185,7 @@ class CarAvailability extends Component
                     ->where('car_id', $car->id)
                     ->where('from_date', '<=', $date)
                     ->where('to_date', '>=', $date)
+                    ->orderBy('from_date', 'asc')
                     ->get();
 
                 $availability = 'green'; // Default to available
@@ -162,10 +213,76 @@ class CarAvailability extends Component
                 ];
             }
             $this->cars[] = [
-            'model' => $car->brand_and_model(),
-            'availability' => $availabilityArray,
+                'id' => $car->id,
+                'model' => $car->brand_and_model(),
+                'ppd' => $car->ppd,
+                'availability' => $availabilityArray,
             ];
         }
+    }
+
+    public function bookCar($car_id)
+    {
+        $this->selected_car = Car::findOrFail($car_id);
+        $this->openModal();
+    }
+
+    public function saveBook()
+    {
+        $client = new Client;
+        $client->first_name = 'Admin';
+        $client->last_name = 'Admin';
+        $client->email = 'admin@admin.com';
+        $client->phone = '1234567890';
+        $client->personal_id = '1234567890';
+        $client->address = $this->description;
+        $client->country_id = 130;
+        $client->save();
+
+        $bookingHandlingService = new BookingHandlingService;
+        $date_and_time_of_pick_up = $bookingHandlingService->format_from_date($this->from_date);
+        $from_date = $date_and_time_of_pick_up['from_date'];
+        $from_time = $date_and_time_of_pick_up['pick_up_time'];
+
+        $date_and_time_of_drop_off = $bookingHandlingService->format_to_date($this->to_date);
+        $to_date = $date_and_time_of_drop_off['to_date'];
+        $to_time = $date_and_time_of_drop_off['drop_off_time'];
+
+        // check if from_time is greater than now
+        if ($from_date == now()->format('Y-m-d') && $from_time > now()->format('h:i')) {
+            $this->booked = 'Pick up time must be greater than now';
+            return;
+        }
+
+        // check if car is booked for the same period
+        if (!$bookingHandlingService->isCarBooked($this->selected_car->id, $from_date, $from_time, $to_date, $to_time)) {
+            $booking = new Booking;
+            $booking->car_id = $this->selected_car->id;
+            $booking->client_id = $client->id;
+            $booking->pick_up_id = $this->pick_up;
+            $booking->drop_off_id = $this->drop_off;
+            $booking->from_date = $from_date;
+            $booking->to_date = $to_date;
+            $booking->time_of_pick_up = $from_time;
+            $booking->time_of_drop_off = $to_time;
+            $booking->save();
+
+            $this->closeModal();
+            return redirect()->route('calendar')->with(['success' => 'Car booked successfully']);
+        } else {
+            $this->booked = 'This car is already booked for the same period';
+        }
+    }
+
+    public function emptyFields()
+    {
+        $this->selected_car = null;
+        $this->from_date = null;
+        $this->to_date = null;
+        $this->pick_up = null;
+        $this->drop_off = null;
+        $this->description = null;
+        $this->booked = null;
     }
 
     public function render()

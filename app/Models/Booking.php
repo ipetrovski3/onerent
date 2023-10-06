@@ -17,6 +17,8 @@ class Booking extends Model
         'drop_off_id',
         'from_date',
         'to_date',
+        'time_of_pick_up',
+        'time_of_drop_off',
     ];
 
     public function pick_up()

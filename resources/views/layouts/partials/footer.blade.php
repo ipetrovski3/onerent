@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <aside class="f_widget subscribe_widget wow animated fadeInUp" data-wow-delay="0.8s">
-                        <div class="f_title d-flex justify-content-center">
+                        <div class="f_title d-flex justify-content-center" style="color: #fff">
                             Follow us on social platforms
                         </div>
                         <ul class="nav d-flex justify-content-center">

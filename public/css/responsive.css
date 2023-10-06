@@ -269,7 +269,7 @@
 		height: 2px;
 		width: 30px;
 		display: block;
-		background: #fff;
+		background: #0cc533;
 		cursor: pointer;
 		position: absolute;
 		left: 0px;
@@ -446,7 +446,7 @@
 		height: 2px;
 		width: 30px;
 		display: block;
-		background: #fff; 
+		background: #0cc533; 
 		left: 0px;
 		top: -10px;
 		position: absolute;
@@ -463,7 +463,7 @@
 		height: 2px;
 		width: 30px;
 		display: block;
-		background: #fff;
+		background: #0cc533;
 		left: 0px;
 		bottom: -10px;
 		position: absolute;
@@ -653,7 +653,7 @@
 		width: 100%;
 	}
 	.find_car_area .container .search_car_box {
-		padding: 40px 28px 30px 28px;
+		padding: 26px 26px 26px 26px;
 	}
 	.choose_area .choose_inner2 .col-lg-4{
 		margin-bottom: 50px;
@@ -2327,9 +2327,9 @@
 		flex: 0 0 100%;
 		max-width: 100%;
 	}
-	.search_car_box .search_car_item:first-child{
+	/* .search_car_box .search_car_item:first-child{
 		margin-bottom: 1rem;
-	}
+	} */
 	.find_car_area .container .find_car_inner h2 {
 		font: bold 28px "Barlow", sans-serif; 
 	}

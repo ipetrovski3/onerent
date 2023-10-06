@@ -68,7 +68,7 @@ body {
   font-size: 16px;
   font-family: "Barlow", sans-serif;
   font-weight: normal;
-  color: #777777;
+  color: #000;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -2314,7 +2314,7 @@ button:focus {
   margin-bottom: 52px;
 }
 .find_car_area .container .search_car_box {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.12);
   padding: 50px 28px;
   width: 100%;
   display: flex;
@@ -2328,13 +2328,14 @@ button:focus {
 }
 .find_car_area .container .search_car_box .search_car_item select {
   height: 60px;
-  border-radius: 0px;
+  border-radius: 5px;
   outline: none;
   box-shadow: none;
   padding: 0px 20px;
   font: normal 16px/60px "Barlow", sans-serif;
   color: #777777;
   border: none;
+  margin-bottom: 1rem;
 }
 .find_car_area .container .search_car_box .search_car_item input.placeholder {
   font: normal 16px/60px "Barlow", sans-serif;
@@ -2374,6 +2375,7 @@ button:focus {
   background: #fff;
   display: block;
   width: 100%;
+  border-radius: 5px;
   position: absolute;
   left: 0px;
   top: 0px;
@@ -13037,6 +13039,7 @@ input[type=number] {
   background: #ED6C30;
   color: #fff;
   border-color: #ED6C30;
+  border-radius: 5px;
 }
 .main_btn:hover, .submit_btn:hover, .subscribe_widget .input-group .input-group-append button:hover {
   color: #fff;
@@ -13235,3 +13238,12 @@ input[type=number] {
 .item {
   overflow: hidden; /* [1.2] Hide the overflowing of child elements */
 }
+
+/* .navbar-toggler {
+  padding: .25rem .75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: #777777;
+  border: 1px solid transparent;
+  border-radius: .25rem
+} */
