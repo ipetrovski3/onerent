@@ -33,13 +33,19 @@ class CarAvailability extends Component
     ];
     public $openBookModal = false;
     public $from_date;
+    public $time_of_pick_up;
     public $to_date;
+    public $time_of_drop_off;
     public $selected_car;
     public $pick_up;
     public $drop_off;
     public $locations;
+    public $name;
     public $description;
     public $booked;
+    public $clientCheck = '';
+    public $editBooking;
+
 
     public function getListeners()
     {
@@ -64,6 +70,7 @@ class CarAvailability extends Component
             'to_date' => 'required|after_or_equal:from_date',
             'pick_up' => 'required',
             'drop_off' => 'required',
+            'name' => 'required',
             'description' => 'required',
         ];
     }
@@ -77,6 +84,8 @@ class CarAvailability extends Component
             'to_date.required' => 'Please add end date',
             'from_date.after_or_equal' => 'Start date must be after or equal to today',
             'to_date.after_or_equal' => 'End date must be after or equal to start date',
+            'name.required' => 'Please add client name',
+            'description.required' => 'Please add client address',
         ];
     }
 
@@ -89,6 +98,7 @@ class CarAvailability extends Component
     {
         $this->openBookModal = false;
         $this->emptyFields();
+        $this->resetErrorBag();
     }
 
     public function updateSelectedMonth()
@@ -119,7 +129,8 @@ class CarAvailability extends Component
                 // Initialize availability and client name
                 $availability = 'green'; // Default to available
                 $clientName = '';
-
+                $previousToDate = null;
+                $bookingId = null;
                 foreach ($bookings as $booking) {
                     if ($booking->from_date === $date) {
                         $availability = 'from'; // Mark as "from" date
@@ -135,12 +146,23 @@ class CarAvailability extends Component
                     if ($client) {
                         $clientName = $client->first_name;
                     }
+                    // Check to_date from previous booking with from_date for the current booking
+                    if ($previousToDate === $booking->from_date) {
+                        $availability = 'change'; // Mark as booked
+                    }
+                    $previousToDate = $booking->to_date;
+
+                    if ($booking)
+                    {
+                        $bookingId = $booking->id;
+                    }
                 }
                 // Add availability and client name to the array
                 $clientName ?? $clientName = '';
                 $availabilityArray[] = [
                     'availability' => $availability,
                     'clientName' => $clientName,
+                    'bookingId' => $bookingId,
                 ];
             }
             $this->cars[] = [
@@ -189,6 +211,9 @@ class CarAvailability extends Component
                     ->get();
 
                 $availability = 'green'; // Default to available
+                $clientName = '';
+                $previousToDate = null;
+                $bookingId = null;
                 foreach ($bookings as $booking) {
                     if ($booking->from_date === $date) {
                         $availability = 'from'; // Mark as "from" date
@@ -204,12 +229,22 @@ class CarAvailability extends Component
                     if ($client) {
                         $clientName = $client->first_name;
                     }
+                    // Check to_date from previous booking with from_date for the current booking
+                    if ($previousToDate === $booking->from_date) {
+                        $availability = 'change'; // Mark as booked
+                    }
+                    $previousToDate = $booking->to_date;
+                    if ($booking)
+                    {
+                        $bookingId = $booking->id;
+                    }
                 }
                 // Add availability and client name to the array
                 $clientName ?? $clientName = '';
                 $availabilityArray[] = [
                     'availability' => $availability,
                     'clientName' => $clientName,
+                    'bookingId' => $bookingId,
                 ];
             }
             $this->cars[] = [
@@ -229,15 +264,25 @@ class CarAvailability extends Component
 
     public function saveBook()
     {
-        $client = new Client;
-        $client->first_name = 'Admin';
-        $client->last_name = 'Admin';
-        $client->email = 'admin@admin.com';
-        $client->phone = '1234567890';
-        $client->personal_id = '1234567890';
-        $client->address = $this->description;
-        $client->country_id = 130;
-        $client->save();
+        $this->validate();
+
+        if ($this->editBooking) {
+            $this->editBooking->delete();
+            $client = Client::findOrFail($this->editBooking->client_id);
+            $client->first_name = $this->name;
+            $client->address = $this->description;
+            $client->save();
+        } else {
+            $client = new Client;
+            $client->first_name = $this->name;
+            $client->last_name = 'Admin';
+            $client->email = 'admin@admin.com';
+            $client->phone = '1234567890';
+            $client->personal_id = '1234567890';
+            $client->address = $this->description;
+            $client->country_id = 130;
+            $client->save();
+        }
 
         $bookingHandlingService = new BookingHandlingService;
         $date_and_time_of_pick_up = $bookingHandlingService->format_from_date($this->from_date);
@@ -274,6 +319,25 @@ class CarAvailability extends Component
         }
     }
 
+    public function editBooking($booking_id)
+    {
+        $this->editBooking = Booking::findOrFail($booking_id);
+        $client = Client::findOrFail($this->editBooking->client_id);
+        $this->selected_car = Car::findOrFail($this->editBooking->car_id);
+        $from_date = $this->editBooking->from_date;
+        $from_time = $this->editBooking->time_of_pick_up;
+        $to_date = $this->editBooking->to_date;
+        $to_time = $this->editBooking->time_of_drop_off;
+        $this->from_date = $from_date . ' ' . $from_time;
+        $this->to_date = $to_date . ' ' . $to_time;        
+        $this->pick_up = $this->editBooking->pick_up_id;
+        $this->drop_off = $this->editBooking->drop_off_id;
+        $this->name = $client->first_name;
+        $this->description = $client->address;
+        $this->booked = null;
+        $this->openModal();
+    }
+
     public function emptyFields()
     {
         $this->selected_car = null;
@@ -281,8 +345,11 @@ class CarAvailability extends Component
         $this->to_date = null;
         $this->pick_up = null;
         $this->drop_off = null;
+        $this->name = null;
         $this->description = null;
         $this->booked = null;
+        $this->clientCheck = '';
+        $this->editBooking = null;
     }
 
     public function render()

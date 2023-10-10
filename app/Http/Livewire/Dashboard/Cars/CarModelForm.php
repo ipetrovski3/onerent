@@ -40,7 +40,7 @@ class CarModelForm extends Component
         $model->image = $this->image->hashName();
         $model->save();
 
-        return redirect()->route('cars.index');
+        return redirect()->route('detail.cars.index');
     }
 
     public function render()

@@ -40,14 +40,19 @@
             background: linear-gradient(-45deg, #34d399 50%, #f87171 50%);
         }
 
+        .bg-diagonal-line-change {
+            position: relative;bookingId
+            background: linear-gradient(135deg, #f87171 50%, #f87171 50%);
+        }
+
         .client-name {
             position: absolute;
             top: 50%;
-            left: 50%;
+            left: 60%;
             transform: translate(-50%, -50%) rotate(-45deg); /* Rotate text by 45 degrees */
-            font-size: 12px; /* Adjust font size as needed */
-            font-weight: 600; /* bold text */
-            color: black /* Adjust text color as needed */           
+            font-size: 12px;
+            font-weight: 600;
+            color: black;          
         }
     </style>
 @endpush

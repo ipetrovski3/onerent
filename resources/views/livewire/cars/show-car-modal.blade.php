@@ -19,7 +19,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-6">
-                        <label for="from" class="form-label">From Date</label>
+                        <label for="from" class="form-label ml-1">From Date</label>
                         <input
                             readonly
                             wire:model="from_date"
@@ -42,7 +42,7 @@
                         />
                     </div>
                     <div class="col-6">
-                        <label for="to" class="form-label">To Date</label>
+                        <label for="to" class="form-label ml-1">To Date</label>
                         <input
                             readonly
                             wire:model="to_date"
@@ -67,7 +67,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-6">
-                        <label for="pick_up" class="form-label">Pick up location</label>
+                        <label for="pick_up" class="form-label ml-1">Pick up location</label>
                         <select wire:model="pick_up" class="form-control" name="pick_up" id="pick_up">
                             <option selected value="" class="text-muted">Pick up Location</option>
                             @foreach($locations as $location)
@@ -76,7 +76,7 @@
                         </select>
                     </div>
                     <div class="col-6">
-                        <label for="drop_off" class="form-label">Drop off location</label>
+                        <label for="drop_off" class="form-label ml-1">Drop off location</label>
                         <select wire:model="drop_off" class="form-control" name="drop_off" id="drop_off">
                             <option selected value="">Drop off Location</option>
                             @foreach($locations as $location)
@@ -92,38 +92,43 @@
                         $total_price = $days * $selected_car->ppd;
                     @endphp
                     <p class="font-weight-bold" style="margin-bottom: 3px">{{ $selected_car->brand()->name }} {{ $selected_car->model->name }}</p>
-                    <p id="summary" class="font-weight-bold">Total Cost: {{ $total_price }}</p>
+                    <p class="font-weight-bold">Total Cost: {{ $total_price }}</p>
                 @endif
-                {{-- <p class="font-weight-bold" style="margin-bottom: 3px">{{ $car->brand()->name }} {{ $car->model->name }}</p>
-                <p id="summary" class="font-weight-bold">Total Cost: {{ $total_price }}</p> --}}
             </div>
             <div class="modal-body">
                 <div class="row mb-4">
-                    <div class="col">
-                        <input wire:model.defer="first_name" type="text" class="form-control" name="first_name" placeholder="First name">
+                    <div class="col-6">
+                        <label for="pick_up" class="form-label ml-1">First name</label>
+                        <input wire:model.defer="first_name" type="text" class="form-control" name="first_name">
                     </div>
-                    <div class="col">
-                        <input wire:model.defer="last_name" type="text" class="form-control" placeholder="Last name" name="last_name">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col">
-                        <input wire:model.defer="email" type="email" name="email" class="form-control" placeholder="Email">
-                    </div>
-                    <div class="col">
-                        <input wire:model.defer="phone" type="number" name="phone" class="form-control" placeholder="Telephone Number">
+                    <div class="col-6">
+                        <label for="pick_up" class="form-label ml-1">Last name</label>
+                        <input wire:model.defer="last_name" type="text" class="form-control" name="last_name">
                     </div>
                 </div>
                 <div class="row mb-4">
-                    <div class="col">
-                        <input wire:model.defer="personal_id" type="text" name="personal_id" class="form-control" placeholder="Passport Number">
+                    <div class="col-6">
+                        <label for="pick_up" class="form-label ml-1">Email</label>
+                        <input wire:model.defer="email" type="email" name="email" class="form-control">
                     </div>
-                    <div class="col">
-                        <input wire:model.defer="address" type="text" name="address" class="form-control" placeholder="Address">
+                    <div class="col-6">
+                        <label for="pick_up" class="form-label ml-1">Telephone number</label>
+                        <input wire:model.defer="phone" type="number" name="phone" class="form-control">
                     </div>
                 </div>
                 <div class="row mb-4">
-                    <div class="col">
+                    <div class="col-6">
+                        <label for="pick_up" class="form-label ml-1">Passport number</label>
+                        <input wire:model.defer="personal_id" type="text" name="personal_id" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label for="pick_up" class="form-label ml-1">Address</label>
+                        <input wire:model.defer="address" type="text" name="address" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <label for="pick_up" class="form-label ml-1">Country</label>
                         <select wire:model.defer="country" class="form-control" name="country_id">
                             <option value="" selected>Select your country...</option>
                             @foreach($countries as $country)

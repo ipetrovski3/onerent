@@ -17,7 +17,7 @@
     <section class="main_product_area p_100">
         <div class="container">
             <div class="row main_product_inner flex-row-reverse">
-                <div class="col-lg-9">
+                <div class="col-lg-12">
                     <div class="product_grid_inner">
                         <div class="row">
                             @if ($cars)
@@ -36,16 +36,10 @@
                                                     <ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&euro;</span>{{ number_format($car->ppd, 2) }}</span> per day</ins>
                                                 </div>
                                                 <ul class="nav">
-                                                    <li title="Fuel Type"><img src="img/icon/p-cat-icon-1.png" class="mr-1 ml-2" alt="">{{ $engines[$car->engine_type] }}</li>
-                                                    <li title="Transmission"><img src="img/icon/p-cat-icon-3.png" class="mr-1 ml-2" alt="">{{ $transmissions[$car->transmission_type] }}</li>
-                                                    <li title="Max Passenger"><img src="img/icon/p-cat-icon-2.png" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li>
-                                                {{-- <li><img src="img/icon/p-cat-icon-4.png" class="mr-1 ml-2" alt="">03</li> --}}
-                                                </ul>
-                                                <ul class="nav">
-                                                    <li title="Fuel Type"><img src="img/icon/p-cat-icon-1.png" class="mr-1 ml-2" alt="">{{ $engines[$car->engine_type] }}</li>
-                                                    <li title="Transmission"><img src="img/icon/p-cat-icon-3.png" class="mr-1 ml-2" alt="">{{ $transmissions[$car->transmission_type] }}</li>
-                                                    <li title="Max Passenger"><img src="img/icon/p-cat-icon-2.png" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li>
-                                                    {{--                                        <li><img src="img/icon/p-cat-icon-4.png" class="mr-1 ml-2" alt="">03</li>--}}
+                                                    <li title="Fuel Type"><img src="{{ asset('img/icon/p-cat-icon-1.png') }}" class="mr-1 ml-2" alt="">{{ $engines[$car->engine_type] }}</li>
+                                                    <li title="Transmission"><img src="{{ asset('img/icon/p-cat-icon-3.png') }}" class="mr-1 ml-2" alt="">{{ $transmissions[$car->transmission_type] }}</li>
+                                                    <li title="Max Passenger"><img src="{{ asset('img/icon/p-cat-icon-2.png') }}" class="mr-1 ml-2" alt="">{{ $car->max_passengers }}</li>
+                                                    {{-- <li><img src="{{ asset('img/icon/p-cat-icon-4.png') }}" class="mr-1 ml-2" alt="">03</li> --}}
                                                 </ul>
                                             </div>
                                         </div>

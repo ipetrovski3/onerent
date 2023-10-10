@@ -59,7 +59,7 @@
             <div class="copyright_inner d-flex justify-content-between">
                 <div class="left">
                     <p>{{ date('Y') }} &copy; Copyright ONE RENT A CAR | powered by
-                        <a href="https://www.linkedin.com/in/igor-petrovski-6ba7b91b3/" target="_blank">ipetrovski</a>
+                        <a href="https://www.linkedin.com/in/goce-arsoski-94142782/" target="_blank">goce-arsoski</a>
                     </p>
                 </div>
                 <div class="right">

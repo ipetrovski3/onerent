@@ -7,66 +7,6 @@ use Carbon\Carbon;
 
 class BookingHandlingService
 {
-    // public function isCarBooked($car_id, $from_date, $from_time, $to_date, $to_time)
-    // {
-    //     $from_date     = Carbon::parse($from_date);
-    //     $from_time     = Carbon::parse($from_time);
-    //     $to_date       = Carbon::parse($to_date);
-    //     $to_time       = Carbon::parse($to_time);
-    //     $bookings      = Booking::where('car_id', $car_id)->get();
-
-    //     do {
-    //         if (
-    //             $bookings->where('from_date', '=', $to_date->format('d.m.Y'))
-    //                     ->where('time_of_pick_up', '<', $to_time->format('h:i:s'))
-    //                     ->count() ||
-    //             $bookings->where('from_date', '=', $from_date->format('d.m.Y'))
-    //                     ->where('time_of_pick_up', '>', $from_time->format('h:i:s'))
-    //                     ->count() ||
-    //             $bookings->where('to_date', '=', $to_date->format('d.m.Y'))
-    //                     ->where('time_of_drop_off', '>', $to_time->format('h:i:s'))
-    //                     ->count() ||
-    //             $bookings->where('from_date', '>', $from_date->format('d.m.Y'))
-    //                     ->where('time_of_pick_up', '<', $to_time->format('h:i:s'))
-    //                     ->count() ||
-    //             $bookings->where('from_date', '>', $from_date->format('d.m.Y'))
-    //                     ->where('to_date', '<', $to_date->format('d.m.Y'))
-    //                     ->count() ||
-    //             $bookings->where('to_date', '=', $from_date->format('d.m.Y'))
-    //                     ->where('time_of_drop_off', '>', $from_time->format('h:i:s'))
-    //                     ->count() ||
-    //             $bookings->where('from_date', '<', $from_date->format('d.m.Y'))
-    //                     ->where('to_date', '>', $from_date->format('d.m.Y'))
-    //                     ->count() ||
-    //             $bookings->where('from_date', '<', $to_date->format('d.m.Y'))
-    //                     ->where('to_date', '>', $to_date->format('d.m.Y'))
-    //                     ->count() ||
-    //             $bookings->where('from_date', '<', $from_date->format('d.m.Y'))
-    //                     ->where('to_date', '>', $to_date->format('d.m.Y'))
-    //                     ->count()
-    //         ) {
-    //             return true;
-    //         }
-    //     } while ($to_date < $from_date);
-
-    //     return false;
-
-
-
-    //     // dd(
-    //     //     $bookings->first()->from_date == $to_date, $bookings->first()->time_of_pick_up < $to_time,
-    //     //     $bookings->first()->from_date == $from_date, $bookings->first()->time_of_pick_up >= $from_time,
-    //     //     $bookings->first()->to_date == $to_date, $bookings->first()->time_of_drop_off >= $to_time,
-    //     //     $bookings->first()->to_date == $from_date, $bookings->first()->time_of_drop_off > $from_time,
-    //     //     $bookings->first()->from_date < $from_date, $bookings->first()->to_date > $from_date,
-    //     //     $bookings->first()->from_date < $to_date, $bookings->first()->to_date > $to_date,
-    //     //     $bookings->first()->from_date < $from_date, $bookings->first()->to_date > $to_date
-
-
-    //     // );
-    // }
-
-
     public function isCarBooked($car_id, $from_date, $from_time, $to_date, $to_time)
     {
         $fromDateTime = Carbon::parse("$from_date $from_time");
@@ -89,8 +29,6 @@ class BookingHandlingService
 
         return false; // No conflicting bookings found.
     }
-
-
 
     public function make_reservation()
     {

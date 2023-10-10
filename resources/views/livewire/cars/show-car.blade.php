@@ -20,7 +20,7 @@
                     <div class="product_details_left">
                         <div class="price_title d-flex justify-content-between">
                             <div class="left">
-                                {{-- <h3>{{ $car->brand_and_model() }}</h3> --}}
+                                <h3>{{ $car->brand_and_model() }}</h3>
                             </div>
                             <div class="right">
                                 <h4> &euro; {{ $car->ppd }} daily</h4>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="product_list_right">
-                        <a id="book" href="#" data-toggle="modal" data-target="#book_car" wire:click="carInfo({{ $car->id }})" class="main_btn red popup-with-zoom-anim">Book This Car</a>
+                        <a id="book" href="#" data-toggle="modal" data-target="#book_car" wire:click="carInfo({{ $car->id }})" class="main_btn red">Book This Car</a>
                         <ul class="nav flex-column">
                             <li><a href="#"><i class="icon-gear1"></i>Transmission <span>{{ $transmissions[$car->transmission_type] }}</span></a></li>
                             <li><a href="#"><i class="icon-engine"></i>Engine Type <span>{{ $engines[$car->engine_type] }}</span></a></li>

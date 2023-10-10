@@ -70,27 +70,27 @@
                                             placeholder="{{ \Carbon\Carbon::tomorrow()->addDay()->format('d.m.Y - H:i') }}"
                                         />
                                     </div>
-                                    @error('to_date')
-                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                    @enderror
+                                    @error('to_date') <span class="error text-red-400">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="px-2 py-2 w-1/2 md:w-1/2">
                                     <label for="location" class="px-1 text-base md:text-lg text-neutral-800 font-medium mb-1.5">Pick up location</label>
-                                    <select wire:model="pick_up" name="location" id="location" class="w-full min-h-[48px] rounded-md px-3 py-2.5 border border-solid border-gray-200 focus:border-green-600 transition-all !outline-none !ring-0">
+                                    <select wire:model.defer="pick_up" name="location" id="location" class="w-full min-h-[48px] rounded-md px-3 py-2.5 border border-solid border-gray-200 focus:border-green-600 transition-all !outline-none !ring-0">
                                         <option selected value="">Pick up Location</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}">{{ $location->name }}</option>
                                         @endforeach
-                                    </select>                                                                   
+                                    </select>
+                                    @error('pick_up') <span class="error text-red-400">{{ $message }}</span> @enderror                                                         
                                 </div>
                                 <div class="px-2 py-2 w-1/2 md:w-1/2">
                                     <label for="location" class="px-1 text-base md:text-lg text-neutral-800 font-medium mb-1.5">Drop off location</label>
-                                    <select wire:model="drop_off" name="location" id="location" class="w-full min-h-[48px] rounded-md px-3 py-2.5 border border-solid border-gray-200 focus:border-green-600 transition-all !outline-none !ring-0">
+                                    <select wire:model.defer="drop_off" name="location" id="location" class="w-full min-h-[48px] rounded-md px-3 py-2.5 border border-solid border-gray-200 focus:border-green-600 transition-all !outline-none !ring-0">
                                         <option selected value="">Drop off Location</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}">{{ $location->name }}</option>
                                         @endforeach
-                                    </select>                                                                   
+                                    </select>
+                                    @error('drop_off') <span class="error text-red-400">{{ $message }}</span> @enderror                                                                
                                 </div>
                                 @php
                                     $days = Carbon\Carbon::parse($from_date)->diffInDays($to_date);
@@ -99,10 +99,15 @@
                                 <div class="inline-flex px-2 py-2 w-full md:w-full">
                                     <p class="px-1 text-base md:text-lg text-neutral-800 font-medium font-bold mr-4">{{ $selected_car->brand()->name }} {{ $selected_car->model->name }}</p>
                                     <p class="px-1 text-base md:text-lg text-neutral-800 font-medium font-bold">Total Cost: {{ $total_price }}</p>
-                                </div>           
+                                </div>
+                                <div class="px-2 py-2 w-1/2">
+                                    <label for="name" class="px-1 text-base md:text-lg text-neutral-800 font-medium mb-1.5">Name</label>
+                                    <input wire:model.defer="name" name="name" id="name" class="w-full h-[150px] rounded-md px-3 py-2.5 border border-solid border-gray-200 focus:border-green-600 transition-all !outline-none !ring-0" />
+                                    @error('name') <span class="error text-red-400">{{ $message }}</span> @enderror
+                                </div>
                                 <div class="px-2 py-2 w-full">
                                     <label for="description" class="px-1 text-base md:text-lg text-neutral-800 font-medium mb-1.5">Description</label>
-                                    <input wire:model="description" name="description" id="description" class="w-full h-[150px] rounded-md px-3 py-2.5 border border-solid border-gray-200 focus:border-green-600 transition-all !outline-none !ring-0" />
+                                    <input wire:model.defer="description" name="description" id="description" class="w-full h-[150px] rounded-md px-3 py-2.5 border border-solid border-gray-200 focus:border-green-600 transition-all !outline-none !ring-0" />
                                     @error('description') <span class="error text-red-400">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="relative w-full px-4 md:px-5 py-1  border-t border-t-solid border-t-gray-100">

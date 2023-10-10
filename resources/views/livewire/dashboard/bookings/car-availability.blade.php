@@ -43,17 +43,32 @@
                 <tr class="border-b">
                     <td class="p-2">{{ $car['model'] }}</td>
                     @foreach ($car['availability'] as $availability)
+                    @if ($availability['availability'] === 'green')
                     <td wire:click="bookCar({{ $car['id'] }})" class="cursor-pointer calendar-cell relative
+                    @else
+                    <td wire:click="editBooking({{ $availability['bookingId'] }})" class="cursor-pointer calendar-cell relative
+                    @endif
                         {{ $availability['availability'] === 'green' ? 'bg-green-400' : '' }}
                         {{ $availability['availability'] === 'from' ? 'bg-diagonal-line-from' : '' }}
                         {{ $availability['availability'] === 'to' ? 'bg-diagonal-line-to' : '' }}
+                        {{ $availability['availability'] ==='change' ? 'bg-diagonal-line-change' : '' }}
                         {{ $availability['availability'] === 'red' ? 'bg-red-400' : '' }}">
                         <div class="slash-line"></div>
     
                         {{-- Check if there is a booking for this cell --}}
                         @if ($availability['availability'] !== 'green')
                             <div class="booking-info">
-                                <div class="client-name">{{ $availability['clientName'] }}</div>
+                                <div class="client-name">
+                                    @if ($availability['clientName'] === $clientCheck && $availability['bookingId'] === $bookingIdCheck)
+                                        @continue($clientCheck = $availability['clientName'])
+                                    @else
+                                        {{ $availability['clientName'] }}
+                                    @endif
+                                    @php
+                                        $clientCheck = $availability['clientName'];
+                                        $bookingIdCheck = $availability['bookingId'];
+                                    @endphp
+                                </div>
                             </div>
                         @endif
                     </td>
