@@ -41,7 +41,7 @@
         }
 
         .bg-diagonal-line-change {
-            position: relative;bookingId
+            position: relative;
             background: linear-gradient(135deg, #f87171 50%, #f87171 50%);
         }
 
