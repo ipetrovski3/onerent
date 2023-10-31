@@ -24,10 +24,10 @@
         }
 
         .date-cell {
-            width: 46px;
-            height: 46px;
+            width: 42px;
+            height: 42px;
             text-align: center;
-            padding: 5px;
+            padding: 2px;
         }
 
         .bg-diagonal-line-from {

@@ -74,7 +74,7 @@
 						<input type="text" class="form-control" id="name" name="name" placeholder="Name">
 					</div>
 					<div class="form-group col-md-4">
-						<input type="text" class="form-control" id="number" name="number" placeholder="Phone">
+						<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone">
 					</div>
 					<div class="form-group col-md-4">
 						<input type="email" class="form-control" id="email" name="email" placeholder="Email">

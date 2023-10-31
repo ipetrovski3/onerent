@@ -17,7 +17,7 @@ class ContactsController extends Controller
         $contact_message = $request->message;
         $admin = User::first()->email;
 
-        Mail:: to($admin)->send(new ContactForm($name, $phone, $sender, $contact_message));
+        Mail::to($admin)->queue(new ContactForm($name, $phone, $sender, $contact_message));
         return redirect()->back();
     }
 }

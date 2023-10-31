@@ -360,9 +360,9 @@
                                                                                                                 </a> --}}
                                                                                                             </p>
                                                                                                 
-                                                                                                            <p style="margin: 0 0 40px 0; color: #262626; font-weight: 400; font-size: 18px; line-height: 160%;">One of our colleagues will contact you soon so we can confirm the reservation.</p>
+                                                                                                            <p style="margin: 0 0 40px 0; color: #828282; font-weight: 400; font-size: 18px; line-height: 160%;">One of our colleagues will contact you soon so we can confirm the reservation.</p>
 
-                                                                                                            <p style="margin: 0 0 40px 0; color: #262626; font-weight: 400; font-size: 18px; line-height: 160%;">Best Regards,</p>
+                                                                                                            <p style="margin: 0 0 40px 0; color: #828282; font-weight: 400; font-size: 18px; line-height: 160%;">Best Regards,</p>
 
                                                                                                             <ul style="display: inline-block; padding: 0; margin: 0 0 10px 0; list-style: none;">
                                                                                                                 <li style="display: inline-block; vertical-align: middle; padding:10px; padding-right: 0;">
@@ -378,7 +378,7 @@
                                                                                                                 </li>
                                                                                                             </ul>
 
-                                                                                                            <p class="mobile-f-18" style="margin: 0 0 0px 0; color: #262626; font-weight: 400; font-size: 20px; line-height: 160%;">The One-Rent a Car team</p>
+                                                                                                            <p class="mobile-f-18" style="margin: 0 0 0px 0; color: #828282; font-weight: 400; font-size: 20px; line-height: 160%;">The One-Rent a Car team</p>
                                                                                                             <br>
                                                                                                         </center>
                                                                                                     </div>
