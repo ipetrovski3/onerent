@@ -20,9 +20,9 @@
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $booking->car ? $booking->car->brand_and_model() : '/'  }}</td>
                 <td>{{ \Carbon\Carbon::parse($booking->from_date)->format('d.m.Y') . ' - ' . \Carbon\Carbon::parse($booking->to_date)->format('d.m.Y') }}</td>
-                <td>{{ \Carbon\Carbon::parse(strtotime($booking->time_of_pick_up))->format('H:m') }}</td>
+                <td>{{ \Carbon\Carbon::parse($booking->time_of_pick_up)->format('H:i') }}</td>
                 <td>{{ $booking->pick_up->name  }}</td>
-                <td>{{ \Carbon\Carbon::parse(strtotime($booking->time_of_drop_off))->format('H:m') }}</td>
+                <td>{{ \Carbon\Carbon::parse($booking->time_of_drop_off)->format('H:i') }}</td>
                 <td>{{ $booking->drop_off->name  }}</td>
                 <td>{{ $booking->client ? $booking->client->full_name() : '/'  }}</td>
                 <td class="text-success">{{ $booking->statuses[$booking->status] }} </td>

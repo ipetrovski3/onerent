@@ -46,7 +46,6 @@ class CarAvailability extends Component
     public $clientCheck = '';
     public $editBooking;
 
-
     public function getListeners()
     {
         return [
@@ -336,6 +335,13 @@ class CarAvailability extends Component
         $this->description = $client->address;
         $this->booked = null;
         $this->openModal();
+    }
+
+    public function deleteBooking()
+    {
+        $this->editBooking->delete();
+        $this->closeModal();
+        return redirect()->route('calendar')->with(['success' => 'The booking is successfully deleted']);
     }
 
     public function emptyFields()

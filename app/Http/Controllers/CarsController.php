@@ -35,12 +35,14 @@ class CarsController extends Controller
     public function available_cars($booking_id, BookingHandlingService $bookingHandlingService)
     {
         $booking = Booking::findOrFail($booking_id);
-        $cars = Car::available_cars($booking->from_date, $booking->to_date);
+        $cars = Car::availableCars();
         $date_and_time_of_pick_up = $bookingHandlingService->format_from_date($booking->from_date);
+        $date_and_time_of_pick_up = $bookingHandlingService->format_from_date($booking->time_of_pick_up);
         $from_date = $date_and_time_of_pick_up['from_date'];
         $from_time = $date_and_time_of_pick_up['pick_up_time'];
 
         $date_and_time_of_drop_off = $bookingHandlingService->format_to_date($booking->to_date);
+        $date_and_time_of_drop_off = $bookingHandlingService->format_to_date($booking->time_of_drop_off);
         $to_date = $date_and_time_of_drop_off['to_date'];
         $to_time = $date_and_time_of_drop_off['drop_off_time'];
 

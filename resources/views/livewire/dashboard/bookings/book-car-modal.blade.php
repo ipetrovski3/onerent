@@ -112,7 +112,14 @@
                                 </div>
                                 <div class="relative w-full px-4 md:px-5 py-1  border-t border-t-solid border-t-gray-100">
                                     <div class="flex flex-row flex-wrap items-center -mx-2">
-                                        <div class="px-2 py-1 w-1/2">
+                                        <div class="px-2 py-1 w-1/3">
+                                            <button
+                                                wire:click="deleteBooking"
+                                                class="cursor-pointer block text-center border border-red-600 rounded-md min-h-[46px] h-auto py-1 p-1.5 w-full max-w-full text-white bg-red-600 text-base md:text-lg leading-tight hover:bg-red-700 hover:border-red-600 transition ease-in-out duration-200 font-bold">
+                                                Delete
+                                            </button>
+                                        </div>
+                                        <div class="px-2 py-1 w-1/3">
                                             <button
                                                 {{-- wire:click="bookCar" --}}
                                                 type="submit"
@@ -120,7 +127,7 @@
                                                 Book
                                             </button>
                                         </div>
-                                        <div class="px-2 py-1 w-1/2">
+                                        <div class="px-2 py-1 w-1/3">
                                             <a wire:click="closeModal" type="button" class="cursor-pointer block text-center border border-blue-600 rounded-md min-h-[46px] h-auto py-1 p-1.5 w-full max-w-full border-solid text-base md:text-lg text-blue-600 bg-transparent  hover:bg-blue-600 hover:text-blue-500 transition ease-in-out duration-200 font-bold">
                                                 Cancel
                                             </a>

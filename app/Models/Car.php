@@ -31,17 +31,10 @@ class Car extends Model
         return $this->model->brand->name . ' ' . $this->model->name; // Access brand through model relationship
     }
 
-    public static function available_cars($from, $to)
+    // scope for available cars
+    public function scopeAvailableCars($query)
     {
-        return self::with(['bookings' => function ($query) use ($from, $to) {
-            $query->whereDate('from_date', '<=', $to)
-                ->whereDate('to_date', '>=', $from);
-        }])
-        ->where('always_booked', false)
-        ->get()
-        ->filter(function ($car) {
-            return $car->bookings->isEmpty();
-        });
+        return $query->where('always_booked', false)->get();
     }
 
     public static function transmissions()
