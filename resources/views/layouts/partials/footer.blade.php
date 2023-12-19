@@ -8,7 +8,7 @@
                         <a class="f_logo" href="{{ route('home') }}"><img src="{{ asset('images/logo-white.png') }}" srcset="{{ asset('images/logo-white.png') }}" style="max-height: 60px;" alt="ONE RENT A CAR"></a>
                         <p><i class="icon-map_marker_2" aria-hidden="true"></i> Skopje, Macedonia</p>
                         <a href="mailto:info@onerentacar.mk"><i class="icon-envelop_2" aria-hidden="true"></i> info@onerentacar.mk</a>
-                        <a class="mb-0" href="tel:0951856558"><i class="icon-phone_2" aria-hidden="true"></i> +389 78 230 230</a>
+                        <a class="mb-0" href="tel:+38978230230"><i class="icon-phone_2" aria-hidden="true"></i> +389 78 230 230</a>
                         <p class="mt-0"><small>*available on viber and whatsapp</small></p>
                     </aside>
                 </div>
