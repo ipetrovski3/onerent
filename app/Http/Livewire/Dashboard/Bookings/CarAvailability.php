@@ -175,15 +175,29 @@ class CarAvailability extends Component
 
     public function nextMonth()
     {
-        $this->updateAvailability(date('n') + 1, date('Y'));
         $this->selectedMonth = date('n') + 1;
+        $this->selectedYear = date('Y');
+
+        if ($this->selectedMonth > 12) {
+            $this->selectedMonth = 1;
+            $this->selectedYear++;
+        }
+
+        $this->updateAvailability($this->selectedMonth, $this->selectedYear);
         $this->daysInMonth = cal_days_in_month(CAL_GREGORIAN, $this->selectedMonth, $this->selectedYear);
     }
 
     public function previousMonth()
     {
-        $this->updateAvailability(date('n') - 1, date('Y'));
         $this->selectedMonth = date('n') - 1;
+        $this->selectedYear = date('Y');
+
+        if ($this->selectedMonth < 1) {
+            $this->selectedMonth = 12;
+            $this->selectedYear--;
+        }
+
+        $this->updateAvailability($this->selectedMonth, $this->selectedYear);
         $this->daysInMonth = cal_days_in_month(CAL_GREGORIAN, $this->selectedMonth, $this->selectedYear);
     }
 

@@ -17,6 +17,10 @@
             font-weight: bold;
             border-radius: 5px;
         }
+
+        .h4,h4 {
+            font-size: 1rem;
+        }
     </style>
 
     <!--================Breadcrumb Area =================-->
