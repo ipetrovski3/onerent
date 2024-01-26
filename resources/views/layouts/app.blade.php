@@ -10,6 +10,8 @@
     <meta name="keywords" content="rentacar skopje, rentacar macedonia, rent a car macedonia, cheap rent a car in macedonia, best rent a car in macedonia">
     <meta name="google-site-verification" content="ALer7Iwb8HyKkaOsnsv-hCBa4R3t_zv9LsRCUGshVEU" />
 
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -43,6 +45,7 @@
             display: none;
         }
     </style>
+    @include('layouts.partials.facebook_pixel')
 </head>
 <body data-scroll-animation="true">
     {{--<div class="preloader">--}}
