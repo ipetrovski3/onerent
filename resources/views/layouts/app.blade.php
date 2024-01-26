@@ -46,6 +46,7 @@
         }
     </style>
     @include('layouts.partials.facebook_pixel')
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1287809329278416&ev=PageView&noscript=1"/></noscript>
 </head>
 <body data-scroll-animation="true">
     {{--<div class="preloader">--}}
