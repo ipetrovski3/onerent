@@ -33,4 +33,24 @@
             </form>
         </div>
     </div>
+
+    @foreach($carModels as $carModel)
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="{{ asset('storage/cars/' . $carModel->image) }}" alt="{{ $carModel->name }}" class="img-fluid">
+                    </div>
+                    <div class="col-8">
+                        <h3>{{ $carModel->brand->name}}  {{ $carModel->name }}</h3>
+                        
+                    </div>
+                    <div class="col-2">
+                        <input type="file" wire:model="newImage.{{ $carModel->id }}" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Dashboard\Cars;
 use Livewire\Component;
 use App\Models\CarBrand;
 use App\Models\CarModel;
+use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
 
 class CarModelForm extends Component
@@ -15,9 +16,13 @@ class CarModelForm extends Component
     public $name;
     public $car_brand_id;
     public $image;
+    public $carModels;
+    public $newImage = [];
 
     public function mount()
     {
+        $this->carModels = CarModel::all();
+        
         $this->car_brands = CarBrand::all();
     }
 
@@ -41,6 +46,24 @@ class CarModelForm extends Component
         $model->save();
 
         return redirect()->route('detail.cars.index');
+    }
+
+    public function updatedNewImage($value, $carModelId)
+    {
+        $carModel = CarModel::find($carModelId);
+        if ($carModel) {
+            
+            $this->validate([
+                "newImage.$carModelId" => 'image|max:1024', // 1MB max
+            ]);
+                        
+            if ($carModel->image) {
+                Storage::disk('public')->delete('cars/' . $carModel->image);
+            }
+
+            $this->newImage[$carModelId]->store('cars', 'public');
+            $carModel->update(['image' => $this->newImage[$carModelId]->hashName()]);
+        }
     }
 
     public function render()

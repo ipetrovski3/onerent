@@ -10,10 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class CarModelsController extends Controller
 {
+
     public function new()
     {
         $brands = CarBrand::all();
-        return view('dashboard.models.new', compact('brands'));
+        $carModels = CarModel::all();
+        return view('dashboard.models.new', compact('brands', 'carModels'));
     }
 
     public function store(CarModelRequest $request)
