@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\GoogleReview;
 use App\Models\Location;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,14 @@ class HomeController extends Controller
     {
         $cars = Car::where('always_booked', false)->get();
         $locations = Location::all();
+        $googleReviews = GoogleReview::inRandomOrder()->get();
+        if ($googleReviews->count() < 6) {
+            $googleReviews = $googleReviews->concat($googleReviews);
+        }
         return view('index')->with([
             'cars' => $cars,
-            'locations' => $locations
+            'locations' => $locations,
+            'googleReviews' => $googleReviews
         ]);
     }
 

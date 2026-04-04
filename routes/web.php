@@ -43,6 +43,16 @@ Route::get('/contact-us', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/avatar', function () {
+    $url = request('url');
+
+    return response()->stream(function () use ($url) {
+        echo file_get_contents($url);
+    }, 200, [
+        'Content-Type' => 'image/jpeg'
+    ]);
+});
+
 Route::post('/contact-us', [ContactsController::class, 'create'])->name('contact');
 
 //Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
