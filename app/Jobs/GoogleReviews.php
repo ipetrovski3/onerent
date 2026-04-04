@@ -22,7 +22,7 @@ class GoogleReviews implements ShouldQueue
     public function handle(GoogleReviewsService $service)
     {
         $reviews = $service->fetchReviews();
-
+        \Log::info('GoogleReviews job ran');
         foreach ($reviews as $review) {
             $author = $review['author_name'] ?? null;
             $time   = $review['time'] ?? null;
