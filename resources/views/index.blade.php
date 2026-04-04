@@ -135,10 +135,17 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="https://www.google.com/maps/place/?q=place_id:ChIJWzDRPSQ5VBMRJXYzrySMPtg" target="_blank"
-                class="text-decoration-none fw-semibold">
-                Read all reviews on Google →
+
+            <a href="https://share.google/lp1MTkEkYrkWUIXNN" target="_blank" rel="noopener"
+                class="fw-semibold text-decoration-none me-3">
+                ⭐ View on Google
             </a>
+
+            <a href="https://search.google.com/local/writereview?placeid=ChIJWzDRPSQ5VBMRJXYzrySMPtg" target="_blank"
+                rel="noopener" class="fw-semibold text-decoration-none">
+                ✍️ Leave a review
+            </a>
+
         </div>
     </div>
 
